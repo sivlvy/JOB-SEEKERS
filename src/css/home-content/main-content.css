@@ -1,0 +1,30 @@
+@media screen and (max-width: 375px) {
+    .filters-name {
+        color: rgba(1, 1, 1, 0.30);
+
+        font-family: Neue Montreal;
+        font-size: 14px;
+        line-height: 1.29em
+    }
+
+    .filters-search-input {
+        color: #010101;
+        padding: 14px 20px;
+        font-family: Neue Montreal;
+        font-size: 14px;
+        line-height: 1.29em;
+        width: 100%;
+        border-radius: 30px;
+        border: 1px solid rgba(1, 1, 1, 0.30);
+        outline: none;
+    }
+
+    .filters-search-input:hover,
+    .filters-search-input:focus {
+        border: 1px solid #6D8434;
+    }
+}
+
+@media screen and (min-width: 768px) {}
+
+@media screen and (min-width: 1440px) {}
