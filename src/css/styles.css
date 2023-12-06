@@ -21,11 +21,18 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-text-size-adjust: 100%;
+
+	
+	--light-grey-cl: #e8e8e2;
+	--main-cl: #010101;
+	--accent-cl: #6d8434;
+	--white-cl: #fafafa;
+	--grey-cl: rgba(1, 1, 1, 0.3);
 }
 
 body {
 	background-color: #e8e8e2;
 }
 .container {
-  margin: 0 auto;
+	margin: 0 auto;
 }
