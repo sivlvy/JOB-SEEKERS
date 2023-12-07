@@ -24,6 +24,7 @@
 .hero-title span {
 	color: #6d8434;
 }
+
 .hero-descr {
 	color: rgba(1, 1, 1, 0.8);
 	text-align: center;
@@ -32,6 +33,7 @@
 	font-weight: 400;
 	padding-bottom: 32px;
 }
+
 .images {
 	position: relative;
 }
