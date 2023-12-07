@@ -46,6 +46,7 @@ export const getPopularProducts = async limit => {
 	return data;
 };
 
-export const getDiscoundProducts = async () => {
+export const getDiscountProducts = async () => {
 	const { data } = await axios.get(`/products/discount`);
+	return data;
 };
