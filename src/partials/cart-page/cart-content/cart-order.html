@@ -1,0 +1,22 @@
+<section class="cart-order">
+	<div class="container">
+		<h2>YOUR ORDER</h2>
+		<div class="totalCost">
+			<div class="total">Total</div>
+			<div class="sum">Sum</div>
+			<div class="amount">$12,94</div>
+		</div>
+
+		<!-- Форма оформлення замовлення -->
+		<form onsubmit="event.preventDefault(); checkout()">
+			<label class="mail-field" for="email">Mail: Enter your email</label>
+			<input
+				type="email"
+				id="email"
+				required
+				pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+			/>
+			<button type="submit">Checkout</button>
+		</form>
+	</div>
+</section>
