@@ -1,12 +1,51 @@
 import axios from 'axios';
 
-const refs = {
-	popularList: document.querySelector('.popular-list'),
+axios.defaults.baseURL = 'https://food-boutique.b.goit.study/api';
+
+export const getCategoryList = async () => {
+	const { data } = await axios.get(`/products/categories`);
+	return data;
 };
 
-function getPopularProducts() {
-	const BASE_URL = 'https://food-boutique.b.goit.study/api/products';
-	return axios.get(`${BASE_URL}/popular?limit=5`).then(resp => resp.data);
-}
+export const getCurrentProducts = async ({
+	value,
+	category,
+	page,
+	limit,
+	sortBy,
+}) => {
+	const params = new URLSearchParams({
+		page,
+		limit,
+	});
 
-getPopularProducts().then(resp => resp.data);
+	if (value) {
+		params.set('value', value);
+	}
+
+	if (category) {
+		params.set('category', category);
+	}
+
+	if (sortBy) {
+		params.set('sortBy', sortBy);
+	}
+
+	const { data } = await axios.get(`/products/`, { params });
+
+	return data;
+};
+
+export const getProductById = async id => {
+	const { data } = await axios.get(`/products/${id}`);
+	return data;
+};
+
+export const getPopularProducts = async limit => {
+	const { data } = await axios.get(`/products/popular?limit=${limit}`);
+	return data;
+};
+
+export const getDiscoundProducts = async () => {
+	const { data } = await axios.get(`/products/discount`);
+};
