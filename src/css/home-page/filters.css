@@ -61,7 +61,7 @@
 
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 376px) and (max-width: 767px) {
     .filters-search-button {
         left: 213px;
     }
