@@ -1,9 +1,14 @@
 import { getCategoryList } from '../services/food-api';
-import SlimSelect from 'slim-select';
-// import 'slim-select/dist/slimselect.css';
+
 const refs = {
-	selectEl: document.querySelector('filterts-categories-select'),
+	selectEl: document.querySelector('.filterts-categories-select'),
 };
+console.log(refs);
+
+const STORAGE_KEY = 'search-parameters';
+const savedFilters = JSON.parse(localStorage.getItem(STORAGE_KEY));
+const defaultFilters = { keyword: null, category: null, page: 1, limit: 6 };
+const initialFilters = savedFilters || defaultFilters;
 
 getCategoryList()
 	.then(data => {
@@ -21,14 +26,23 @@ function renderSelectList(data) {
 		.join('')
 		.concat(`<option value="">Show All</option>`);
 
-	refs.selectEl.insertAdjacentHTML('afterbegin', markupSelectList);
+	refs.selectEl.insertAdjacentHTML('beforeend', markupSelectList);
 
-	new SlimSelect({
-		select: refs.selectEl,
-		settings: {
-			showSearch: false,
-			searchHighlight: true,
-		},
-	});
 	return;
 }
+
+refs.selectEl.addEventListener('change', onSelect);
+
+function onSelect(evt) {
+	const selectData = {
+		category: evt.target.value,
+	};
+	console.log(selectData);
+	saveFiltersToLocalStorage(selectData);
+}
+
+function saveFiltersToLocalStorage(filters) {
+	localStorage.setItem(STORAGE_KEY, JSON.stringify(filters));
+}
+
+saveFiltersToLocalStorage(initialFilters);
