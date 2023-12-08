@@ -5,19 +5,63 @@
   |============================
 */
 @import url('./reset.css');
+@import url('./home-page/hero.css');
+
+
+/** Components */
+
+@import url('./components/header.css');
+@import url('./components/footer.css');
+
+
+/** cart page  */
+
+@import url('./cart-page/cart-content.css');
+@import url('./cart-page/cart-content/empty-content.css');
+@import url('./cart-page/cart-content/order-products.css');
+@import url('./cart-page/cart-content/product-list.css');
+
+
+/** homepage  */
+
+@import url('./home-page/filters.css');
+@import url('./home-page/hero.css');
+@import url('./home-page/home-content.css');
+@import url('./home-content/main-content.css');
+@import url('./home-content/sidebar.css');
+
+
+/** modals  */
+
+@import url('./modals/modal-order.css');
+@import url('./modals/modal-product.css');
+@import url('./modals/modal-subscription.css');
 
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
-  font-size: 16px;
-  line-height: 24px;
-  font-weight: 400;
+	font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 400;
 
-  color: #242424;
-  background-color: rgba(255, 255, 255, 0.87);
+	color: #242424;
+	background-color: rgba(255, 255, 255, 0.87);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+
+	--light-grey-cl: #e8e8e2;
+	--main-cl: #010101;
+	--accent-cl: #6d8434;
+	--white-cl: #fafafa;
+	--grey-cl: rgba(1, 1, 1, 0.3);
+}
+
+body {
+	background-color: #e8e8e2;
+}
+.container {
+	margin: 0 auto;
 }
