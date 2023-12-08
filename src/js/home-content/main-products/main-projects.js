@@ -31,15 +31,16 @@ function cardMarkup(products) {
          <p class="product-name">
            ${name}
          </p>
-         <p  class="product-item">
-           Category:<span class="product-more-info"> &nbsp;${category}</span>
-         </p>
-         <p class="product-item">
-           Size:<span class="product-more-info"> &nbsp;${size}</span>
-         </p>
-         <p class="product-item">
-           Popularity:<span class="product-more-info"> &nbsp;${popularity}</span>
-         </p>
+        <div class ="product-items">
+		<p  class="product-item">
+		Category:<span class="product-more-info"> &nbsp;${category}</span>
+	  </p>
+	  <p class="product-item">
+		Size:<span class="product-more-info"> &nbsp;${size}</span>
+	  </p>
+	  <p class="product-item">
+		Popularity:<span class="product-more-info"> &nbsp;${popularity}</span>
+	  </p></div>
 		 
        </div>
 	   <div class="price-and-add">

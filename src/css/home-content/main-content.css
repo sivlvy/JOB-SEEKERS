@@ -1,17 +1,35 @@
 
 .main-content {
-    margin-top: 100px;
+    padding-top: 100px;
     font-family: 'Neue Montreal', sans-serif;
+    
 }
+
+.card-wrapper {
+    background-color: var(--white-cl);
+    width: 335px;
+    height: 356px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+
+    
+
+
+}
+
+
 
 .image-wrapper {
     background-color: var(--light-grey-cl);
+
     width: 295px;
     height: 178px;
     border-radius: 20px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
+    
    
 }
 
@@ -25,16 +43,7 @@
  }
 
 
-.card-wrapper {
-    background-color: var(--white-cl);
-    width: 335px;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 20px;
 
-
-
-}
 
 .product-name {
     
@@ -44,17 +53,24 @@
     line-height: 1.1;
 }
 
+.product-items{
+    display: flex;
+    justify-content: flex-start;
+
+}
 .product-item{
     
     font-size: 12px;
     line-height: 1.2;
     color: rgba(1, 1, 1, 0.30);
-    display: inline;
+  
+    
+  
    
 }
 
 .product-item:not(:last-child) {
-    margin-right: 3px
+    margin-right: 6px
 }
 
 .product-descr {
@@ -77,7 +93,10 @@ font-size: 12px;
 
 .add-button{
     border-radius: 50%;
-    border-color: none;
+    border: none;
+    width: 34px;
+    height: 34px;
+  
     
     background-color: var(--accent-cl);
 }
