@@ -18,7 +18,7 @@
     border-radius: 30px;
     border: 1px solid rgba(1, 1, 1, 0.30);
     outline: none;
-
+    background-color: transparent;
 }
 
 .filters-search-input::placeholder {
@@ -62,8 +62,8 @@
 }
 
 @media screen and (max-width: 767px) {
-    .filters-search-input {
-        width: 100%;
+    .filters-search-button {
+        left: 213px;
     }
 }
 
