@@ -1,17 +1,9 @@
 import axios from 'axios';
-const cardProduct = document.querySelector('.card-container');
 import { getCurrentProducts } from '../../services/food-api.js';
-console.log(getCurrentProducts)
 
 
+const cardProduct = document.querySelector('.card-container');
 
-// const getProductList = async () => {
-// 	const response = await fetch(
-// 		'https://food-boutique.b.goit.study/api/products?page=1&limit=6'
-// 	);
-// 	const products = await response.json();
-// 	return products;
-// };
 
 let value = ""; 
 let category = ""; 
@@ -20,7 +12,6 @@ let limit = 6;
 
 getCurrentProducts({value, category, page, limit})
 	.then(data => {
-		console.log(data);
 		const products = data.results;
 		cardProduct.insertAdjacentHTML('afterbegin', cardMarkup(products));
 	})
