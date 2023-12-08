@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { getCurrentProducts } from '../../services/food-api.js';
+// import { resolvePackageEntry } from 'vite';
 
 
 const cardProduct = document.querySelector('.card-container');
@@ -13,6 +14,15 @@ let limit = 6;
 getCurrentProducts({value, category, page, limit})
 	.then(data => {
 		const products = data.results;
+		
+		// for(const product of products) {
+		// 	const replaceSymbolsOfCategory = product.category;
+		// 	const replacedCategory = replaceSymbolsOfCategory.replace('_', ' ');
+		// 	console.log(replacedCategory)
+		// }
+		
+		
+	
 		cardProduct.insertAdjacentHTML('afterbegin', cardMarkup(products));
 	})
 	.catch(error => {
@@ -20,9 +30,18 @@ getCurrentProducts({value, category, page, limit})
 	});
 
 function cardMarkup(products) {
+
+	for(const product of products) {
+		const replaceSymbolsOfCategory = product.category;
+		const replacedCategory = replaceSymbolsOfCategory.replace('_', ' ');
+		console.log(replacedCategory)
+	}
+	
 	return products
 		.map(
-			({ img, name, category, size, popularity, price }) =>
+			({ img, name, category, size, popularity, price }) => 
+				// let replacedCategory = category.replace('_', ' ');
+			
 				`<div class="card-wrapper">
 				<div class="image-wrapper">
 				<img src="${img}" alt="${name}" loading="lazy" class="product-image" width="140" height="140" />
@@ -54,6 +73,8 @@ function cardMarkup(products) {
 		 </div>
 	   
 	   </div>`
-		)
-		.join('');
+			)
+	
+		.join('')
+		
 }

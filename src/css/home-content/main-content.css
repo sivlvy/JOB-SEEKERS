@@ -56,6 +56,7 @@
 .product-items{
     display: flex;
     justify-content: flex-start;
+    gap: 6px;
 
 }
 .product-item{
@@ -69,9 +70,7 @@
    
 }
 
-.product-item:not(:last-child) {
-    margin-right: 6px
-}
+
 
 .product-descr {
 font-size: 12px;
@@ -84,11 +83,13 @@ font-size: 12px;
 
 .product-price {
     font-weight: 800;
+    
 }
 
 .price-and-add {
     display: flex;
     justify-content: space-between;
+    align-items: last baseline;
 }
 
 .add-button{
@@ -99,4 +100,8 @@ font-size: 12px;
   
     
     background-color: var(--accent-cl);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
