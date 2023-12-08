@@ -13,7 +13,12 @@ console.log(getCurrentProducts)
 // 	return products;
 // };
 
-getCurrentProducts()
+let value = ""; 
+let category = ""; 
+let page = 1;
+let limit = 6;
+
+getCurrentProducts({value, category, page, limit})
 	.then(data => {
 		console.log(data);
 		const products = data.results;
