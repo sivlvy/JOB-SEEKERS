@@ -56,7 +56,6 @@ footer {
   
   .footer-item-svg {
     fill: white; 
-    /*border: 1px solid black;*/
   }
 
 
@@ -89,18 +88,10 @@ display: flex;
     fill: #E8E8E2; 
   }
   
-  .footer-item-link:hover {
+  .footer-item-link:hover .footer-item-svg {
     background-color: rgba(232, 232, 226, 0.3); 
     border-radius: 20%; 
-   
   }
-
-  .footer-item-svg {
-    background-color: rgba(232, 232, 226, 0.3); 
-    border-radius: 20%; 
-    border: 1px solid black;
-  }
-
 
   .footer-input {
     background-color: #F2F2F2; 
@@ -117,7 +108,7 @@ display: flex;
   .footer-box-form .footer-form .footer-input {
     background-color: #6D8434; 
     border: 1px solid #E8E8E2;
-    color: #E8E8E2;;
+    color: #E8E8E2;
   }
 
 
@@ -140,7 +131,7 @@ display: flex;
   }
   
   .footer-btn {
-    width: 336px;
+    width: 340px;
     height: 48px;
     color: #010101;
     background-color: #E8E8E2;
@@ -160,3 +151,7 @@ display: flex;
     margin-top: 0px; 
   }
 
+  .footer-item-svg {
+    border: 1px white;
+    border-radius: 20px;
+  }
