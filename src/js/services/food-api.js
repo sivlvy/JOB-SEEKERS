@@ -7,6 +7,11 @@ export const getCategoryList = async () => {
 	return data;
 };
 
+export const getAllProducts = async () => {
+	const { data } = await axios.get(`/products`);
+	return data;
+};
+
 export const getCurrentProducts = async ({
 	value,
 	category,
