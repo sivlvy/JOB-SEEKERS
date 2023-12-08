@@ -1,7 +1,6 @@
-import { getCategoryList } from './services/food-api.js';
+import { getCategoryList } from '../services/food-api';
 import SlimSelect from 'slim-select';
-import 'slim-select/dist/slimselect.css';
-
+// import 'slim-select/dist/slimselect.css';
 const refs = {
 	selectEl: document.querySelector('filterts-categories-select'),
 };
