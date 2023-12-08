@@ -14,4 +14,3 @@ export function loadFromLS(key) {
 		return data;
 	}
 }
-
