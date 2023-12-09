@@ -31,42 +31,55 @@ function renderSelectList(data) {
 		},
 	});
 
-	return;
+	const filtersInstance = new Filters();
+
+	console.log(filtersInstance);
+
+	refs.selectEl.addEventListener('change', evt =>
+		filtersInstance.searchOptionForLocalStorage({
+			key: 'category',
+			value: evt.target.value,
+		})
+	);
 }
 
-// ------------------LocalStorage--------------------
-
-const STORAGE_FILTERS_KEY = 'filters-parameters';
-const savedFilters = JSON.parse(localStorage.getItem(STORAGE_FILTERS_KEY));
-const defaultFilters = new Map([
-	['keyword', null],
-	['category', null],
-	['page', 1],
-	['limit', 6],
-]);
-const initialFilters = savedFilters || defaultFilters;
-let filtersData = new Map(initialFilters);
-
-refs.selectEl.addEventListener('change', onSelect);
-
-function onSelect(evt) {
-	const [key, value] = ['category', evt.target.value];
-	filtersData.set(key, value);
-
-	const isAnyParameterSelected = [...filtersData.values()].some(
-		value => value !== null && value !== undefined && value !== ''
-	);
-
-	if (!isAnyParameterSelected) {
-		filtersData = new Map(defaultFilters);
+export class Filters {
+	constructor() {
+		this.STORAGE_FILTERS_KEY = 'filters-parameters';
+		this.defaultFilters = new Map([
+			['keyword', null],
+			['category', null],
+			['page', 1],
+			['limit', 6],
+		]);
+		this.setDefaultFilters();
+		this.saveFiltersToLocalStorage();
 	}
 
-	console.log(Object.fromEntries(filtersData));
-	saveFiltersToLocalStorage(Object.fromEntries(filtersData));
+	setDefaultFilters() {
+		this.filtersData =
+			JSON.parse(localStorage.getItem(this.STORAGE_FILTERS_KEY)) ||
+			new Map(this.defaultFilters);
+	}
+
+	saveFiltersToLocalStorage() {
+		localStorage.setItem(
+			this.STORAGE_FILTERS_KEY,
+			JSON.stringify([...this.filtersData])
+		);
+	}
+
+	updateFilters({ key, value }) {
+		if (this.filtersData.get(key) !== value) {
+			this.filtersData.set(key, value);
+			this.saveFiltersToLocalStorage();
+		}
+	}
+
+	searchOptionForLocalStorage({ key, value }) {
+		this.updateFilters({ key, value });
+		console.log(Object.fromEntries([...this.filtersData]));
+	}
 }
 
-function saveFiltersToLocalStorage(filters) {
-	localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
-}
-
-saveFiltersToLocalStorage(Object.fromEntries(initialFilters));
+console.log(Filters);
