@@ -17,14 +17,7 @@
   "dependencies": {
     "axios": "^1.6.2",
     "notiflix": "^3.2.6",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     "slim-select": "^2.7.1",
->>>>>>> main
-=======
-    "slim-select": "^2.7.1",
->>>>>>> main
     "tui-pagination": "^3.4.1",
     "vite-plugin-full-reload": "^1.0.5",
     "vite-plugin-html-inject": "^1.0.1"
