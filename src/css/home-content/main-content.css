@@ -3,9 +3,28 @@
 	font-family: 'Neue Montreal', sans-serif;
 }
 
+.card-container {
+    width: 100vw;
+
+}
+
+@media screen and (min-width: 375px) {
+    .card-container {
+        width: 375px;
+    }
+    .card-wrapper {
+        width: 335px;
+    }
+    .image-wrapper{
+        width: 295px;
+    }
+
+    
+}
+
 .card-wrapper {
 	background-color: var(--white-cl);
-	width: 335px;
+	/* width: 335px; */
 	/* height: 356px; */
 	padding: 20px;
 	margin-bottom: 20px;
@@ -15,7 +34,7 @@
 .image-wrapper {
 	background-color: var(--light-grey-cl);
 
-	width: 295px;
+	/* width: 295px; */
 	height: 178px;
 	border-radius: 20px;
 	margin-bottom: 20px;
@@ -91,14 +110,9 @@
     background-color: #586F1F;
 }
 
-/* @media screen and (min-width: 375px) {
-	.card-container {
-		width: 375px;
-	}
-} */
 
-/* @media screen and (max-width: 375px) {
-} */
+
+
 
 @media screen and (min-width: 768px) {
 
@@ -108,7 +122,7 @@
 	.card-container {
         padding-left: 32px;
         padding-right: 32px;
-		max-width: 768px;
+		width: 768px;
 	}
 
 	.product-list {
@@ -136,6 +150,7 @@
 	}
 
     .card-container {
+        
         padding-left: 100px;
         padding-right: 100px;
     }
