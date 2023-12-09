@@ -1,62 +1,31 @@
-import Pagination from 'tui-pagination';
-
 document.addEventListener('DOMContentLoaded', function () {
-  const contentContainer = document.createElement('div');
-  contentContainer.id = 'content';
-  document.body.appendChild(contentContainer);
+  // Вибір елемента
+  const element = document.querySelector(".pagination ul");
+  let totalPages = 20;
+  let page = 10;
 
-  const itemsPerPage = 9;
-  let currentPage = 1;
-  let totalPages = 0;
+  // Виклик функції з передачею параметрів та додавання в елемент ul
+  element.innerHTML = createPagination(totalPages, page);
 
-  const paginationContainer = document.createElement('div');
-  paginationContainer.id = 'pagination';
-  document.body.appendChild(paginationContainer);
+  function createPagination(totalPages, page) {
+    let liTag = '';
+    let active;
+    let beforePage = page - 1;
+    let afterPage = page + 1;
 
-  function fetchData(page) {
-    const apiUrl = `https://food-boutique.b.goit.study/api/products?&page=${page}&limit=${itemsPerPage}`;
+    // ваша функція тут
 
-    fetch(apiUrl)
-      .then(response => response.json())
-      .then(data => {
-        displayContent(data.results);
-        totalPages = data.totalPages;
-        updatePaginationUI();
-      })
-      .catch(error => console.error('Error fetching data:', error));
+    element.innerHTML = liTag;
+    return liTag;
   }
 
-  function displayContent(products) {
-    contentContainer.innerHTML = '';
-
-    products.forEach(product => {
-      const productElement = document.createElement('div');
-      productElement.textContent = product.name;
-      contentContainer.appendChild(productElement);
-    });
-  }
-
-  function updatePaginationUI() {
-    paginationContainer.innerHTML = '';
-
-    const options = {
-      totalItems: totalPages * itemsPerPage,
-      itemsPerPage: itemsPerPage,
-      visiblePages: Math.min(totalPages, 5),
-      centerAlign: true,
-    };
-
-    const pagination = new Pagination(paginationContainer, options);
-
-    pagination.on('beforeMove', event => {
-      const newPage = event.page;
-      if (newPage !== currentPage) {
-        currentPage = newPage;
-        fetchData(currentPage);
+  // Додавання обробника подій для кнопок пагінації
+  element.addEventListener("click", function (event) {
+    if (event.target.tagName === "LI" && !event.target.classList.contains("dots")) {
+      const pageNumber = parseInt(event.target.innerText);
+      if (!isNaN(pageNumber)) {
+        element.innerHTML = createPagination(totalPages, pageNumber);
       }
-    });
-  }
-
-  fetchData(currentPage);
-  updatePaginationUI();
+    }
+  });
 });
