@@ -1,105 +1,9 @@
-/* aside {
+aside {
 }
-
-.discount-products,
-.popular-section {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	max-width: 335px;
-	width: 100%;
-}
-.discount-icon {
-	position: relative;
-	top: -7px;
-	left: 20px;
-}
-.add-cart-button {
-	border-radius: 50%;
-	border: none;
-	width: 34px;
-	height: 34px;
-
-	background-color: var(--accent-cl);
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
-
-.discount-title {
-	color: --main-cl;
-	text-align: left;
-	font-size: 24px;
-	font-weight: 500;
-	line-height: 1.17;
-	padding-bottom: 16px;
-}
-.discount-info-item {
-	display: inline-block;
-}
-.discount-price-item {
-	display: inline-block;
-	margin-left: 10px;
-}
-.discount-list {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 20px;
-}
-.discount-card {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	max-width: 310px;
-	width: 100%;
-	padding: 10px;
-	margin-bottom: 10px;
-	border-radius: 5px;
-	background: --white-cl;
-}
-@media screen and (max-width: 375px) {
-	.discount-products,
-	.popular-section {
-		width: 280px;
-		margin: 0 auto;
-	}
-}
-@media screen and (min-width: 375px) {
-	.container-discount {
-		width: 335px;
-		margin: 0 auto;
-	}
-}
-@media screen and (min-width: 768px) {
-	.discount-products,
-	.popular-section {
-		width: 704px;
-		margin: 0 auto;
-	}
-}
-@media screen and (min-width: 1440px) {
-	.discount-products,
-	.popular-section {
-		width: 1240px;
-		margin: 0 auto;
-		text-align: right;
-	}
-	.discount-title {
-		text-align: right;
-	}
-	.discount-list {
-		justify-content: right;
-	}
-} */
 
 .container-popular {
 	display: flex;
 	justify-content: center;
-
-	/* align-items: center; */
-	/* min-height: 100vh; */
 }
 .popular-title {
 	color: --main-cl;
@@ -130,7 +34,6 @@
 	border-radius: 10px;
 	background: var(--white-cl);
 	gap: 10px;
-	/* position: relative; */
 }
 
 .popular-left-section {
@@ -228,8 +131,6 @@
 .container-discount {
 	display: flex;
 	justify-content: center;
-	/* align-items: center; */
-	/* min-height: 100vh; */
 }
 .discount-title {
 	color: --main-cl;
@@ -259,11 +160,7 @@
 	flex-shrink: 0;
 	border-radius: 10px;
 	background: #e8e8e2;
-	/* margin-top: 22px; */
 }
-/* .discount-img-wrap {
-	position: relative;
-} */
 
 .discount-icon {
 	position: absolute;
