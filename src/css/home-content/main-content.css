@@ -1,0 +1,179 @@
+.main-content {
+	padding-top: 100px;
+	font-family: 'Neue Montreal', sans-serif;
+}
+
+.card-container {
+    width: 100vw;
+
+}
+
+@media screen and (min-width: 375px) {
+    .card-container {
+        width: 375px;
+    }
+    .card-wrapper {
+        width: 335px;
+    }
+    .image-wrapper{
+        width: 295px;
+    }
+
+    
+}
+
+.card-wrapper {
+	background-color: var(--white-cl);
+	/* width: 335px; */
+	/* height: 356px; */
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: 10px;
+}
+
+.image-wrapper {
+	background-color: var(--light-grey-cl);
+
+	/* width: 295px; */
+	height: 178px;
+	border-radius: 20px;
+	margin-bottom: 20px;
+	display: flex;
+	align-items: center;
+}
+
+.product-image {
+	margin: 0 auto;
+}
+.product-info {
+	margin-bottom: 40px;
+}
+
+.product-name {
+	font-size: 18px;
+	font-weight: 500;
+	margin-bottom: 10px;
+	line-height: 1.1;
+}
+
+.product-items {
+	display: flex;
+	justify-content: flex-start;
+	gap: 6px;
+    font-size: 12px;
+	line-height: 1.2;
+}
+.product-item {
+	
+	color: rgba(1, 1, 1, 0.3);
+}
+
+.product-descr {
+	font-size: 12px;
+}
+
+.product-more-info {
+	color: var(--main-cl);
+}
+
+.price-and-add {
+	display: flex;
+	justify-content: space-between;
+	align-items: last baseline;
+}
+
+.product-price {
+	font-weight: 800;
+    font-size: 18px;
+}
+
+
+
+.add-button {
+	border-radius: 50%;
+	border: none;
+	width: 34px;
+	height: 34px;
+
+	background-color: var(--accent-cl);
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.add-button:hover,
+.add-button:focus{
+
+    background-color: #586F1F;
+}
+
+
+
+
+
+@media screen and (min-width: 768px) {
+
+    .main-content {
+        padding-top: 40px;
+    }
+	.card-container {
+        padding-left: 32px;
+        padding-right: 32px;
+		width: 768px;
+	}
+
+	.product-list {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 32px;
+	}
+	.card-wrapper {
+		margin-bottom: 0px;
+	}
+
+	.product-name {
+		font-size: 20px;
+        
+	}
+    .product-price {
+        font-size: 20px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+	.main-content {
+		padding-top: 60px;
+	}
+
+    .card-container {
+        
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+	.container {
+		min-width: 1440px;
+		margin: 0 auto;
+	}
+
+	.product-list {
+		justify-content: flex-start;
+        gap: 20px;
+	}
+
+	.card-wrapper {
+		width: calc((925px - 40px) / 3);
+	}
+	.image-wrapper {
+		width: 255px;
+	}
+	.product-items {
+		flex-wrap: wrap;
+	}
+	.product-info {
+		margin-bottom: 20px;
+	}
+}
