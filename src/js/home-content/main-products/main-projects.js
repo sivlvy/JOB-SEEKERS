@@ -42,7 +42,7 @@ getCurrentProducts({value, category, page, limit})
 				({ img, name, category, size, popularity, price }) => 
 			
 				
-					`<div class="card-wrapper">
+					`<li class="card-wrapper">
 					<div class="image-wrapper">
 					<img src="${img}" alt="${name}" loading="lazy" class="product-image" width="140" height="140" />
 					</div>
@@ -72,7 +72,7 @@ getCurrentProducts({value, category, page, limit})
 	
 			 </div>
 		   
-		   </div>`
+		   </li>`
 				)
 		
 			.join('')
