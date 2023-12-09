@@ -33,6 +33,8 @@ function renderSelectList(data) {
 
 	const filtersInstance = new Filters();
 
+	console.log(filtersInstance);
+
 	refs.selectEl.addEventListener('change', evt =>
 		filtersInstance.searchOptionForLocalStorage({
 			key: 'category',
@@ -79,3 +81,5 @@ export class Filters {
 		console.log(Object.fromEntries([...this.filtersData]));
 	}
 }
+
+console.log(Filters);
