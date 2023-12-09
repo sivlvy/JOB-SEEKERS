@@ -18,6 +18,10 @@
     "axios": "^1.6.2",
     "notiflix": "^3.2.6",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    "slim-select": "^2.7.1",
+>>>>>>> main
 =======
     "slim-select": "^2.7.1",
 >>>>>>> main
