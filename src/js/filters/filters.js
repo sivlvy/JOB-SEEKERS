@@ -1,14 +1,9 @@
 import { getCategoryList } from '../services/food-api';
+import SlimSelect from 'slim-select';
 
 const refs = {
 	selectEl: document.querySelector('.filterts-categories-select'),
 };
-console.log(refs);
-
-const STORAGE_KEY = 'search-parameters';
-const savedFilters = JSON.parse(localStorage.getItem(STORAGE_KEY));
-const defaultFilters = { keyword: null, category: null, page: 1, limit: 6 };
-const initialFilters = savedFilters || defaultFilters;
 
 getCategoryList()
 	.then(data => {
@@ -28,21 +23,50 @@ function renderSelectList(data) {
 
 	refs.selectEl.insertAdjacentHTML('beforeend', markupSelectList);
 
+	new SlimSelect({
+		select: refs.selectEl,
+		settings: {
+			showSearch: false,
+			searchHighlight: true,
+		},
+	});
+
 	return;
 }
+
+// ------------------LocalStorage--------------------
+
+const STORAGE_FILTERS_KEY = 'filters-parameters';
+const savedFilters = JSON.parse(localStorage.getItem(STORAGE_FILTERS_KEY));
+const defaultFilters = new Map([
+	['keyword', null],
+	['category', null],
+	['page', 1],
+	['limit', 6],
+]);
+const initialFilters = savedFilters || defaultFilters;
+let filtersData = new Map(initialFilters);
 
 refs.selectEl.addEventListener('change', onSelect);
 
 function onSelect(evt) {
-	const selectData = {
-		category: evt.target.value,
-	};
-	console.log(selectData);
-	saveFiltersToLocalStorage(selectData);
+	const [key, value] = ['category', evt.target.value];
+	filtersData.set(key, value);
+
+	const isAnyParameterSelected = [...filtersData.values()].some(
+		value => value !== null && value !== undefined && value !== ''
+	);
+
+	if (!isAnyParameterSelected) {
+		filtersData = new Map(defaultFilters);
+	}
+
+	console.log(Object.fromEntries(filtersData));
+	saveFiltersToLocalStorage(Object.fromEntries(filtersData));
 }
 
 function saveFiltersToLocalStorage(filters) {
-	localStorage.setItem(STORAGE_KEY, JSON.stringify(filters));
+	localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
 }
 
-saveFiltersToLocalStorage(initialFilters);
+saveFiltersToLocalStorage(Object.fromEntries(initialFilters));
