@@ -46,6 +46,19 @@ export const getPopularProducts = async limit => {
 	return data;
 };
 
-export const getDiscoundProducts = async () => {
+export const getDiscountProducts = async () => {
 	const { data } = await axios.get(`/products/discount`);
+	return data;
+};
+
+export const addOrder = async obj => {
+	const { data } = await axios.post(`/orders`, obj);
+
+	return data;
+};
+
+export const addEmail = async obj => {
+	const { data } = await axios.post(`/subscription`, obj);
+
+	return data;
 };
