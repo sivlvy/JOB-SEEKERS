@@ -9,14 +9,15 @@
 
 		<!-- Форма оформлення замовлення -->
 		<form onsubmit="event.preventDefault(); checkout()">
-			<label class="mail-field" for="email">Mail: Enter your email</label>
+			<label class="mail-field" for="email">Mail:</label>
 			<input
 				type="email"
 				id="email"
 				required
 				pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+				placeholder="Enter your email"
 			/>
-			<button type="submit">Checkout</button>
+			<button class="checkout-btn" type="submit">Checkout</button>
 		</form>
 	</div>
 </section>

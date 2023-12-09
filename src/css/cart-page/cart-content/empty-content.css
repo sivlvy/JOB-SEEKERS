@@ -1,0 +1,4 @@
+.cart-empty {
+    display: flex;
+    background-color: green;
+}

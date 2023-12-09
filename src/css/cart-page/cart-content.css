@@ -1,15 +1,17 @@
 svgcart {
-	padding: 12px;
+	display: inline-flex;
+	padding: 10px;
 	justify-content: center;
 	align-items: center;
 	gap: 10px;
+	border-radius: 30px;
+	background: #6d8434;
 }
 
 h2 {
-    display: inline-flex;
-   justify-content: center;
+	display: inline-flex;
+	justify-content: center;
 	color: #010101;
-	font-family: Neue Montreal;
 	font-size: 32px;
 	font-style: normal;
 	font-weight: 500;
@@ -18,5 +20,9 @@ h2 {
 }
 
 .cart-content-wrap {
-    display: flex;
+	display: block;
+}
+
+.title-cart-section {
+	margin-bottom: 22px;
 }
