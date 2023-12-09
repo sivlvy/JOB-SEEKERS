@@ -1,33 +1,36 @@
-function validateEmail(email) {
-    const validEmail = 'elena.gudz1995@gmail.com';
-    return email.trim().toLowerCase() === validEmail;
-  }
-  
-  function isEmailRegistered(email) {
-    return email.trim().toLowerCase() === 'elena.gudz1995@gmail.com';
-  }
-  
-  function openModal(modalId) {
-    const modal = document.getElementById(modalId);
-    modal.style.display = 'block';
-  }
-  
-  function handleRegistration(email) {
-    const modal1Id = 'myModal1';
-    const modal2Id = 'myModal2';
-  
-    if (validateEmail(email)) {
-      if (isEmailRegistered(email)) {
-        openModal(modal2Id);
-      } else {
-        openModal(modal1Id);
-      }
-    } else {
-      console.log('Невірний формат електронної адреси!');
+document.addEventListener('DOMContentLoaded', function() {
+    const modalButtons = document.querySelectorAll('[data-modal-close]');
+    const modal1 = document.querySelector('.is-hidden-1');
+    const modal2 = document.querySelector('.is-hidden-2');
+    const form = document.querySelector('.footer-form');
+
+    const enteredEmails = new Map(); // Об'єкт для зберігання електронних адрес
+
+    function isEmailRegistered(email) {
+        return enteredEmails.has(email.trim().toLowerCase());
     }
-  }
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    const exampleEmail = 'elena.gudz1995@gmail.com';
-    handleRegistration(exampleEmail);
-  });
+
+    function handleRegistration(email) {
+        const lowerCasedEmail = email.trim().toLowerCase();
+        if (!isEmailRegistered(lowerCasedEmail)) {
+            enteredEmails.set(lowerCasedEmail, true);
+            modal1.classList.remove('is-hidden-1');
+        } else {
+            modal2.classList.remove('is-hidden-2');
+        }
+    }
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const email = e.target.querySelector('.footer-input').value;
+        handleRegistration(email);
+    });
+
+    modalButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const modal = this.closest('[data-modal]');
+            modal.classList.add('is-hidden-1');
+            modal.classList.add('is-hidden-2');
+        });
+    });
+});
