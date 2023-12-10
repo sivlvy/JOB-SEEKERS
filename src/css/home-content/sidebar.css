@@ -354,6 +354,11 @@ aside {
 	}
 }
 @media screen and (min-width: 1440px) {
+	.sidebar {
+		padding-top: 60px;
+		width: 275px;
+		margin: 0 auto;
+	}
 	.popular-section {
 		padding-top: 0;
 		width: 275px;
