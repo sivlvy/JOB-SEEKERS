@@ -1,29 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
-*{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-body{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #20B2AA;
-  min-height: 100vh;
-  padding: 10px;
-}
+
 .pagination ul{
-  width: 100%;
+  max-width: 520px;
+  margin: 40px auto;
   display: flex;
   flex-wrap: wrap;
-  background: #fff;
+  justify-content: space-between;
+  align-items: center;
   padding: 8px;
-  border-radius: 50px;
-  box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+
 }
 .pagination ul li{
-  color: #20B2AA;
+  color: #A3A3A3;
   list-style: none;
   line-height: 45px;
   text-align: center;
@@ -35,11 +22,11 @@ body{
 }
 .pagination ul li.numb{
   list-style: none;
-  height: 45px;
-  width: 45px;
+  height: 40px;
+  width: 40px;
   margin: 0 3px;
   line-height: 45px;
-  border-radius: 50%;
+  border-radius: 60%;
 }
 .pagination ul li.numb.first{
   margin: 0px 3px 0 -5px;
@@ -48,17 +35,24 @@ body{
   margin: 0px -5px 0 3px;
 }
 .pagination ul li.dots{
-  font-size: 22px;
+  font-size: 14px;
   cursor: default;
 }
 .pagination ul li.btn{
   padding: 0 20px;
-  border-radius: 50px;
+  border-radius: 60px;
+  color: #A3A3A3;
+  background-color: white;
 }
 .pagination li.active,
 .pagination ul li.numb:hover,
 .pagination ul li:first-child:hover,
 .pagination ul li:last-child:hover{
   color: #fff;
-  background: #20B2AA;
+  background-color: #6D8434;
 }
+.pagination li.disabled {
+    opacity: 0.5; 
+    pointer-events: none;
+  }
+  
