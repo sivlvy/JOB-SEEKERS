@@ -12,7 +12,7 @@
 	padding: 14px 20px;
 	font-family: Neue Montreal;
 	font-size: 14px;
-	width: 269px;
+	width: 100%;
 	line-height: 1.29em;
 	border-radius: 30px;
 	border: 1px solid rgba(1, 1, 1, 0.30);
@@ -39,7 +39,7 @@
 	width: 50px;
 	height: 100%;
 	top: 0;
-	left: 280px;
+	right: 4px;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
