@@ -17,6 +17,8 @@ const loaderEl = document.querySelector('.loader');
 // let page = 1;
 // let limit = 6;
 
+
+
 let filters = {
 	keyword: '',
 	category: '',
