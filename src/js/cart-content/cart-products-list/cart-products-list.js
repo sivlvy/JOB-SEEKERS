@@ -1,17 +1,7 @@
 import { getCurrentProducts } from '../../services/food-api';
 
-console.log(document.querySelector(''));
-const addCart = document.querySelector('.add-button');
-addCart.addEventListener('click', handleAddCartContent);
+import {onAddButtonClick} from '../../home-content/main-products/main-projects'
 
-async function handleAddCartContent(event) {
-	const { target } = event;
-
-	console.log(target);
-
-	try {
-	} catch (error) {
-		console.error(error);
-		throw new Error(error);
-	}
+function createCartMarkup(products){
+   return products.map(({name}) => `<div>${name}</div>`)
 }
