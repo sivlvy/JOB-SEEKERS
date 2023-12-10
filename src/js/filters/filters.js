@@ -5,8 +5,6 @@ import SlimSelect from 'slim-select';
 import { cardMarkup } from '../home-content/main-products/main-projects';
 import { getCurrentProducts } from '../services/food-api';
 
-
-
 const refs = {
 	selectEl: document.querySelector('.filterts-categories-select'),
 	cardProduct: document.querySelector('.product-list'),
@@ -23,8 +21,7 @@ export let filters = {
 	limit: 6,
 };
 
-const cardProduct = document.querySelector('.product-list');
-
+changingLimit();
 
 getCategoryList()
 	.then(data => {
@@ -56,8 +53,6 @@ function renderSelectList(data) {
 	});
 }
 
-changingLimit();
-
 localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
 
 refs.selectEl.addEventListener('change', onSelect);
@@ -76,8 +71,6 @@ async function renderProductList() {
 		console.log(err);
 	}
 }
-	
-;
 
 export function changingLimit() {
 	if (window.innerWidth >= 768 && window.innerWidth < 1440) {

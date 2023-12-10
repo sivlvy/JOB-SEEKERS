@@ -1,45 +1,18 @@
-import axios from 'axios';
 import { getCurrentProducts } from '../../services/food-api.js';
-// import { resolvePackageEntry } from 'vite';
-// import { Filters } from '../../filters/filters.js';
-export { cardMarkup };
 import { filters, changingLimit } from '../../filters/filters.js';
+export { cardMarkup };
 
 const cardProduct = document.querySelector('.product-list');
 const loaderEl = document.querySelector('.loader');
-// const cardContainer = document.querySelector('.card-container')
 
 let newFilters = filters;
 console.log(newFilters);
 changingLimit(newFilters);
-console.log(newFilters);
-
-// let filters = {
-// 	keyword: '',
-// 	category: '',
-// 	page: 1,
-// 	limit: 6,
-// };
-
-// changingLimit()
-// if (window.innerWidth >= 768 && window.innerWidth < 1440) {
-// 	limit = 8;
-// } else if (window.innerWidth >= 1440) {
-// 	limit = 9;
-// }
-
-// changingLimit()
-
-// if (cardContainer.offsetWidth >= 768 && cardContainer.offsetWidth < 1440) {
-// 	limit = 8;
-// }
-// if (cardContainer.offsetWidth >= 1440) {
-// 	limit = 9;
-// }
 
 getCurrentProducts(newFilters)
 	.then(data => {
 		loaderEl.style.display = 'none';
+		// console.log(newFilters)
 
 		const products = data.results;
 

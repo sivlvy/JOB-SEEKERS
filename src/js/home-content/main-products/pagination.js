@@ -7,7 +7,7 @@ const paginationElement = document.querySelector('.pagination ul');
 let value = ""; 
 let category = ""; 
 let page = 1;
-let limit = 6;
+let limit = 9;
 let totalPages = 0;
 
 document.addEventListener("DOMContentLoaded", async function () {
@@ -36,13 +36,11 @@ document.addEventListener("DOMContentLoaded", async function () {
         const pageNumber = parseInt(event.currentTarget.dataset.page);
         if (!isNaN(pageNumber) && pageNumber !== page) {
           page = pageNumber;
-          updateProducts();
+          await updateProducts();
         }
       });
     });
   }
-  
-  
 
   function createPagination(totalPages, currentPage) {
     let liTag = '';
@@ -105,7 +103,6 @@ document.addEventListener("DOMContentLoaded", async function () {
   
     return liTag;
   }
-  
 
   function cardMarkup(products) {
     return products

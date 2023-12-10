@@ -25,6 +25,9 @@
 }
 .pagination ul li.numb{
   list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 40px;
   width: 40px;
   margin: 0 3px;
@@ -43,7 +46,7 @@
 }
 .pagination ul li.btn{
   padding: 0 20px;
-  border-radius: 60px;
+  border-radius: 60%;
   color: #A3A3A3;
   background-color: white;
 }
