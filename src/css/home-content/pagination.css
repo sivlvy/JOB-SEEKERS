@@ -1,10 +1,11 @@
-
+.pagination {
+  width: 100%;
+}
 .pagination ul{
-  max-width: 520px;
+  max-width: 100%;
   margin: 40px auto;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 8px;
 
@@ -55,4 +56,13 @@
     opacity: 0.5; 
     pointer-events: none;
   }
-  
+  @media screen and (min-width: 1440px){
+
+    .pagination ul li.btn {
+margin-right: 80px;
+margin-left: 80px;
+    }
+    .pagination ul{
+      max-width:100%;
+    }
+  }
