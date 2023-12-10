@@ -4,6 +4,8 @@ import { getCurrentProducts } from '../../services/food-api.js';
 
 
 const cardProduct = document.querySelector('.product-list');
+const cardContainer = document.querySelector('.card-container');
+const loaderEl = document.querySelector('.loader');
 
 
 let value = ""; 
@@ -11,8 +13,22 @@ let category = "";
 let page = 1;
 let limit = 6;
 
+
+
+if(cardContainer.offsetWidth >= 768 && cardContainer.offsetWidth < 1440){
+	limit = 8;
+	
+	
+} 
+if (cardContainer.offsetWidth >= 1440) {
+	limit = 9;
+}
+
+
+
 getCurrentProducts({value, category, page, limit})
 	.then(data => {
+		loaderEl.style.visibility = 'hidden';
 		const products = data.results;
 		
 		// for(const product of products) {
@@ -22,6 +38,9 @@ getCurrentProducts({value, category, page, limit})
 		// }
 		
 		
+		
+
+	
 	
 		cardProduct.insertAdjacentHTML('afterbegin', cardMarkup(products));
 	})
@@ -66,8 +85,8 @@ getCurrentProducts({value, category, page, limit})
 			 <p class="product-price">$${price}</p>
 			 <button class="add-button" type="button">
 			 <svg class="icon-button"width="18" height="18">
-			 <use href="../../../icons.svg#icon-cart-mob" >
-			 </use></svg>
+             <use href="../../../icons.svg#icon-cart-mob" >
+             </use></svg>
 			 </button>
 	
 			 </div>

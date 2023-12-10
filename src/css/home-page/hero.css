@@ -7,7 +7,7 @@
 }
 
 .hero-section {
-	padding: 72px 0 74px 0;
+	padding: 54px 0 74px 0;
 }
 .container {
 	padding: 0 20px;
@@ -78,6 +78,9 @@
 	.container {
 		min-width: 1440px;
 		margin: 0 auto;
+	}
+	.hero-section {
+		padding-top: 59px;
 	}
    .images {
       width: 100%;
