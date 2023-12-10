@@ -47,18 +47,23 @@ function createMarkup(array) {
                     </a>
                 </div>
                 <div class="popular-center-section">
-                <p class="popular-info-item">${name}</p>
-                <p class="popular-category-item">Category: <span>${category.replace(
-									'_',
-									' '
-								)}</span></p>
-                <p class="popular-size-item">Size:<span>${size}</span>Popularity:<span>${popularity}</span></p>
+					<div class="center-section-up">
+                		<p class="popular-info-item">${name}</p>
+						<button class="add-popular-button">
+							<svg class="popular-icon-button" width="12" height="12">
+		 					<use href="../../../icons.svg#icon-cart-mob" >
+		 					</use>
+							</svg>
+						</button>
+					</div>
+					<div class="center-section-down">
+                		<p class="popular-category-item">Category: <span>${category.replace(
+											'_',
+											' '
+										)}</span></p>
+                		<p class="popular-size-item">Size:<span>${size}</span>Popularity:<span>${popularity}</span></p>
+					</div>
 				</div>
-                <button class="add-popular-button">
-					<svg class="popular-icon-button" width="12" height="12">
-		 <use href="../../../icons.svg#icon-cart-mob" >
-		 </use></svg>
-				</button>
             </div>
         </li>`;
 			}
