@@ -11,7 +11,6 @@ function onSubmit(e) {
 	e.preventDefault();
 }
 getAllProducts().then(({ results }) => console.log(results));
-<<<<<<< Updated upstream
 import { getCategoryList } from '../services/food-api';
 // import { cardMarkup } from '../home-content/main-products/main-projects';
 // import { getCurrentProducts } from '../services/food-api';
@@ -120,7 +119,6 @@ function changingLimit() {
 	}
 	return filters.limit;
 }
-=======
 import axios from 'axios';
 import { getAllProducts } from '../services/food-api';
 import { getCurrentProducts } from '../services/food-api';
@@ -157,4 +155,3 @@ searchForm.addEventListener('submit', async event => {
 
 	console.log(products);
 });
->>>>>>> Stashed changes
