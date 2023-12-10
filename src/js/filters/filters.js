@@ -1,19 +1,43 @@
 import { getCategoryList } from '../services/food-api';
+// import { cardMarkup } from '../home-content/main-products/main-projects';
+// import { getCurrentProducts } from '../services/food-api';
 import SlimSelect from 'slim-select';
+import { cardMarkup } from '../home-content/main-products/main-projects';
+import { getCurrentProducts } from '../services/food-api';
+
+
 
 const refs = {
 	selectEl: document.querySelector('.filterts-categories-select'),
+	cardProduct: document.querySelector('.product-list'),
 };
+
+
+
+const STORAGE_FILTERS_KEY = 'filters-parameters';
+
+export let filters = {
+	keyword: '',
+	category: '',
+	page: 1,
+	limit: 6,
+};
+
+const cardProduct = document.querySelector('.product-list');
+
 
 getCategoryList()
 	.then(data => {
 		renderSelectList(data);
+		console.log(data);
 	})
 	.catch(err => console.log(err));
 
 function renderSelectList(data) {
 	const placeholderStr = `<option disabled selected value="Show All" hidden data-placeholder="true">Categories</option>`;
+
 	refs.selectEl.insertAdjacentHTML('afterbegin', placeholderStr);
+
 	const markupSelectList = data
 		.map(elem => {
 			return `<option value="${elem}">${elem.replaceAll('_', ' ')}</option>`;
@@ -30,56 +54,36 @@ function renderSelectList(data) {
 			searchHighlight: true,
 		},
 	});
-
-	const filtersInstance = new Filters();
-
-	console.log(filtersInstance);
-
-	refs.selectEl.addEventListener('change', evt =>
-		filtersInstance.searchOptionForLocalStorage({
-			key: 'category',
-			value: evt.target.value,
-		})
-	);
 }
 
-export class Filters {
-	constructor() {
-		this.STORAGE_FILTERS_KEY = 'filters-parameters';
-		this.defaultFilters = new Map([
-			['keyword', null],
-			['category', null],
-			['page', 1],
-			['limit', 6],
-		]);
-		this.setDefaultFilters();
-		this.saveFiltersToLocalStorage();
-	}
+changingLimit();
 
-	setDefaultFilters() {
-		this.filtersData =
-			JSON.parse(localStorage.getItem(this.STORAGE_FILTERS_KEY)) ||
-			new Map(this.defaultFilters);
-	}
+localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
 
-	saveFiltersToLocalStorage() {
-		localStorage.setItem(
-			this.STORAGE_FILTERS_KEY,
-			JSON.stringify([...this.filtersData])
-		);
-	}
+refs.selectEl.addEventListener('change', onSelect);
 
-	updateFilters({ key, value }) {
-		if (this.filtersData.get(key) !== value) {
-			this.filtersData.set(key, value);
-			this.saveFiltersToLocalStorage();
-		}
-	}
-
-	searchOptionForLocalStorage({ key, value }) {
-		this.updateFilters({ key, value });
-		console.log(Object.fromEntries([...this.filtersData]));
-	}
+function onSelect(evt) {
+	filters.category = evt.target.value;
+	renderProductList();
 }
 
-console.log(Filters);
+async function renderProductList() {
+	localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
+	try {
+		const data = await getCurrentProducts(filters);
+		refs.cardProduct.innerHTML = cardMarkup(data.results);
+	} catch (err) {
+		console.log(err);
+	}
+}
+	
+;
+
+export function changingLimit() {
+	if (window.innerWidth >= 768 && window.innerWidth < 1440) {
+		filters.limit = 8;
+	} else if (window.innerWidth >= 1440) {
+		filters.limit = 9;
+	}
+	return filters.limit;
+}
