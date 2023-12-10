@@ -145,7 +145,7 @@
 }
 .ss-content .ss-list .ss-option:not(.ss-disabled).ss-selected {
 	color: var(--main-cl);
-	background-color: var(--white-cl);
+	background-color: #ffffff;
 }
 
 @media screen and (min-width: 768px) {
