@@ -2,22 +2,17 @@ import axios from 'axios';
 import { getCurrentProducts } from '../../services/food-api.js';
 // import { resolvePackageEntry } from 'vite';
 // import { Filters } from '../../filters/filters.js';
-export { cardMarkup }
-import { filters, changingLimit } from '../../filters/filters.js'
-
-
-
-
+export { cardMarkup };
+import { filters, changingLimit } from '../../filters/filters.js';
 
 const cardProduct = document.querySelector('.product-list');
 const loaderEl = document.querySelector('.loader');
 // const cardContainer = document.querySelector('.card-container')
 
-
 let newFilters = filters;
-console.log(newFilters)
-changingLimit(newFilters)
-console.log(newFilters)
+console.log(newFilters);
+changingLimit(newFilters);
+console.log(newFilters);
 
 // let filters = {
 // 	keyword: '',
