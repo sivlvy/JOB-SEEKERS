@@ -1,67 +1,31 @@
-import axios from 'axios';
 import { getCurrentProducts } from '../../services/food-api.js';
-// import { resolvePackageEntry } from 'vite';
-
+import { filters, changingLimit } from '../../filters/filters.js';
+export { cardMarkup };
 
 const cardProduct = document.querySelector('.product-list');
-const cardContainer = document.querySelector('.card-container');
 const loaderEl = document.querySelector('.loader');
 
+let newFilters = filters;
+console.log(newFilters);
+changingLimit(newFilters);
 
-let value = ""; 
-let category = ""; 
-let page = 1;
-let limit = 6;
-
-
-
-if(cardContainer.offsetWidth >= 768 && cardContainer.offsetWidth < 1440){
-	limit = 8;
-	
-	
-} 
-if (cardContainer.offsetWidth >= 1440) {
-	limit = 9;
-}
-
-
-
-getCurrentProducts({value, category, page, limit})
+getCurrentProducts(newFilters)
 	.then(data => {
 		loaderEl.style.visibility = 'hidden';
-		const products = data.results;
-		
-		// for(const product of products) {
-		// 	const replaceSymbolsOfCategory = product.category;
-		// 	const replacedCategory = replaceSymbolsOfCategory.replace('_', ' ');
-		// 	console.log(replacedCategory)
-		// }
-		
-		
-		
 
-	
-	
+		const products = data.results;
+
 		cardProduct.insertAdjacentHTML('afterbegin', cardMarkup(products));
 	})
 	.catch(error => {
 		console.log(error);
 	});
 
-	function cardMarkup(products) {
-
-		// products.forEach(product => {
-		// 	category = product.category.replace('_', ' ')
-		// 	console.log(category)
-			
-		// });
-		
-		return products
-			.map(
-				({ img, name, category, size, popularity, price }) => 
-			
-				
-					`<li class="card-wrapper">
+function cardMarkup(products) {
+	return products
+		.map(
+			({ img, name, category, size, popularity, price }) =>
+				`<li class="card-wrapper">
 					<div class="image-wrapper">
 					<img src="${img}" alt="${name}" loading="lazy" class="product-image" width="140" height="140" />
 					</div>
@@ -71,7 +35,10 @@ getCurrentProducts({value, category, page, limit})
 			 </p>
 			<div class ="product-items">
 			<p  class="product-item">
-			Category:<span class="product-more-info"> &nbsp;${category}</span>
+			Category:<span class="product-more-info"> &nbsp;${category.replaceAll(
+				'_',
+				' '
+			)}</span>
 		  </p>
 		  <p class="product-item">
 			Size:<span class="product-more-info"> &nbsp;${size}</span>
@@ -92,8 +59,7 @@ getCurrentProducts({value, category, page, limit})
 			 </div>
 		   
 		   </li>`
-				)
-		
-			.join('')
-			
-	}
+		)
+
+		.join('');
+}
