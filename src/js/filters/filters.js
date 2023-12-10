@@ -1,56 +1,26 @@
 import { getCategoryList } from '../services/food-api';
+import { cardMarkup } from '../home-content/main-products/main-projects';
+import { getCurrentProducts } from '../services/food-api';
 import SlimSelect from 'slim-select';
 
 const refs = {
 	selectEl: document.querySelector('.filterts-categories-select'),
+	cardProduct: document.querySelector('.product-list'),
 };
 
-class Filters {
-	constructor() {
-		this.STORAGE_FILTERS_KEY = 'filters-parameters';
-		this.defaultFilters = new Map([
-			['keyword', null],
-			['category', null],
-			['page', 1],
-			['limit', 6],
-		]);
-		this.setDefaultFilters();
-		this.saveFiltersToLocalStorage();
-	}
+const STORAGE_FILTERS_KEY = 'filters-parameters';
 
-	setDefaultFilters() {
-		this.filtersData =
-			JSON.parse(localStorage.getItem(this.STORAGE_FILTERS_KEY)) ||
-			new Map(this.defaultFilters);
-	}
-
-	saveFiltersToLocalStorage() {
-		localStorage.setItem(
-			this.STORAGE_FILTERS_KEY,
-			JSON.stringify([...this.filtersData])
-		);
-	}
-
-	updateFilters({ key, value }) {
-		if (this.filtersData.get(key) !== value) {
-			this.filtersData.set(key, value);
-			this.saveFiltersToLocalStorage();
-		}
-	}
-
-	searchOptionForLocalStorage({ key, value }) {
-		this.updateFilters({ key, value });
-		console.log(Object.fromEntries([...this.filtersData]));
-	}
-}
-
-export const filtersInstance = new Filters();
-
-console.log(filtersInstance);
+let filters = {
+	keyword: '',
+	category: '',
+	page: 1,
+	limit: 6,
+};
 
 getCategoryList()
 	.then(data => {
 		renderSelectList(data);
+		console.log(data);
 	})
 	.catch(err => console.log(err));
 
@@ -77,15 +47,32 @@ function renderSelectList(data) {
 	});
 }
 
-console.log(Filters);
+changingLimit();
+
+localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
 
 refs.selectEl.addEventListener('change', onSelect);
 
 function onSelect(evt) {
-	filtersInstance.searchOptionForLocalStorage({
-		key: 'category',
-		value: evt.target.value,
-	});
+	filters.category = evt.target.value;
+	renderProductList();
 }
 
-console.log(filtersInstance);
+async function renderProductList() {
+	localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
+	try {
+		const data = await getCurrentProducts(filters);
+		refs.cardProduct.innerHTML = cardMarkup(data.results);
+	} catch (err) {
+		console.log(err);
+	}
+}
+
+function changingLimit() {
+	if (window.innerWidth >= 768 && window.innerWidth < 1440) {
+		filters.limit = 8;
+	} else if (window.innerWidth >= 1440) {
+		filters.limit = 9;
+	}
+	return filters.limit;
+}
