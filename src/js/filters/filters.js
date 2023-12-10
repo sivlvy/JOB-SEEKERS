@@ -13,9 +13,12 @@ function onSubmit(e) {
 getAllProducts().then(({ results }) => console.log(results));
 <<<<<<< Updated upstream
 import { getCategoryList } from '../services/food-api';
+// import { cardMarkup } from '../home-content/main-products/main-projects';
+// import { getCurrentProducts } from '../services/food-api';
+import SlimSelect from 'slim-select';
 import { cardMarkup } from '../home-content/main-products/main-projects';
 import { getCurrentProducts } from '../services/food-api';
-import SlimSelect from 'slim-select';
+export { changingLimit } 
 
 const refs = {
 	selectEl: document.querySelector('.filterts-categories-select'),
@@ -23,6 +26,8 @@ const refs = {
 	input: document.querySelector('.filters-search-input'),
 	btn: document.querySelector('.filters-search-button'),
 };
+
+
 
 // getCurrentProducts()
 // 	.then(data => renderProductsForValue(data))
@@ -50,6 +55,9 @@ async function renderProductsForValue(event) {
 refs.form.addEventListener('submit', renderProductsForValue);
 
 // *********************************************\\
+
+const cardProduct = document.querySelector('.product-list');
+
 
 getCategoryList()
 	.then(data => {
@@ -101,6 +109,8 @@ async function renderProductList() {
 		console.log(err);
 	}
 }
+	
+;
 
 function changingLimit() {
 	if (window.innerWidth >= 768 && window.innerWidth < 1440) {

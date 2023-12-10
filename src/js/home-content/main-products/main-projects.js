@@ -1,67 +1,64 @@
 import axios from 'axios';
 import { getCurrentProducts } from '../../services/food-api.js';
 // import { resolvePackageEntry } from 'vite';
+// import { Filters } from '../../filters/filters.js';
+export { cardMarkup }
+import { changingLimit } from '../../filters/filters.js';
+
+
 
 
 const cardProduct = document.querySelector('.product-list');
-const cardContainer = document.querySelector('.card-container');
 const loaderEl = document.querySelector('.loader');
+// const cardContainer = document.querySelector('.card-container')
 
-
-let value = ""; 
-let category = ""; 
-let page = 1;
-let limit = 6;
-
-
-
-if(cardContainer.offsetWidth >= 768 && cardContainer.offsetWidth < 1440){
-	limit = 8;
-	
-	
-} 
-if (cardContainer.offsetWidth >= 1440) {
-	limit = 9;
-}
+// let value = '';
+// let category = '';
+// let page = 1;
+// let limit = 6;
 
 
 
-getCurrentProducts({value, category, page, limit})
+let filters = {
+	keyword: '',
+	category: '',
+	page: 1,
+	limit: 6,
+};
+
+// changingLimit()
+// if (window.innerWidth >= 768 && window.innerWidth < 1440) {
+// 	limit = 8;
+// } else if (window.innerWidth >= 1440) {
+// 	limit = 9;
+// }
+
+// changingLimit()
+
+// if (cardContainer.offsetWidth >= 768 && cardContainer.offsetWidth < 1440) {
+// 	limit = 8;
+// }
+// if (cardContainer.offsetWidth >= 1440) {
+// 	limit = 9;
+// }
+
+getCurrentProducts(filters)
 	.then(data => {
-		loaderEl.style.visibility = 'hidden';
-		const products = data.results;
-		
-		// for(const product of products) {
-		// 	const replaceSymbolsOfCategory = product.category;
-		// 	const replacedCategory = replaceSymbolsOfCategory.replace('_', ' ');
-		// 	console.log(replacedCategory)
-		// }
-		
-		
-		
+		loaderEl.style.display = 'none';
 
-	
-	
+		const products = data.results;
+
 		cardProduct.insertAdjacentHTML('afterbegin', cardMarkup(products));
 	})
 	.catch(error => {
 		console.log(error);
 	});
 
-	export function cardMarkup(products) {
-
-		// products.forEach(product => {
-		// 	category = product.category.replace('_', ' ')
-		// 	console.log(category)
-			
-		// });
-		
-		return products
-			.map(
-				({ img, name, category, size, popularity, price }) => 
-			
-				
-					`<li class="card-wrapper">
+function cardMarkup(products) {
+	return products
+		.map(
+			({ img, name, category, size, popularity, price }) =>
+				`<li class="card-wrapper">
 					<div class="image-wrapper">
 					<img src="${img}" alt="${name}" loading="lazy" class="product-image" width="140" height="140" />
 					</div>
@@ -71,7 +68,10 @@ getCurrentProducts({value, category, page, limit})
 			 </p>
 			<div class ="product-items">
 			<p  class="product-item">
-			Category:<span class="product-more-info"> &nbsp;${category}</span>
+			Category:<span class="product-more-info"> &nbsp;${category.replaceAll(
+				'_',
+				' '
+			)}</span>
 		  </p>
 		  <p class="product-item">
 			Size:<span class="product-more-info"> &nbsp;${size}</span>
@@ -85,15 +85,14 @@ getCurrentProducts({value, category, page, limit})
 			 <p class="product-price">$${price}</p>
 			 <button class="add-button" type="button">
 			 <svg class="icon-button"width="18" height="18">
-             <use href="../../../icons.svg#icon-cart-mob" >
+             <use href="/icons.svg#icon-cart-mob" >
              </use></svg>
 			 </button>
 	
 			 </div>
 		   
 		   </li>`
-				)
-		
-			.join('')
-			
-	}
+		)
+
+		.join('');
+}
