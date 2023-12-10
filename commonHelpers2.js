@@ -1,64 +1,34 @@
-import"./assets/modal-subscription-87ef2de5.js";import{a as f,S as E}from"./assets/vendor-baebd336.js";f.defaults.baseURL="https://food-boutique.b.goit.study/api";const M=async()=>{const{data:t}=await f.get("/products/categories");return t},m=async({value:t,category:i,page:a,limit:n,sortBy:e})=>{const s=new URLSearchParams({page:a,limit:n});t&&s.set("value",t),i&&s.set("category",i),e&&s.set("sortBy",e);const{data:o}=await f.get("/products/",{params:s});return o},T=async t=>{const{data:i}=await f.get(`/products/popular?limit=${t}`);return i},k=async()=>{const{data:t}=await f.get("/products/discount");return t},u={selectEl:document.querySelector(".filterts-categories-select"),cardProduct:document.querySelector(".product-list")},y="filters-parameters";let p={keyword:"",category:"",page:1,limit:6};document.querySelector(".product-list");M().then(t=>{q(t),console.log(t)}).catch(t=>console.log(t));function q(t){const i='<option disabled selected value="Show All" hidden data-placeholder="true">Categories</option>';u.selectEl.insertAdjacentHTML("afterbegin",i);const a=t.map(n=>`<option value="${n}">${n.replaceAll("_"," ")}</option>`).join("").concat('<option value="">Show All</option>');u.selectEl.insertAdjacentHTML("beforeend",a),new E({select:u.selectEl,settings:{showSearch:!1,searchHighlight:!0}})}b();localStorage.setItem(y,JSON.stringify(p));u.selectEl.addEventListener("change",z);function z(t){p.category=t.target.value,A()}async function A(){localStorage.setItem(y,JSON.stringify(p));try{const t=await m(p);u.cardProduct.innerHTML=$(t.results)}catch(t){console.log(t)}}function b(){return window.innerWidth>=768&&window.innerWidth<1440?p.limit=8:window.innerWidth>=1440&&(p.limit=9),p.limit}const H=document.querySelector(".product-list"),I=document.querySelector(".loader");let h=p;console.log(h);b();console.log(h);m(h).then(t=>{I.style.display="none";const i=t.results;H.insertAdjacentHTML("afterbegin",$(i))}).catch(t=>{console.log(t)});function $(t){return t.map(({img:i,name:a,category:n,size:e,popularity:s,price:o})=>`<li class="card-wrapper">
-					<div class="image-wrapper">
-					<img src="${i}" alt="${a}" loading="lazy" class="product-image" width="140" height="140" />
-					</div>
-		   <div class="product-info">
-			 <p class="product-name">
-			   ${a}
-			 </p>
-			<div class ="product-items">
-			<p  class="product-item">
-			Category:<span class="product-more-info"> &nbsp;${n.replaceAll("_"," ")}</span>
-		  </p>
-		  <p class="product-item">
-			Size:<span class="product-more-info"> &nbsp;${e}</span>
-		  </p>
-		  <p class="product-item">
-			Popularity:<span class="product-more-info"> &nbsp;${s}</span>
-		  </p></div>
-			 
-		   </div>
-		   <div class="price-and-add">
-			 <p class="product-price">$${o}</p>
-			 <button class="add-button" type="button">
-			 <svg class="icon-button"width="18" height="18">
-             <use href="/icons.svg#icon-cart-mob" >
-             </use></svg>
-			 </button>
-	
-			 </div>
-		   
-		   </li>`).join("")}const x=document.querySelector(".product-list"),C=document.querySelector(".pagination ul");let N="",j="",g=1,D=6,v=0;document.addEventListener("DOMContentLoaded",async function(){await t();function t(){m({value:N,category:j,page:g,limit:D}).then(e=>{const s=e.results;v=e.totalPages,x.innerHTML=n(s),i()}).catch(e=>{console.log(e)})}function i(){C.innerHTML=a(v,g),document.querySelectorAll(".pagination li:not(.disabled)").forEach(s=>{s.addEventListener("click",async o=>{const c=parseInt(o.currentTarget.dataset.page);!isNaN(c)&&c!==g&&(g=c,t())})})}function a(e,s){let o="",c,l=s-1,d=s+1;s>1?o+=`<li class="btn prev" data-page="${s-1}"><span>&lt;</span></li>`:o+='<li class="btn prev disabled"><span>&lt;</span></li>',s>2&&(o+='<li class="first numb" data-page="1"><span>1</span></li>',s>3&&(o+='<li class="dots"><span>...</span></li>')),s==e?l=l-2:s==e-1&&(l=l-1),s==1?d=d+2:s==2&&(d=d+1);for(var r=l;r<=d;r++)r>e||(r==0&&(r=r+1),s==r?c="active":c="",o+=`<li class="numb ${c}" data-page="${r}"><span>${r}</span></li>`);return s<e-1&&(s<e-2&&(o+='<li class="dots"><span>...</span></li>'),o+=`<li class="last numb" data-page="${e}"><span>${e}</span></li>`),s<e?o+=`<li class="btn next" data-page="${s+1}"><span>&gt;</span></li>`:o+='<li class="btn next disabled"><span>&gt;</span></li>',o}function n(e){return e.map(({img:s,name:o,category:c,size:l,popularity:d,price:r})=>`
+import{g as v,a as h,b}from"./assets/main-projects-61c4b6f1.js";import"./assets/vendor-baebd336.js";const $=document.querySelector(".product-list"),y=document.querySelector(".pagination ul");let w="",S="",d=1,E=6,u=0;document.addEventListener("DOMContentLoaded",async function(){await a();function a(){v({value:w,category:S,page:d,limit:E}).then(s=>{const t=s.results;u=s.totalPages,$.innerHTML=r(t),n()}).catch(s=>{console.log(s)})}function n(){y.innerHTML=o(u,d),document.querySelectorAll(".pagination li:not(.disabled)").forEach(t=>{t.addEventListener("click",async i=>{const c=parseInt(i.currentTarget.dataset.page);!isNaN(c)&&c!==d&&(d=c,a())})})}function o(s,t){let i="",c,l=t-1,p=t+1;t>1?i+=`<li class="btn prev" data-page="${t-1}"><span>&lt;</span></li>`:i+='<li class="btn prev disabled"><span>&lt;</span></li>',t>2&&(i+='<li class="first numb" data-page="1"><span>1</span></li>',t>3&&(i+='<li class="dots"><span>...</span></li>')),t==s?l=l-2:t==s-1&&(l=l-1),t==1?p=p+2:t==2&&(p=p+1);for(var e=l;e<=p;e++)e>s||(e==0&&(e=e+1),t==e?c="active":c="",i+=`<li class="numb ${c}" data-page="${e}"><span>${e}</span></li>`);return t<s-1&&(t<s-2&&(i+='<li class="dots"><span>...</span></li>'),i+=`<li class="last numb" data-page="${s}"><span>${s}</span></li>`),t<s?i+=`<li class="btn next" data-page="${t+1}"><span>&gt;</span></li>`:i+='<li class="btn next disabled"><span>&gt;</span></li>',i}function r(s){return s.map(({img:t,name:i,category:c,size:l,popularity:p,price:e})=>`
         <li class="card-wrapper">
           <div class="image-wrapper">
-            <img src="${s}" alt="${o}" loading="lazy" class="product-image" width="140" height="140" />
+            <img src="${t}" alt="${i}" loading="lazy" class="product-image" width="140" height="140" />
           </div>
           <div class="product-info">
-            <p class="product-name">${o}</p>
+            <p class="product-name">${i}</p>
             <div class="product-items">
               <p class="product-item">Category:<span class="product-more-info">&nbsp;${c}</span></p>
               <p class="product-item">Size:<span class="product-more-info">&nbsp;${l}</span></p>
-              <p class="product-item">Popularity:<span class="product-more-info">&nbsp;${d}</span></p>
+              <p class="product-item">Popularity:<span class="product-more-info">&nbsp;${p}</span></p>
             </div>
           </div>
           <div class="price-and-add">
-            <p class="product-price">$${r}</p>
+            <p class="product-price">$${e}</p>
             <button class="add-button" type="button">
               <svg class="icon-button" width="18" height="18">
                 <use href="../../../icons.svg#icon-cart-mob"></use>
               </svg>
             </button>
           </div>
-        </li>`).join("")}});const w=document.querySelector(".popular-list"),O={position:"top-right",timeout:3e3,width:"400px",fontSize:"30px"};let S=5;w.innerHTML="";T(S).then(t=>{w.innerHTML=R(t)}).catch(_);document.addEventListener("click",function(t){const i=t.target.closest(".popular-list");if(i){const a=i.dataset.productId;console.log("ID:",a)}});function R(t){return t.slice(0,S).map(({_id:i,name:a,img:n,category:e,price:s,size:o,is10PercentOff:c,popularity:l})=>`<li class="popular-card" data-product-id="${i}">
+        </li>`).join("")}});const f=document.querySelector(".popular-list"),L={position:"top-right",timeout:3e3,width:"400px",fontSize:"30px"};let m=5;f.innerHTML="";h(m).then(a=>{f.innerHTML=M(a)}).catch(z);document.addEventListener("click",function(a){const n=a.target.closest(".popular-list");if(n){const o=n.dataset.productId;console.log("ID:",o)}});function M(a){return a.slice(0,m).map(({_id:n,name:o,img:r,category:s,price:t,size:i,is10PercentOff:c,popularity:l})=>`<li class="popular-card" data-product-id="${n}">
             <div class="popular-img-wrap">
                 <div class="popular-left-section">
                     <a class="popular-gallery-link" href="#">
-                        <img src="${n}" alt="${a}" width="56" height="56" loading="lazy" />
+                        <img src="${r}" alt="${o}" width="56" height="56" loading="lazy" />
                     </a>
                 </div>
                 <div class="popular-center-section">
 					<div class="center-section-up">
-                		<p class="popular-info-item">${a}</p>
+                		<p class="popular-info-item">${o}</p>
 						<button class="add-popular-button">
 							<svg class="popular-icon-button" width="12" height="12">
 		 					<use href="../../../icons.svg#icon-cart-mob" >
@@ -67,22 +37,22 @@ import"./assets/modal-subscription-87ef2de5.js";import{a as f,S as E}from"./asse
 						</button>
 					</div>
 					<div class="center-section-down">
-                		<p class="popular-category-item">Category: <span>${e.replace("_"," ")}</span></p>
-                		<p class="popular-size-item">Size:<span>${o}</span>Popularity:<span>${l}</span></p>
+                		<p class="popular-category-item">Category: <span>${s.replace("_"," ")}</span></p>
+                		<p class="popular-size-item">Size:<span>${i}</span>Popularity:<span>${l}</span></p>
 					</div>
 				</div>
             </div>
-        </li>`).join("")}function _(){Notiflix.Notify.failure("Something went wrong! Please try again.",O)}const L=document.querySelector(".discount-list"),P={position:"top-right",timeout:3e3,width:"400px",fontSize:"30px"};L.innerHTML="";k().then(t=>{L.innerHTML=F(t)}).catch(W);document.addEventListener("click",function(t){const i=t.target.closest(".discount-card");if(i){const a=i.dataset.productId;console.log("ID:",a)}});function W(){Notiflix.Notify.failure("Something went wrong! Please try again.",P)}function B(t,i){return t.slice().sort(()=>Math.random()-.5).slice(0,i)}function F(t){return B(t,2).map(({_id:a,name:n,img:e,category:s,price:o,size:c,is10PercentOff:l,popularity:d})=>`<li class="discount-card" data-product-id="${a}">
+        </li>`).join("")}function z(){Notiflix.Notify.failure("Something went wrong! Please try again.",L)}const g=document.querySelector(".discount-list"),k={position:"top-right",timeout:3e3,width:"400px",fontSize:"30px"};g.innerHTML="";b().then(a=>{g.innerHTML=D(a)}).catch(x);document.addEventListener("click",function(a){const n=a.target.closest(".discount-card");if(n){const o=n.dataset.productId;console.log("ID:",o)}});function x(){Notiflix.Notify.failure("Something went wrong! Please try again.",k)}function T(a,n){return a.slice().sort(()=>Math.random()-.5).slice(0,n)}function D(a){return T(a,2).map(({_id:o,name:r,img:s,category:t,price:i,size:c,is10PercentOff:l,popularity:p})=>`<li class="discount-card" data-product-id="${o}">
             <div class="discount-img-wrap">
 			  <div class="discount-top-section">
                <a class="discount-gallery-link" href="#">
-                <img src="${e}" alt="${n}" width="114" height="114" loading="lazy" />
+                <img src="${s}" alt="${r}" width="114" height="114" loading="lazy" />
                </a>
 			  </div>
 			  <div class="discount-product">
-              	<p class="discount-info-item">${n}</p>
+              	<p class="discount-info-item">${r}</p>
 				<div class="discount-prisce-button">
-             	<p class="discount-price-item">${o}</p>
+             	<p class="discount-price-item">${i}</p>
              	<button class="add-cart-button">
 					<svg class="discount-icon-button" width="18" height="18">
 		 			<use href="../../../icons.svg#icon-cart-mob" alt="cart" >
