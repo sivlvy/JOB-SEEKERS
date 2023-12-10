@@ -58,8 +58,8 @@ function cardMarkup(products) {
 					<img src="${img}" alt="${name}" loading="lazy" class="product-image" width="140" height="140" />
 					</div>
 		   <div class="product-info">
-			 <p class="product-name">
-			   ${name}
+			<p class="product-name">
+				${name}
 			 </p>
 			<div class ="product-items">
 			<p  class="product-item">
