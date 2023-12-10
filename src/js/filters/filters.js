@@ -1,20 +1,12 @@
 import { getCategoryList } from '../services/food-api';
-// import { cardMarkup } from '../home-content/main-products/main-projects';
-// import { getCurrentProducts } from '../services/food-api';
-import SlimSelect from 'slim-select';
 import { cardMarkup } from '../home-content/main-products/main-projects';
 import { getCurrentProducts } from '../services/food-api';
-
-
+import SlimSelect from 'slim-select';
 
 const refs = {
-	selectEl: document.querySelector('.filterts-categories-select'),
+	selectEl: document.querySelector('.filters-categories-select'),
 	cardProduct: document.querySelector('.product-list'),
 };
-
-
-
-const STORAGE_FILTERS_KEY = 'filters-parameters';
 
 export let filters = {
 	keyword: '',
@@ -23,13 +15,11 @@ export let filters = {
 	limit: 6,
 };
 
-const cardProduct = document.querySelector('.product-list');
-
+changingLimit();
 
 getCategoryList()
 	.then(data => {
 		renderSelectList(data);
-		console.log(data);
 	})
 	.catch(err => console.log(err));
 
@@ -56,19 +46,22 @@ function renderSelectList(data) {
 	});
 }
 
-changingLimit();
-
-localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
+localStorage.setItem('filters-parameters', JSON.stringify(filters));
 
 refs.selectEl.addEventListener('change', onSelect);
 
 function onSelect(evt) {
 	filters.category = evt.target.value;
+	filters.page = 1;
+	// const storedFilters = localStorage.getItem('filters-parameters');
+	// if (storedFilters) {
+	// 	filters = JSON.parse(storedFilters);
+	// }
 	renderProductList();
 }
 
-async function renderProductList() {
-	localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
+export async function renderProductList() {
+	localStorage.setItem('filters-parameters', JSON.stringify(filters));
 	try {
 		const data = await getCurrentProducts(filters);
 		refs.cardProduct.innerHTML = cardMarkup(data.results);
@@ -76,8 +69,6 @@ async function renderProductList() {
 		console.log(err);
 	}
 }
-	
-;
 
 export function changingLimit() {
 	if (window.innerWidth >= 768 && window.innerWidth < 1440) {
