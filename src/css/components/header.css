@@ -3,6 +3,7 @@
 }
 
 .container-header {
+	padding: 0 20px;
 	width: 375px;
 }
 .wrapper-header {
@@ -71,13 +72,14 @@
 }
 @media screen and (max-width: 375px) {
 	.container-header {
-		max-width: 320px;
+		width: 100%;
 	}
 }
 
 @media screen and (min-width: 768px) {
 	.container-header {
 		width: 768px;
+		/* padding: 0 32px; */
 	}
 	.cart-link-text {
 		display: block;
@@ -103,5 +105,6 @@
 @media screen and (min-width: 1440px) {
 	.container-header {
 		width: 1440px;
+		/* padding: 0 100px; */
 	}
 }
