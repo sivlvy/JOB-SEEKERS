@@ -1,12 +1,14 @@
 
 .pagination ul{
   max-width: 520px;
-  margin: 40px auto;
+  margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
   padding: 8px;
+  padding-top: 40px;
+  padding-bottom: 61px;
 
 }
 .pagination ul li{
