@@ -15,13 +15,9 @@ const loaderEl = document.querySelector('.loader');
 
 
 let newFilters = filters;
+console.log(newFilters)
 changingLimit(newFilters)
-// let value = '';
-// let category = '';
-// let page = 1;
-// let limit = 6;
-
-
+console.log(newFilters)
 
 // let filters = {
 // 	keyword: '',
