@@ -48,7 +48,7 @@ getCurrentProducts({value, category, page, limit})
 		console.log(error);
 	});
 
-	function cardMarkup(products) {
+	export function cardMarkup(products) {
 
 		// products.forEach(product => {
 		// 	category = product.category.replace('_', ' ')
