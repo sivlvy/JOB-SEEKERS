@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { getCategoryList } from '../services/food-api';
 import { getCurrentProducts } from '../services/food-api';
 import SlimSelect from 'slim-select';
@@ -114,3 +115,41 @@ export class Filters {
 }
 
 console.log(Filters);
+=======
+import axios from 'axios';
+import { getAllProducts } from '../services/food-api';
+import { getCurrentProducts } from '../services/food-api';
+
+// const input = document.querySelector('.filters-search-input');
+// const searchBtn = document.querySelector('.filters-search-button');
+
+// let value = input.value;
+// let page = 1;
+// let limit = 6;
+
+// searchBtn.addEventListener('submit', onSubmit);
+
+// function onSubmit(e) {}
+// // getAllProducts().then(({ results }) => console.log(results));
+
+// getCurrentProducts({ value, page, limit }).then(data => {
+// 	const products = data.results;
+// 	console.log(products);
+// });
+
+const searchForm = document.getElementById('filters-search-form');
+
+searchForm.addEventListener('submit', async event => {
+	event.preventDefault();
+
+	const searchValue = event.target.elements.searchQuery.value;
+
+	const products = await getCurrentProducts({
+		name: searchValue,
+		page: 1,
+		limit: 6,
+	});
+
+	console.log(products);
+});
+>>>>>>> Stashed changes
