@@ -4,7 +4,8 @@ import { getCategoryList } from '../services/food-api';
 import SlimSelect from 'slim-select';
 import { cardMarkup } from '../home-content/main-products/main-projects';
 import { getCurrentProducts } from '../services/food-api';
-export { changingLimit } 
+
+
 
 const refs = {
 	selectEl: document.querySelector('.filterts-categories-select'),
@@ -15,7 +16,7 @@ const refs = {
 
 const STORAGE_FILTERS_KEY = 'filters-parameters';
 
-let filters = {
+export let filters = {
 	keyword: '',
 	category: '',
 	page: 1,
@@ -78,7 +79,7 @@ async function renderProductList() {
 	
 ;
 
-function changingLimit() {
+export function changingLimit() {
 	if (window.innerWidth >= 768 && window.innerWidth < 1440) {
 		filters.limit = 8;
 	} else if (window.innerWidth >= 1440) {
