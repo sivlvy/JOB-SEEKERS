@@ -8,6 +8,13 @@
 	gap: 8px;
 }
 
+.is-hidden-1 {
+  display: none;
+}
+.is-hidden-2 {
+  display: none;
+}
+
 .link-logo-text {
 	color: #e8e8e2;
 	font-family: 'Neue montreal', sans-serif;
