@@ -1,51 +1,26 @@
 <<<<<<< Updated upstream
 import { getCategoryList } from '../services/food-api';
-import { getCurrentProducts } from '../services/food-api';
 import SlimSelect from 'slim-select';
+import { cardMarkup } from '../home-content/main-products/main-projects';
+import { getCurrentProducts } from '../services/food-api';
+export { changingLimit } 
 
 const refs = {
 	selectEl: document.querySelector('.filterts-categories-select'),
-	form: document.getElementById('filters-search-form'),
-	input: document.querySelector('.filters-search-input'),
-	btn: document.querySelector('.filters-search-button'),
 };
-
-// getCurrentProducts()
-// 	.then(data => renderProductsForValue(data))
-// 	.catch(err => console.log(err));
-
-async function renderProductsForValue(event) {
-	event.preventDefault();
-	const searchQuery = refs.input.value;
-
-	try {
-		const data = await getCurrentProducts({
-			value: searchQuery,
-			category: refs.selectEl.value,
-			page: 1,
-			limit: 6,
-			sortBy: 'relevant',
-		});
-
-		console.log(data);
-	} catch (error) {
-		console.error(error);
-	}
-}
-
-refs.form.addEventListener('submit', renderProductsForValue);
-
-// *********************************************\\
 
 getCategoryList()
 	.then(data => {
 		renderSelectList(data);
+		console.log(data);
 	})
 	.catch(err => console.log(err));
 
 function renderSelectList(data) {
 	const placeholderStr = `<option disabled selected value="Show All" hidden data-placeholder="true">Categories</option>`;
+
 	refs.selectEl.insertAdjacentHTML('afterbegin', placeholderStr);
+
 	const markupSelectList = data
 		.map(elem => {
 			return `<option value="${elem}">${elem.replaceAll('_', ' ')}</option>`;
@@ -62,43 +37,26 @@ function renderSelectList(data) {
 			searchHighlight: true,
 		},
 	});
-
-	const filtersInstance = new Filters();
-
-	console.log(filtersInstance);
-
-	refs.selectEl.addEventListener('change', evt =>
-		filtersInstance.searchOptionForLocalStorage({
-			key: 'category',
-			value: evt.target.value,
-		})
-	);
 }
 
-export class Filters {
-	constructor() {
-		this.STORAGE_FILTERS_KEY = 'filters-parameters';
-		this.defaultFilters = new Map([
-			['keyword', null],
-			['category', null],
-			['page', 1],
-			['limit', 6],
-		]);
-		this.setDefaultFilters();
-		this.saveFiltersToLocalStorage();
-	}
+changingLimit();
 
-	setDefaultFilters() {
-		this.filtersData =
-			JSON.parse(localStorage.getItem(this.STORAGE_FILTERS_KEY)) ||
-			new Map(this.defaultFilters);
-	}
+localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
 
-	saveFiltersToLocalStorage() {
-		localStorage.setItem(
-			this.STORAGE_FILTERS_KEY,
-			JSON.stringify([...this.filtersData])
-		);
+refs.selectEl.addEventListener('change', onSelect);
+
+function onSelect(evt) {
+	filters.category = evt.target.value;
+	renderProductList();
+}
+
+async function renderProductList() {
+	localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
+	try {
+		const data = await getCurrentProducts(filters);
+		refs.cardProduct.innerHTML = cardMarkup(data.results);
+	} catch (err) {
+		console.log(err);
 	}
 
 	updateFilters({ key, value }) {
@@ -115,41 +73,3 @@ export class Filters {
 }
 
 console.log(Filters);
-=======
-import axios from 'axios';
-import { getAllProducts } from '../services/food-api';
-import { getCurrentProducts } from '../services/food-api';
-
-// const input = document.querySelector('.filters-search-input');
-// const searchBtn = document.querySelector('.filters-search-button');
-
-// let value = input.value;
-// let page = 1;
-// let limit = 6;
-
-// searchBtn.addEventListener('submit', onSubmit);
-
-// function onSubmit(e) {}
-// // getAllProducts().then(({ results }) => console.log(results));
-
-// getCurrentProducts({ value, page, limit }).then(data => {
-// 	const products = data.results;
-// 	console.log(products);
-// });
-
-const searchForm = document.getElementById('filters-search-form');
-
-searchForm.addEventListener('submit', async event => {
-	event.preventDefault();
-
-	const searchValue = event.target.elements.searchQuery.value;
-
-	const products = await getCurrentProducts({
-		name: searchValue,
-		page: 1,
-		limit: 6,
-	});
-
-	console.log(products);
-});
->>>>>>> Stashed changes
