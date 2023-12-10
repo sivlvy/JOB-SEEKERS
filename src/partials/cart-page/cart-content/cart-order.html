@@ -1,23 +1,26 @@
 <section class="cart-order">
 	<div class="container">
-		<h2>YOUR ORDER</h2>
-		<div class="totalCost">
-			<div class="total">Total</div>
-			<div class="sum">Sum</div>
-			<div class="amount">$12,94</div>
+		<div class="order-wrap">
+			<h2>YOUR ORDER</h2>
+		<div class="total-cost">
+			<p class="total">Total</p>
+			<p class="sum">Sum</p>
+			<p class="amount">$<span class="js-pay">12,94</span></p>
 		</div>
-
-		<!-- Форма оформлення замовлення -->
-		<form onsubmit="event.preventDefault(); checkout()">
-			<label class="mail-field" for="email">Mail:</label>
-			<input
-				type="email"
-				id="email"
-				required
-				pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
-				placeholder="Enter your email"
-			/>
-			<button class="checkout-btn" type="submit">Checkout</button>
+		<form>
+			<div class="mail-field">
+				<label for="email">Mail:</label>
+				<input
+					type="email"
+					id="email"
+					class="mail-input"
+					required
+					pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+					placeholder="Enter your email"
+				/>
+			</div>
+			<button class="checkout-btn" data-modal-open type="submit">Checkout</button>
 		</form>
+		</div>
 	</div>
 </section>

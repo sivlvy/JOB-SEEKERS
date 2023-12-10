@@ -19,6 +19,55 @@
 			<load src="partials/cart-page/cart-content.html" />
 		</main>
 		<load src="partials/components/footer.html" />
+
+		<!-- ------------------------------Модальне вікно---------------------- -->
+		<div class="backdrop is-hidden" data-modal>
+			<div class="modal-order">
+				<button type="button" class="close-modal-btn" data-modal-close>
+					<svg width="28" height="28">
+						<use href="./icons.svg#icon-ion_close-sharp"></use>
+					</svg>
+				</button>
+				<div class="picture-wrap">
+					<picture>
+						<source
+							srcset="
+								/images/cart-content/cart-order/cart-order-desk.jpg,
+								/images/cart-content/cart-order/cart-order-desk-2x.jpg
+							"
+							media="(min-width: 1166px)"
+						/>
+						<source
+							srcset="
+								/images/cart-content/cart-order/cart-order-tablet.jpg,
+								/images/cart-content/cart-order/cart-order-tablet-2x.jpg
+							"
+							media="(min-width: 768px)"
+						/>
+						<source
+							srcset="
+								/images/cart-content/cart-order/cart-order-mob.jpg,
+								/images/cart-content/cart-order/cart-order-mob-2x.jpg
+							"
+							media="(min-width: 320px)"
+						/>
+						<img
+							src="/images/cart-content/cart-empty/cart-empty-desk.jpg"
+							alt="yellow shopping basket"
+						/>
+					</picture>
+				</div>
+
+				<p class="modal-title">Order success</p>
+				<p class="modal-text">
+					Thank you for shopping at Food Boutique. Your order has been received
+					and is now being freshly prepared just for you! Get ready to indulge
+					in nourishing goodness, delivered right to your doorstep. We're
+					thrilled to be part of your journey to better health and happiness.
+				</p>
+			</div>
+		</div>
+		<!-- ------------------------------------------------------------------ -->
 		<script type="module" src="./js/cart.js"></script>
 	</body>
 </html>
