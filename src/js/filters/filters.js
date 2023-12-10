@@ -16,14 +16,14 @@ const refs = {
 const STORAGE_FILTERS_KEY = 'filters-parameters';
 
 export let filters = {
+export let filters = {
 	keyword: '',
 	category: '',
 	page: 1,
 	limit: 6,
 };
 
-const cardProduct = document.querySelector('.product-list');
-
+changingLimit();
 
 getCategoryList()
 	.then(data => {
@@ -55,8 +55,6 @@ function renderSelectList(data) {
 	});
 }
 
-changingLimit();
-
 localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
 
 refs.selectEl.addEventListener('change', onSelect);
@@ -75,8 +73,6 @@ async function renderProductList() {
 		console.log(err);
 	}
 }
-	
-;
 
 export function changingLimit() {
 	if (window.innerWidth >= 768 && window.innerWidth < 1440) {
