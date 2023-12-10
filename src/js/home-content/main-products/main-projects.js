@@ -16,6 +16,8 @@ const loaderEl = document.querySelector('.loader');
 
 let newFilters = filters;
 changingLimit(newFilters)
+
+// console.log(newFilters)
 // let value = '';
 // let category = '';
 // let page = 1;
@@ -49,8 +51,10 @@ changingLimit(newFilters)
 getCurrentProducts(newFilters)
 	.then(data => {
 		loaderEl.style.display = 'none';
+		// console.log(newFilters)
 
 		const products = data.results;
+		console.log(products)
 
 		cardProduct.insertAdjacentHTML('afterbegin', cardMarkup(products));
 	})
