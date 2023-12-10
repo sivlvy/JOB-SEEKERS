@@ -100,6 +100,12 @@
 }
 
 /*----------------select------------------*/
+@media screen and (min-width: 320px) and (max-width: 375px) {
+	.filterts-categories-select {
+		width: 100%;
+		max-width: 335px;
+	}
+}
 
 .filterts-categories-select {
 	margin-top: 12px;
@@ -108,6 +114,7 @@
 .ss-main {
 	align-items: center;
 	color: var(--main-cl);
+	font-family: Neue Montreal;
 	padding: 14px 20px;
 	border: 1px solid rgba(1, 1, 1, 0.3);
 	border-radius: 30px;
@@ -132,6 +139,7 @@
 }
 
 .ss-main .ss-values .ss-single {
+	font-family: Neue Montreal;
 	font-size: 14px;
 	line-height: 1.28em;
 }
@@ -143,6 +151,7 @@
 }
 
 .ss-content .ss-list .ss-option {
+	font-family: Neue Montreal;
 	color: rgba(1, 1, 1, 0.5);
 	font-size: 14px;
 	line-height: 1.28em;
@@ -175,7 +184,7 @@
 
 .ss-content .ss-list .ss-option:not(.ss-disabled).ss-selected {
 	color: var(--main-cl);
-	background-color: var(--white-cl);
+	background-color: #ffffff;
 }
 
 @media screen and (min-width: 768px) {
