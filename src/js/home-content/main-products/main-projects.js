@@ -11,7 +11,8 @@ changingLimit(newFilters);
 
 getCurrentProducts(newFilters)
 	.then(data => {
-		loaderEl.style.visibility = 'hidden';
+		loaderEl.style.display = 'none';
+		// console.log(newFilters)
 
 		const products = data.results;
 
@@ -52,7 +53,7 @@ function cardMarkup(products) {
 			 <p class="product-price">$${price}</p>
 			 <button class="add-button" type="button">
 			 <svg class="icon-button"width="18" height="18">
-             <use href="../../../icons.svg#icon-cart-mob" >
+             <use href="/icons.svg#icon-cart-mob" >
              </use></svg>
 			 </button>
 	
