@@ -9,10 +9,10 @@
 }
 
 .is-hidden-1 {
-  display: none;
+	display: none;
 }
 .is-hidden-2 {
-  display: none;
+	display: none;
 }
 
 .link-logo-text {
@@ -50,7 +50,9 @@
 	line-height: 1.28;
 	margin-bottom: 80px;
 }
-
+.footer-container{
+	padding: 0 20px;
+}
 .email-title {
 	color: #e8e8e2;
 	font-size: 14px;
@@ -99,9 +101,9 @@
 	gap: 8px;
 	flex-direction: row;
 	flex-wrap: wrap;
-  font-family: 'Neue montreal', sans-serif;
-  font-size: 14px;
-  line-height: 1.28;
+	font-family: 'Neue montreal', sans-serif;
+	font-size: 14px;
+	line-height: 1.28;
 }
 .bottom-footer {
 	display: flex;
@@ -126,6 +128,7 @@
 		display: block;
 		gap: 78px;
 		background-color: #6d8434;
+		padding: 0 32px;
 	}
 	.footer-logo {
 		display: flex;
@@ -133,9 +136,9 @@
 	.footer-icons {
 		margin-right: 78px;
 	}
-  .link-logo-text{
-    font-size: 16px;
-  }
+	.link-logo-text {
+		font-size: 16px;
+	}
 	.first-motto {
 		color: #e8e8e2;
 		font-size: 40px;
@@ -148,7 +151,7 @@
 		font-weight: 400;
 		line-height: 1.33;
 		margin-right: 32px;
-		margin-bottom: 64px;
+		margin-bottom: 128px;
 	}
 	.email-title {
 		color: #e8e8e2;
@@ -200,14 +203,14 @@
 		flex-wrap: wrap;
 		gap: 0;
 		max-width: 1440px;
+		padding: 0 100px;
 	}
-  .link-logo-text {
-    font-size: 24px;
-  }
+	.link-logo-text {
+		font-size: 24px;
+	}
 	.footer-logo {
 		display: flex;
 		padding-top: 0;
-		margin-bottom: 128px;
 	}
 	.footer-icons {
 		margin-right: 149px;
