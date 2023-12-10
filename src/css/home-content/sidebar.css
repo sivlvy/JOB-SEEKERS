@@ -184,13 +184,6 @@ aside {
 	background: #e8e8e2;
 }
 
-.discount-icon {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	fill: var(--accent-cl);
-}
-
 .discount-gallery-link {
 	display: block;
 }
@@ -250,6 +243,22 @@ aside {
 .add-cart-button:hover .discount-icon-button,
 .add-cart-button:focus .discount-icon-button {
 	fill: var(--light-grey-cl);
+}
+
+.discount-card {
+	position: relative; /* Add this line to enable absolute positioning within the card */
+	overflow: hidden; /* Add this line to hide the overflow of the absolute positioned icon */
+}
+
+.discount-top-section {
+	position: relative; /* Add this line to enable absolute positioning within this section */
+}
+
+.discount-icon {
+	position: absolute;
+	top: 3px;
+	right: 10px;
+	fill: var(--accent-cl);
 }
 
 @media screen and (max-width: 375px) {

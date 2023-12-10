@@ -65,13 +65,13 @@ function createMarkup(array) {
              	<p class="discount-price-item">${price}</p>
              	<button class="add-cart-button">
 					<svg class="discount-icon-button" width="18" height="18">
-		 			<use href="../../../icons.svg#icon-cart-mob" >
+		 			<use href="../../../icons.svg#icon-cart-mob" alt="cart" >
 		 			</use></svg>
 				</button>
 				</div>
 			  </div>
 				<svg class="discount-icon" width="60" height="60">
-                <use href="./icons.svg#icon-discount" alt="Discount"></use>
+                <use href="../../../icons.svg#icon-discount" alt="Discount"></use>
                 </svg>
             </div>
           </li>`;
