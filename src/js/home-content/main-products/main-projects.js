@@ -3,7 +3,8 @@ import { getCurrentProducts } from '../../services/food-api.js';
 // import { resolvePackageEntry } from 'vite';
 // import { Filters } from '../../filters/filters.js';
 export { cardMarkup }
-import { changingLimit } from '../../filters/filters.js';
+import { filters, changingLimit } from '../../filters/filters.js';
+
 
 
 
@@ -12,6 +13,9 @@ const cardProduct = document.querySelector('.product-list');
 const loaderEl = document.querySelector('.loader');
 // const cardContainer = document.querySelector('.card-container')
 
+
+let newFilters = filters;
+changingLimit(newFilters)
 // let value = '';
 // let category = '';
 // let page = 1;
@@ -19,12 +23,12 @@ const loaderEl = document.querySelector('.loader');
 
 
 
-let filters = {
-	keyword: '',
-	category: '',
-	page: 1,
-	limit: 6,
-};
+// let filters = {
+// 	keyword: '',
+// 	category: '',
+// 	page: 1,
+// 	limit: 6,
+// };
 
 // changingLimit()
 // if (window.innerWidth >= 768 && window.innerWidth < 1440) {
@@ -42,7 +46,7 @@ let filters = {
 // 	limit = 9;
 // }
 
-getCurrentProducts(filters)
+getCurrentProducts(newFilters)
 	.then(data => {
 		loaderEl.style.display = 'none';
 
