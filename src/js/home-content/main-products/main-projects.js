@@ -3,26 +3,44 @@ import { getCurrentProducts } from '../../services/food-api.js';
 // import { resolvePackageEntry } from 'vite';
 // import { Filters } from '../../filters/filters.js';
 export { cardMarkup }
+import { changingLimit } from '../../filters/filters.js';
+
 
 
 
 const cardProduct = document.querySelector('.product-list');
-const cardContainer = document.querySelector('.card-container');
 const loaderEl = document.querySelector('.loader');
+// const cardContainer = document.querySelector('.card-container')
 
-let value = '';
-let category = '';
-let page = 1;
-let limit = 6;
+// let value = '';
+// let category = '';
+// let page = 1;
+// let limit = 6;
 
-if (cardContainer.offsetWidth >= 768 && cardContainer.offsetWidth < 1440) {
-	limit = 8;
-}
-if (cardContainer.offsetWidth >= 1440) {
-	limit = 9;
-}
+let filters = {
+	keyword: '',
+	category: '',
+	page: 1,
+	limit: 6,
+};
 
-getCurrentProducts({ value, category, page, limit })
+// changingLimit()
+// if (window.innerWidth >= 768 && window.innerWidth < 1440) {
+// 	limit = 8;
+// } else if (window.innerWidth >= 1440) {
+// 	limit = 9;
+// }
+
+// changingLimit()
+
+// if (cardContainer.offsetWidth >= 768 && cardContainer.offsetWidth < 1440) {
+// 	limit = 8;
+// }
+// if (cardContainer.offsetWidth >= 1440) {
+// 	limit = 9;
+// }
+
+getCurrentProducts(filters)
 	.then(data => {
 		loaderEl.style.visibility = 'hidden';
 
