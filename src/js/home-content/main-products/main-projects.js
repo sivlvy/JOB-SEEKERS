@@ -1,7 +1,7 @@
 import { getCurrentProducts } from '../../services/food-api.js';
 import { filters, changingLimit } from '../../filters/filters.js';
 export { cardMarkup };
-import { getProductById } from '../../services/food-api.js'
+import { getProductById } from '../../services/food-api.js';
 
 const cardProduct = document.querySelector('.product-list');
 const loaderEl = document.querySelector('.loader');
@@ -73,14 +73,17 @@ function cardMarkup(products) {
 		.join('');
 }
 
-let productID = '';
+async function onAddButtonClick(event) {
+	const productID = event.currentTarget.dataset.id;
+	const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
 
-function onAddButtonClick(event) {
+	try {
+		const product = await getProductById(productID);
 
-	productID = event.currentTarget.dataset.id;
-	localStorage.setItem('ID', productID)
+		savedProducts.push(product);
 
-	
+		localStorage.setItem('products', JSON.stringify(savedProducts));
+	} catch (err) {
+		throw new Error(err);
+	}
 }
-
-console.log(productID);
