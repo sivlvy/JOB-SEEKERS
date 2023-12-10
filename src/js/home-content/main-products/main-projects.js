@@ -40,8 +40,10 @@ console.log(newFilters);
 getCurrentProducts(newFilters)
 	.then(data => {
 		loaderEl.style.display = 'none';
+		// console.log(newFilters)
 
 		const products = data.results;
+		console.log(products)
 
 		cardProduct.insertAdjacentHTML('afterbegin', cardMarkup(products));
 	})

@@ -5,8 +5,6 @@ import SlimSelect from 'slim-select';
 import { cardMarkup } from '../home-content/main-products/main-projects';
 import { getCurrentProducts } from '../services/food-api';
 
-
-
 const refs = {
 	selectEl: document.querySelector('.filterts-categories-select'),
 	cardProduct: document.querySelector('.product-list'),
