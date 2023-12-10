@@ -1,12 +1,17 @@
 import { getCategoryList } from '../services/food-api';
+// import { cardMarkup } from '../home-content/main-products/main-projects';
+// import { getCurrentProducts } from '../services/food-api';
+import SlimSelect from 'slim-select';
 import { cardMarkup } from '../home-content/main-products/main-projects';
 import { getCurrentProducts } from '../services/food-api';
-import SlimSelect from 'slim-select';
+export { changingLimit } 
 
 const refs = {
 	selectEl: document.querySelector('.filterts-categories-select'),
 	cardProduct: document.querySelector('.product-list'),
 };
+
+
 
 const STORAGE_FILTERS_KEY = 'filters-parameters';
 
@@ -16,6 +21,9 @@ let filters = {
 	page: 1,
 	limit: 6,
 };
+
+const cardProduct = document.querySelector('.product-list');
+
 
 getCategoryList()
 	.then(data => {
@@ -67,6 +75,8 @@ async function renderProductList() {
 		console.log(err);
 	}
 }
+	
+;
 
 function changingLimit() {
 	if (window.innerWidth >= 768 && window.innerWidth < 1440) {
