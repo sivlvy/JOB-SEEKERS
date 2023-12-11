@@ -2,6 +2,10 @@ import { getCurrentProducts } from '../../services/food-api.js';
 import { cardMarkup } from './main-projects.js';
 import { filters } from '../../filters/filters.js';
 import { saveToLS, loadFromLS } from '../../services/helpers.js';
+import { onAddButtonClick } from '../../cart-content/cart-products-list/cart-products-list.js';
+
+
+
 
 const cardProduct = document.querySelector('.product-list');
 const paginationElement = document.querySelector('.pagination ul');
@@ -25,6 +29,12 @@ document.addEventListener('DOMContentLoaded', async function () {
 				totalPages = data.totalPages;
 
 				cardProduct.innerHTML = cardMarkup(products);
+
+				const addButtons = document.querySelectorAll('.add-button');
+				console.log(addButtons)
+				for (const addButton of addButtons) {
+						addButton.addEventListener('click', onAddButtonClick)
+				}
 				updatePagination();
 			})
 			.catch(error => {
