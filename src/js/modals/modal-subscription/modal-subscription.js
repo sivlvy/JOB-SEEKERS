@@ -1,36 +1,58 @@
-// document.addEventListener('DOMContentLoaded', function() {
-//     const modalButtons = document.querySelectorAll('[data-modal-close]');
-//     const modal1 = document.querySelector('.is-hidden-1');
-//     const modal2 = document.querySelector('.is-hidden-2');
-//     const form = document.querySelector('.footer-form');
+import { addEmail } from "../../services/food-api";
 
-//     const enteredEmails = new Map(); // Об'єкт для зберігання електронних адрес
+const formElem = document.querySelector('.form-footer');
+const modalSubscription = document.querySelector('.modal-subscription');
+const modalUnsubscription = document.querySelector('.modal-unsubscription');
+const modalBackElem = document.querySelector('.modal-backdrop-subscription');
 
-//     function isEmailRegistered(email) {
-//         return enteredEmails.has(email.trim().toLowerCase());
-//     }
+modalSubscription.classList.add('is-hidden');
+modalUnsubscription.classList.add('is-hidden');
 
-//     function handleRegistration(email) {
-//         const lowerCasedEmail = email.trim().toLowerCase();
-//         if (!isEmailRegistered(lowerCasedEmail)) {
-//             enteredEmails.set(lowerCasedEmail, true);
-//             modal1.classList.remove('is-hidden-1');
-//         } else {
-//             modal2.classList.remove('is-hidden-2');
-//         }
-//     }
+const closeModal = event => {
+	const target = event.target;
+	if (target === modalSubscription || target.closest('.close')) {
+		modalSubscription.classList.add('is-hidden');
+		modalBackElem.classList.add('is-hidden');
+	}
+	if (target === modalUnsubscription || target.closest('.close')) {
+		modalUnsubscription.classList.add('is-hidden');
+		modalBackElem.classList.add('is-hidden');
+	}
+};
 
-//     form.addEventListener('submit', function (e) {
-//         e.preventDefault();
-//         const email = e.target.querySelector('.footer-input').value;
-//         handleRegistration(email);
-//     });
+const openModalSubscription = () => {
+	modalSubscription.classList.remove('is-hidden');
+	modalBackElem.classList.remove('is-hidden');
+};
 
-//     modalButtons.forEach(function(button) {
-//         button.addEventListener('click', function() {
-//             const modal = this.closest('[data-modal]');
-//             modal.classList.add('is-hidden-1');
-//             modal.classList.add('is-hidden-2');
-//         });
-//     });
-// });
+const openModalUnsubscription = () => {
+	modalUnsubscription.classList.remove('is-hidden');
+	modalBackElem.classList.remove('is-hidden');
+};
+
+const handleSubscription = async email => {
+	const body = { email };
+
+	try {
+		const checkedEmail = await addEmail(body);
+
+		openModalSubscription();
+	} catch (err) {
+		if (err.response.data.message === 'Subscription already exists') {
+			openModalUnsubscription();
+		} else {
+			showError();
+		}
+	}
+};
+
+function handleSubmit(e) {
+	e.preventDefault();
+	const emailInput = document.querySelector('.input-label');
+	const email = emailInput.value.trim();
+	handleSubscription(email);
+}
+
+formElem.addEventListener('submit', handleSubmit);
+modalSubscription.addEventListener('click', closeModal);
+modalUnsubscription.addEventListener('click', closeModal);

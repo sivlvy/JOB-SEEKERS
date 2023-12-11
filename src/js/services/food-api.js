@@ -54,3 +54,8 @@ export const getDiscountProducts = async () => {
 	const { data } = await axios.get(`/products/discount`);
 	return data;
 };
+export const addEmail = async body => {
+	const { data } = await axios.post(`/subscription`, body);
+
+	return data;
+};
