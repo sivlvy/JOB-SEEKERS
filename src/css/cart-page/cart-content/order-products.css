@@ -1,9 +1,4 @@
-.order-wrap {
-	display: flex;
-	flex-direction: column;
-	gap: 40px;
-	align-items: start;
-}
+
 
 .your-order-title {
 	color: #010101;
