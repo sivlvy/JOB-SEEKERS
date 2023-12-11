@@ -1,18 +1,22 @@
-.modal-backdrop-product, .modal-backdrop-subscription, .modal-backdrop-order {
-   position: fixed;
-   left: 0;
-   top: 0;
-   width: 100vw;
-   height: 100vh;
-   z-index: 998;
-   background: rgba(1,1,1,.4);
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   transition: all .3s ease-in-out;
+.modal-backdrop-product,
+.modal-backdrop-subscription,
+.modal-backdrop-order {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 998;
+	background: rgba(1, 1, 1, 0.4);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: all 0.3s ease-in-out;
 }
 .is-hidden {
-   display: none;
+   transition: all 0.3s ease-in-out;
+
+	display: none;
 }
 .close {
 	width: 27px;
@@ -136,6 +140,11 @@
 	}
 }
 @media (min-width: 768px) {
+	.modal-img {
+		display: block;
+		border-radius: 19px;
+		margin-top: -24px;
+	}
 	.modal_subcont {
 		width: 490px;
 		max-width: 490px;
