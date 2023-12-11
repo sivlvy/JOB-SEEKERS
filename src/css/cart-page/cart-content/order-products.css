@@ -1,0 +1,97 @@
+
+
+.your-order-title {
+	color: #010101;
+	font-family: Neue Montreal;
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 1,17;
+	text-transform: uppercase;
+}
+
+.total-cost {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-end;
+	width: 335px;
+	height: 60px;
+	padding: 14px 18px;
+	flex-shrink: 0;
+	border-radius: 8px;
+	background: rgba(109, 132, 52, 0.05);
+}
+
+.total {
+	margin-right: 161px;
+	color: #010101;
+	font-family: Neue Montreal;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 1.11;
+}
+
+.sum {
+	margin-right: 4px;
+	color: rgba(1, 1, 1, 0.20);
+	font-family: Neue Montreal;
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 1.17;
+}
+
+.amount {
+	color: #010101;
+	font-family: Neue Montreal;
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 1.17;
+}
+
+.mail-field {
+	display: inline-flex;
+	padding: 15px 172px 15px 20px;
+	justify-content: left;
+	align-items: center;
+	gap: 8px;
+	width: 359px;
+	border-radius: 30px;
+	border: 1px solid rgba(1, 1, 1, 0.3);
+	color: rgba(1, 1, 1, 0.5);
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 1.33;
+}
+
+
+
+.mail-input {
+	color: #010101;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 1.33;
+    border: none
+}
+
+.mail-input::placeholder {
+	color: #010101;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 1.33;
+	background: none;
+}
+
+.checkout-btn {
+	display: inline-flex;
+	margin-left: 8px;
+	padding: 15px 65px;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	border: none;
+	border-radius: 30px;
+	background: #6d8434;
+	color: #e8e8e2;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 1.2;
+}

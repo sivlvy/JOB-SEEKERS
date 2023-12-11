@@ -1,38 +1,4 @@
-import { getCurrentProducts } from '../../services/food-api.js';
-import { filters, changingLimit } from '../../filters/filters.js';
 export { cardMarkup };
-import { getProductById } from '../../services/food-api.js';
-// import { cardCounterText } from '../../cart-content/cart-products-list/cart-products-list.js'
-
-
-const cardProduct = document.querySelector('.product-list');
-const loaderEl = document.querySelector('.loader');
-
-let newFilters = filters;
-
-console.log(newFilters);
-changingLimit(newFilters);
-
-getCurrentProducts(newFilters)
-	.then(data => {
-		loaderEl.style.display = 'none';
-
-		const products = data.results;
-		console.log(products);
-
-		cardProduct.insertAdjacentHTML('afterbegin', cardMarkup(products));
-
-		const addButtons = document.querySelectorAll('.add-button');
-		console.log(addButtons)
-
-		for (const addButton of addButtons) {
-			addButton.addEventListener('click', onAddButtonClick);
-			
-		}
-	})
-	.catch(error => {
-		console.log(error);
-	});
 
 function cardMarkup(products) {
 	return products

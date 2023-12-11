@@ -7,8 +7,13 @@ export const getCategoryList = async () => {
 	return data;
 };
 
+export const getAllProducts = async () => {
+	const { data } = await axios.get(`/products`);
+	return data;
+};
+
 export const getCurrentProducts = async ({
-	value,
+	keyword,
 	category,
 	page,
 	limit,
@@ -19,8 +24,8 @@ export const getCurrentProducts = async ({
 		limit,
 	});
 
-	if (value) {
-		params.set('value', value);
+	if (keyword) {
+		params.set('keyword', keyword);
 	}
 
 	if (category) {

@@ -1,19 +1,14 @@
 import { getCategoryList } from '../services/food-api';
-// import { cardMarkup } from '../home-content/main-products/main-projects';
-// import { getCurrentProducts } from '../services/food-api';
-import SlimSelect from 'slim-select';
 import { cardMarkup } from '../home-content/main-products/main-projects';
 import { getCurrentProducts } from '../services/food-api';
+import { saveToLS } from '../services/helpers';
+import SlimSelect from 'slim-select';
 
 const refs = {
-	selectEl: document.querySelector('.filterts-categories-select'),
+	selectEl: document.querySelector('.filters-categories-select'),
 	cardProduct: document.querySelector('.product-list'),
+	formEl: document.querySelector('.filters-form'),
 };
-
-
-
-const STORAGE_FILTERS_KEY = 'filters-parameters';
-
 
 export let filters = {
 	keyword: '',
@@ -27,7 +22,6 @@ changingLimit();
 getCategoryList()
 	.then(data => {
 		renderSelectList(data);
-		console.log(data);
 	})
 	.catch(err => console.log(err));
 
@@ -54,17 +48,30 @@ function renderSelectList(data) {
 	});
 }
 
-localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
+refs.formEl.addEventListener('submit', onSubmit);
+
+function onSubmit(evt) {
+	evt.preventDefault();
+	filters.page = 1;
+	filters.keyword = evt.currentTarget.elements.searchQuery.value
+		.trim()
+		.toLowerCase()
+		.split(' ')
+		.join(' ');
+	saveToLS('filters-parameters', filters);
+	renderProductList();
+}
 
 refs.selectEl.addEventListener('change', onSelect);
 
 function onSelect(evt) {
 	filters.category = evt.target.value;
+	filters.page = 1;
+	saveToLS('filters-parameters', filters);
 	renderProductList();
 }
 
-async function renderProductList() {
-	localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
+export async function renderProductList() {
 	try {
 		const data = await getCurrentProducts(filters);
 		refs.cardProduct.innerHTML = cardMarkup(data.results);

@@ -12,15 +12,23 @@
 	padding: 14px 20px;
 	font-family: Neue Montreal;
 	font-size: 14px;
-	width: 269px;
+	width: 100%;
 	line-height: 1.29em;
 	border-radius: 30px;
-	border: 1px solid rgba(1, 1, 1, 0.3);
+	border: 1px solid rgba(1, 1, 1, 0.30);
 	outline: none;
+	background-color: transparent;
 }
 
 .filters-search-input::placeholder {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 2px;
 	color: #010101;
+	font-family: Neue Montreal;
+	font-size: 14px;
+	line-height: 1.29em;
 }
 
 .filters-search-input:hover,
@@ -33,12 +41,14 @@
 	position: relative;
 }
 
+
+
 .filters-search-button {
 	position: absolute;
 	width: 50px;
 	height: 100%;
 	top: 0;
-	left: 280px;
+	right: 4px;
 	cursor: pointer;
 	display: flex;
 	align-items: center;
@@ -47,30 +57,49 @@
 	background-color: inherit;
 }
 
-@media screen and (max-width: 375px) {
-	.filters-search-input {
-		width: 100%;
-	}
+.filter-container {
+	padding: 0 20px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 375px) {
 	.filters-search-input {
 		width: 100%;
 	}
+
+	.filter-container {
+		width: 375px;
+		padding: 0 20px;
+	}
+
+}
+
+@media screen and (min-width:376px) and (max-width: 767px) {
+	.filters-search-input {
+		width: 335px;
+	}
+
+	.filters-wrapper {
+		width: 335px;
+		margin: 0 auto;
+	}
+
 }
 
 @media screen and (min-width: 768px) {
 	.filter-container {
-		min-width: 768px;
+		width: 748px;
+		padding: 0 32px;
 	}
 
-	.filters-search-button {
-		left: 213px;
+	.filters-search-input::placeholder {
+		font-size: 18px;
+		line-height: 1.33em
 	}
 
 	.filters-search-input {
 		font-size: 18px;
 		line-height: 1.33em;
+		width: 269px;
 	}
 }
 
@@ -78,6 +107,10 @@
 	.filter-container {
 		min-width: 1440px;
 		padding: 0 100px;
+	}
+
+	.filters-search-input {
+		width: 269px;
 	}
 }
 
@@ -92,6 +125,7 @@
 .filterts-categories-select {
 	margin-top: 12px;
 }
+
 .ss-main {
 	align-items: center;
 	color: var(--main-cl);
@@ -101,13 +135,16 @@
 	border-radius: 30px;
 	background-color: var(--light-grey-cl);
 }
+
 .ss-main:focus {
 	box-shadow: none;
 }
+
 .ss-main.ss-open-below {
 	border-bottom-left-radius: 30px;
 	border-bottom-right-radius: 30px;
 }
+
 .ss-main .ss-values .ss-placeholder {
 	line-height: 1.28em;
 	font-family: Neue Montreal;
@@ -115,11 +152,13 @@
 	color: var(--main-cl);
 	padding: 0;
 }
+
 .ss-main .ss-values .ss-single {
 	font-family: Neue Montreal;
 	font-size: 14px;
 	line-height: 1.28em;
 }
+
 .ss-content.ss-open-below {
 	border-radius: 15px;
 	padding: 14px 20px;
@@ -133,25 +172,31 @@
 	line-height: 1.28em;
 	padding: 0;
 }
+
 .ss-content .ss-list .ss-option:not(:last-child) {
 	padding-bottom: 8px;
 }
+
 .ss-content .ss-list .ss-option:hover,
 .ss-content .ss-list .ss-option:focus {
 	color: var(--main-cl);
 	background-color: #ffffff;
 }
+
 .ss-content.ss-list .ss-option .ss-search-highlight {
 	background-color: no;
 }
+
 .ss-content.ss-open-above {
 	border-radius: 15px;
 	padding: 14px 20px;
 }
+
 .ss-main.ss-open-above {
 	border-top-left-radius: 30px;
 	border-top-right-radius: 30px;
 }
+
 .ss-content .ss-list .ss-option:not(.ss-disabled).ss-selected {
 	color: var(--main-cl);
 	background-color: #ffffff;
@@ -161,6 +206,7 @@
 	.filters-wrapper {
 		display: flex;
 	}
+
 	.ss-main {
 		width: 205px;
 		margin-top: 0px;
@@ -171,10 +217,12 @@
 		font-size: 18px;
 		line-height: 1.33em;
 	}
+
 	.ss-content .ss-list .ss-option {
 		font-size: 18px;
 		line-height: 1.33em;
 	}
+
 	.ss-main .ss-values .ss-single {
 		font-size: 18px;
 		line-height: 1.33em;
