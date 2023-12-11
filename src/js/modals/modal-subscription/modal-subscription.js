@@ -1,4 +1,4 @@
-import { addEmail } from "../../services/food-api";
+import { addEmail } from '../../services/food-api';
 
 const formElem = document.querySelector('.form-footer');
 const modalSubscription = document.querySelector('.modal-subscription');
