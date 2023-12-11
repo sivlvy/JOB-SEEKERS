@@ -13,7 +13,7 @@ export const getAllProducts = async () => {
 };
 
 export const getCurrentProducts = async ({
-	value,
+	keyword,
 	category,
 	page,
 	limit,
@@ -24,8 +24,8 @@ export const getCurrentProducts = async ({
 		limit,
 	});
 
-	if (value) {
-		params.set('value', value);
+	if (keyword) {
+		params.set('keyword', keyword);
 	}
 
 	if (category) {
