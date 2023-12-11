@@ -2,6 +2,8 @@ import { getCurrentProducts } from '../../services/food-api.js';
 import { filters, changingLimit } from '../../filters/filters.js';
 export { cardMarkup };
 import { getProductById } from '../../services/food-api.js';
+// import { cardCounterText } from '../../cart-content/cart-products-list/cart-products-list.js'
+
 
 const cardProduct = document.querySelector('.product-list');
 const loaderEl = document.querySelector('.loader');
@@ -77,8 +79,9 @@ function cardMarkup(products) {
 }
 
 export async function onAddButtonClick(event) {
+
 	const productID = event.currentTarget.dataset.id;
-	console.log(productID)
+	
 
 	const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
 
@@ -86,10 +89,19 @@ export async function onAddButtonClick(event) {
 		const product = await getProductById(productID);
 
 		savedProducts.push(product);
-
-		basketProductMarkUp(product);
-
 		localStorage.setItem('products', JSON.stringify(savedProducts));
+
+		const cardCount = document.querySelector('.cart__item-count');
+		
+	
+		
+
+		
+		const cardProductBasketList = document.querySelector('.cart__products');
+		
+		cardProductBasketList.insertAdjacentHTML('beforeend', basketProductMarkUp(product))
+
+		
 
 		const addButtons = document.querySelectorAll('.add-button');
 
@@ -100,7 +112,7 @@ export async function onAddButtonClick(event) {
 				addButton.removeEventListener('click', onAddButtonClick);
 				 const useElement = addButton.querySelector('svg use');
 				 addButton.style.backgroundColor = '#6D8434'
-				 console.log(useElement)
+				
 			
 				useElement.setAttribute("href", "./icons.svg#icon-cart-success");
 			}
@@ -154,3 +166,4 @@ function basketProductMarkUp({
             
             </li>`;
 }
+
