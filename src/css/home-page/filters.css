@@ -21,7 +21,14 @@
 }
 
 .filters-search-input::placeholder {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 2px;
 	color: #010101;
+	font-family: Neue Montreal;
+	font-size: 14px;
+	line-height: 1.29em;
 }
 
 .filters-search-input:hover,
@@ -50,6 +57,9 @@
 	background-color: inherit;
 }
 
+.filter-container {
+	padding: 0 20px;
+}
 
 @media screen and (min-width: 375px) {
 	.filters-search-input {
@@ -58,6 +68,7 @@
 
 	.filter-container {
 		width: 375px;
+		padding: 0 20px;
 	}
 
 }
@@ -77,10 +88,12 @@
 @media screen and (min-width: 768px) {
 	.filter-container {
 		width: 748px;
+		padding: 0 32px;
 	}
 
-	.filters-search-button {
-		left: 213px;
+	.filters-search-input::placeholder {
+		font-size: 18px;
+		line-height: 1.33em
 	}
 
 	.filters-search-input {

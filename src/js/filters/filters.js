@@ -21,6 +21,11 @@ export { changingLimit }
 
 const refs = {
 	selectEl: document.querySelector('.filterts-categories-select'),
+import { getProductById } from '../services/food-api';
+
+const refs = {
+	selectEl: document.querySelector('.filterts-categories-select'),
+	cardProduct: document.querySelector('.product-list'),
 	form: document.getElementById('filters-search-form'),
 	input: document.querySelector('.filters-search-input'),
 	btn: document.querySelector('.filters-search-button'),
@@ -57,6 +62,24 @@ refs.form.addEventListener('submit', renderProductsForValue);
 
 const cardProduct = document.querySelector('.product-list');
 
+const STORAGE_FILTERS_KEY = 'filters-parameters';
+
+export let filters = {
+	keyword: '',
+	category: '',
+	page: 1,
+	limit: 6,
+};
+
+// const cardProduct = document.querySelector('.product-list');
+
+// ************************************\\
+
+getCurrentProducts()
+	.then(data => renderProductsForValue(data))
+	.catch(err => console.log(err));
+
+// **************************************\\
 
 getCategoryList()
 	.then(data => {
@@ -92,6 +115,24 @@ changingLimit();
 
 localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
 
+// ******************************\\
+
+refs.form.addEventListener('submit', renderProductsForValue);
+
+function renderProductsForValue(event) {
+	event.preventDefault();
+	filters.keyword = refs.form.elements.searchQuery.value.trim();
+	getCurrentProducts(filters).then(data => {
+		const products = data.results;
+		const matchingProducts = products.filter(product => {
+			return product.name.toLowerCase().includes(filters.keyword.toLowerCase());
+		});
+		console.log(matchingProducts);
+	});
+}
+
+// ****************************\\
+
 refs.selectEl.addEventListener('change', onSelect);
 
 function onSelect(evt) {
@@ -112,6 +153,8 @@ async function renderProductList() {
 ;
 
 function changingLimit() {
+
+export function changingLimit() {
 	if (window.innerWidth >= 768 && window.innerWidth < 1440) {
 		filters.limit = 8;
 	} else if (window.innerWidth >= 1440) {
