@@ -45,9 +45,7 @@ function cardMarkup(products) {
 }
 
 export async function onAddButtonClick(event) {
-
 	const productID = event.currentTarget.dataset.id;
-	
 
 	const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
 
@@ -58,16 +56,13 @@ export async function onAddButtonClick(event) {
 		localStorage.setItem('products', JSON.stringify(savedProducts));
 
 		const cardCount = document.querySelector('.cart__item-count');
-		
-	
-		
 
-		
 		const cardProductBasketList = document.querySelector('.cart__products');
-		
-		cardProductBasketList.insertAdjacentHTML('beforeend', basketProductMarkUp(product))
 
-		
+		cardProductBasketList.insertAdjacentHTML(
+			'beforeend',
+			basketProductMarkUp(product)
+		);
 
 		const addButtons = document.querySelectorAll('.add-button');
 
@@ -76,11 +71,10 @@ export async function onAddButtonClick(event) {
 
 			if (buttonID === productID) {
 				addButton.removeEventListener('click', onAddButtonClick);
-				 const useElement = addButton.querySelector('svg use');
-				 addButton.style.backgroundColor = '#6D8434'
-				
-			
-				useElement.setAttribute("href", "./icons.svg#icon-cart-success");
+				const useElement = addButton.querySelector('svg use');
+				addButton.style.backgroundColor = '#6D8434';
+
+				useElement.setAttribute('href', './icons.svg#icon-cart-success');
 			}
 		}
 	} catch (err) {
@@ -132,4 +126,3 @@ function basketProductMarkUp({
             
             </li>`;
 }
-
