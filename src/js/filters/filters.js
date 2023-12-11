@@ -64,6 +64,7 @@ const cardProduct = document.querySelector('.product-list');
 
 const STORAGE_FILTERS_KEY = 'filters-parameters';
 
+
 export let filters = {
 	keyword: '',
 	category: '',
@@ -80,6 +81,7 @@ getCurrentProducts()
 	.catch(err => console.log(err));
 
 // **************************************\\
+changingLimit();
 
 getCategoryList()
 	.then(data => {
@@ -110,8 +112,6 @@ function renderSelectList(data) {
 		},
 	});
 }
-
-changingLimit();
 
 localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
 
@@ -149,8 +149,6 @@ async function renderProductList() {
 		console.log(err);
 	}
 }
-	
-;
 
 function changingLimit() {
 

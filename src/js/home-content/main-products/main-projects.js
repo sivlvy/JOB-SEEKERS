@@ -1,54 +1,30 @@
-import axios from 'axios';
 import { getCurrentProducts } from '../../services/food-api.js';
-// import { resolvePackageEntry } from 'vite';
-// import { Filters } from '../../filters/filters.js';
-export { cardMarkup }
-import { filters, changingLimit } from '../../filters/filters.js'
-
-
-
-
+import { filters, changingLimit } from '../../filters/filters.js';
+export { cardMarkup };
+import { getProductById } from '../../services/food-api.js';
 
 const cardProduct = document.querySelector('.product-list');
 const loaderEl = document.querySelector('.loader');
-// const cardContainer = document.querySelector('.card-container')
-
 
 let newFilters = filters;
-console.log(newFilters)
-changingLimit(newFilters)
-console.log(newFilters)
-
-// let filters = {
-// 	keyword: '',
-// 	category: '',
-// 	page: 1,
-// 	limit: 6,
-// };
-
-// changingLimit()
-// if (window.innerWidth >= 768 && window.innerWidth < 1440) {
-// 	limit = 8;
-// } else if (window.innerWidth >= 1440) {
-// 	limit = 9;
-// }
-
-// changingLimit()
-
-// if (cardContainer.offsetWidth >= 768 && cardContainer.offsetWidth < 1440) {
-// 	limit = 8;
-// }
-// if (cardContainer.offsetWidth >= 1440) {
-// 	limit = 9;
-// }
+let ID = '';
+console.log(newFilters);
+changingLimit(newFilters);
 
 getCurrentProducts(newFilters)
 	.then(data => {
 		loaderEl.style.display = 'none';
 
 		const products = data.results;
+		console.log(products);
 
 		cardProduct.insertAdjacentHTML('afterbegin', cardMarkup(products));
+
+		const addButtons = document.querySelectorAll('.add-button');
+
+		for (const addButton of addButtons) {
+			addButton.addEventListener('click', onAddButtonClick);
+		}
 	})
 	.catch(error => {
 		console.log(error);
@@ -57,8 +33,8 @@ getCurrentProducts(newFilters)
 function cardMarkup(products) {
 	return products
 		.map(
-			({ img, name, category, size, popularity, price }) =>
-				`<li class="card-wrapper">
+			({ img, name, category, size, popularity, _id, price }) =>
+				`<li class="card-wrapper" data-id="${_id}">
 					<div class="image-wrapper">
 					<img src="${img}" alt="${name}" loading="lazy" class="product-image" width="140" height="140" />
 					</div>
@@ -83,7 +59,7 @@ function cardMarkup(products) {
 		   </div>
 		   <div class="price-and-add">
 			 <p class="product-price">$${price}</p>
-			 <button class="add-button" type="button">
+			 <button class="add-button" type="button" data-id="${_id}">
 			 <svg class="icon-button"width="18" height="18">
              <use href="/icons.svg#icon-cart-mob" >
              </use></svg>
@@ -95,4 +71,19 @@ function cardMarkup(products) {
 		)
 
 		.join('');
+}
+
+async function onAddButtonClick(event) {
+	const productID = event.currentTarget.dataset.id;
+	const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
+
+	try {
+		const product = await getProductById(productID);
+
+		savedProducts.push(product);
+
+		localStorage.setItem('products', JSON.stringify(savedProducts));
+	} catch (err) {
+		throw new Error(err);
+	}
 }

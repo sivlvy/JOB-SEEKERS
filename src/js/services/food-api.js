@@ -45,7 +45,6 @@ export const getProductById = async id => {
 	const { data } = await axios.get(`/products/${id}`);
 	return data;
 };
-
 export const getPopularProducts = async limit => {
 	const { data } = await axios.get(`/products/popular?limit=${limit}`);
 	return data;
