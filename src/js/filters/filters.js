@@ -17,21 +17,14 @@ const refs = {
 const STORAGE_FILTERS_KEY = 'filters-parameters';
 
 export let filters = {
+export let filters = {
 	keyword: '',
 	category: '',
 	page: 1,
 	limit: 6,
 };
 
-// const cardProduct = document.querySelector('.product-list');
-
-// ************************************\\
-
-getCurrentProducts()
-	.then(data => renderProductsForValue(data))
-	.catch(err => console.log(err));
-
-// **************************************\\
+changingLimit();
 
 getCategoryList()
 	.then(data => {
@@ -62,8 +55,6 @@ function renderSelectList(data) {
 		},
 	});
 }
-
-changingLimit();
 
 localStorage.setItem(STORAGE_FILTERS_KEY, JSON.stringify(filters));
 
