@@ -1,4 +1,4 @@
-import"./assets/styles-6993d204.js";import{a as u,S}from"./assets/vendor-65dc389e.js";function h(t){return t.map(({img:i,name:n,category:s,size:e,popularity:a,_id:o,price:l})=>`<li class="card-wrapper" data-id="${o}">
+import"./assets/styles-55dc3d97.js";import{a as u,S}from"./assets/vendor-65dc389e.js";function h(t){return t.map(({img:i,name:n,category:s,size:e,popularity:a,_id:o,price:l})=>`<li class="card-wrapper" data-id="${o}">
 					<div class="image-wrapper">
 					<img src="${i}" alt="${n}" loading="lazy" class="product-image" width="140" height="140" />
 					</div>
