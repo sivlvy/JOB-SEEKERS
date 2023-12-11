@@ -1,27 +1,26 @@
 import { getCurrentProducts } from '../../services/food-api.js';
 import { cardMarkup } from './main-projects.js';
-import { filters, changingLimit } from '../../filters/filters.js';
+import { filters } from '../../filters/filters.js';
+import { saveToLS, loadFromLS } from '../../services/helpers.js';
 
 const cardProduct = document.querySelector('.product-list');
 const paginationElement = document.querySelector('.pagination ul');
+const loaderEl = document.querySelector('.loader');
+
+// const savedFiltersDataFromLS = loadFromLS('filters-parameters');
+// console.log(savedFiltersDataFromLS);
 
 let newFilters = filters;
 let totalPages = 0;
-
-// const storedFilters = localStorage.getItem('filters-parameters');
-// if (storedFilters) {
-// 	newFilters = JSON.parse(storedFilters);
-// }
-
-changingLimit(newFilters);
 
 document.addEventListener('DOMContentLoaded', async function () {
 	await updateProducts();
 
 	function updateProducts() {
-		localStorage.setItem('filters-parameters', JSON.stringify(newFilters));
+		saveToLS('filters-parameters', filters);
 		getCurrentProducts(newFilters)
 			.then(data => {
+				loaderEl.style.display = 'none';
 				const products = data.results;
 				totalPages = data.totalPages;
 

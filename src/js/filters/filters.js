@@ -1,11 +1,13 @@
 import { getCategoryList } from '../services/food-api';
 import { cardMarkup } from '../home-content/main-products/main-projects';
 import { getCurrentProducts } from '../services/food-api';
+import { saveToLS } from '../services/helpers';
 import SlimSelect from 'slim-select';
 
 const refs = {
 	selectEl: document.querySelector('.filters-categories-select'),
 	cardProduct: document.querySelector('.product-list'),
+	formEl: document.querySelector('.filters-form'),
 };
 
 export let filters = {
@@ -46,22 +48,30 @@ function renderSelectList(data) {
 	});
 }
 
-localStorage.setItem('filters-parameters', JSON.stringify(filters));
+refs.formEl.addEventListener('submit', onSubmit);
+
+function onSubmit(evt) {
+	evt.preventDefault();
+	filters.page = 1;
+	filters.keyword = evt.currentTarget.elements.searchQuery.value
+		.trim()
+		.toLowerCase()
+		.split(' ')
+		.join(' ');
+	saveToLS('filters-parameters', filters);
+	renderProductList();
+}
 
 refs.selectEl.addEventListener('change', onSelect);
 
 function onSelect(evt) {
 	filters.category = evt.target.value;
 	filters.page = 1;
-	// const storedFilters = localStorage.getItem('filters-parameters');
-	// if (storedFilters) {
-	// 	filters = JSON.parse(storedFilters);
-	// }
+	saveToLS('filters-parameters', filters);
 	renderProductList();
 }
 
 export async function renderProductList() {
-	localStorage.setItem('filters-parameters', JSON.stringify(filters));
 	try {
 		const data = await getCurrentProducts(filters);
 		refs.cardProduct.innerHTML = cardMarkup(data.results);

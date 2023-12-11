@@ -1,24 +1,4 @@
-import { getCurrentProducts } from '../../services/food-api.js';
 export { cardMarkup };
-import { filters, changingLimit } from '../../filters/filters.js';
-
-const cardProduct = document.querySelector('.product-list');
-const loaderEl = document.querySelector('.loader');
-
-let newFilters = filters;
-changingLimit(newFilters);
-
-getCurrentProducts(newFilters)
-	.then(data => {
-		loaderEl.style.display = 'none';
-
-		const products = data.results;
-
-		cardProduct.insertAdjacentHTML('afterbegin', cardMarkup(products));
-	})
-	.catch(error => {
-		console.log(error);
-	});
 
 function cardMarkup(products) {
 	return products
