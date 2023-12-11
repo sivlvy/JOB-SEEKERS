@@ -21,9 +21,11 @@ getCurrentProducts(newFilters)
 		cardProduct.insertAdjacentHTML('afterbegin', cardMarkup(products));
 
 		const addButtons = document.querySelectorAll('.add-button');
+		console.log(addButtons)
 
 		for (const addButton of addButtons) {
 			addButton.addEventListener('click', onAddButtonClick);
+			
 		}
 	})
 	.catch(error => {
@@ -76,6 +78,7 @@ function cardMarkup(products) {
 
 async function onAddButtonClick(event) {
 	const productID = event.currentTarget.dataset.id;
+	console.log(productID)
 
 	const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
 
