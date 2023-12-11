@@ -17,7 +17,6 @@ const refs = {
 const STORAGE_FILTERS_KEY = 'filters-parameters';
 
 export let filters = {
-export let filters = {
 	keyword: '',
 	category: '',
 	page: 1,
