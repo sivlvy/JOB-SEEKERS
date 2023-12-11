@@ -73,57 +73,17 @@ function cardMarkup(products) {
 		.join('');
 }
 
-function onAddButtonClick(event) {
+async function onAddButtonClick(event) {
 	const productID = event.currentTarget.dataset.id;
-	localStorage.setItem('ID', productID);
+	const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
 
-	const currentID = localStorage.getItem('ID');
+	try {
+		const product = await getProductById(productID);
 
-	getProductById(currentID).then(data => {
-		console.log(data);
+		savedProducts.push(product);
 
-		console.log(basketProductMarkUp(data));
-	});
-}
-
-function basketProductMarkUp({
-	img,
-	name,
-	category,
-	size,
-	popularity,
-	_id,
-	price,
-}) {
-	return `<li class="card-wrapper" data-id="${_id}">
-			<div class="image-wrapper">
-			<img src="${img}" alt="${name}" loading="lazy" class="product-image" width="140" height="140" />
-			</div>
-			<div class="product-info">
-			<p class="product-name">
-			${name}
-			</p>
-			<div class ="product-items">
-			<p  class="product-item">
-			Category:<span class="product-more-info"> &nbsp;${category.replaceAll('_',' ')}</span>
-			</p>
-			<p class="product-item">
-			Size:<span class="product-more-info"> &nbsp;${size}</span>
-			</p>
-			<p class="product-item">
-			Popularity:<span class="product-more-info"> &nbsp;${popularity}</span>
-			</p></div>
-			
-			</div>
-			<div class="price-and-add">
-			<p class="product-price">$${price}</p>
-			<button class="add-button" type="button" data-id="${_id}">
-			<svg class="icon-button"width="18" height="18">
-			<use href="/icons.svg#icon-cart-mob" >
-			</use></svg>
-			</button>
-			
-			</div>
-			
-			</li>`
+		localStorage.setItem('products', JSON.stringify(savedProducts));
+	} catch (err) {
+		throw new Error(err);
+	}
 }
