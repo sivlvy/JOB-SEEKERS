@@ -22,7 +22,7 @@ export { changingLimit }
 const refs = {
 	selectEl: document.querySelector('.filterts-categories-select'),
 import { getProductById } from '../services/food-api';
-
+}
 const refs = {
 	selectEl: document.querySelector('.filterts-categories-select'),
 	cardProduct: document.querySelector('.product-list'),
@@ -30,8 +30,6 @@ const refs = {
 	input: document.querySelector('.filters-search-input'),
 	btn: document.querySelector('.filters-search-button'),
 };
-
-
 
 // getCurrentProducts()
 // 	.then(data => renderProductsForValue(data))
