@@ -49,7 +49,7 @@ function createMarkup(array) {
                 <div class="popular-center-section">
 					<div class="center-section-up">
                 		<p class="popular-info-item">${name}</p>
-						<button class="add-popular-button">
+						<button class="add-popular-button add-button" data-id="${_id}">
 							<svg class="popular-icon-button" width="12" height="12">
 		 					<use href="../../../icons.svg#icon-cart-mob" >
 		 					</use>
