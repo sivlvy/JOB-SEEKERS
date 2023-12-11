@@ -24,12 +24,7 @@ getCurrentProducts(newFilters)
 
 		for (const addButton of addButtons) {
 			addButton.addEventListener('click', onAddButtonClick);
-			
-		
-
 		}
-
-
 	})
 	.catch(error => {
 		console.log(error);
@@ -80,82 +75,48 @@ function cardMarkup(products) {
 }
 
 async function onAddButtonClick(event) {
-	
-	
-	
 	const productID = event.currentTarget.dataset.id;
 
 	const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
 
-	
-
-	
-
 	try {
 		const product = await getProductById(productID);
-		console.log(product)
 
 		savedProducts.push(product);
 
-		
-		basketProductMarkUp(product)
+		basketProductMarkUp(product);
 
 		localStorage.setItem('products', JSON.stringify(savedProducts));
 
 		const addButtons = document.querySelectorAll('.add-button');
-		
 
 		for (const addButton of addButtons) {
-
 			const buttonID = addButton.dataset.id;
-		
-			
 
-
-			
-			
-			if(buttonID === productID) {
-				
-			
+			if (buttonID === productID) {
 				addButton.removeEventListener('click', onAddButtonClick);
-				console.log(addButton.children)
-				const svg = document.querySelectorAll('.svg-change')
-				console.log(svg)
-				// svg.setAttribute("href", "./icons.svg#icon-cart-success");
-			}
+				 const useElement = addButton.querySelector('svg use');
+				 addButton.style.backgroundColor = '#6D8434'
+				 console.log(useElement)
 			
-		
-
+				useElement.setAttribute("href", "./icons.svg#icon-cart-success");
+			}
 		}
-
-		
-		
-	
-
-		
-
-	
-		
-		
-
-
-		
 	} catch (err) {
 		throw new Error(err);
 	}
-
 }
 
 function basketProductMarkUp({
-    img,
-    name,
-    category,
-    size,
-    popularity,
-    _id,
-    price,
+	img,
+	name,
+	category,
+	size,
+	popularity,
+	_id,
+	price,
 }) {
-    return `<li class="card-wrapper" data-id="${_id}">
+	return `<li class="card-wrapper" data-id="${_id}">
             <div class="image-wrapper">
             <img src="${img}" alt="${name}" loading="lazy" class="product-image" width="140" height="140" />
             </div>
@@ -165,7 +126,10 @@ function basketProductMarkUp({
             </p>
             <div class ="product-items">
             <p  class="product-item">
-            Category:<span class="product-more-info"> &nbsp;${category.replaceAll('_',' ')}</span>
+            Category:<span class="product-more-info"> &nbsp;${category.replaceAll(
+							'_',
+							' '
+						)}</span>
             </p>
             <p class="product-item">
             Size:<span class="product-more-info"> &nbsp;${size}</span>
@@ -185,5 +149,5 @@ function basketProductMarkUp({
             
             </div>
             
-            </li>`
+            </li>`;
 }
