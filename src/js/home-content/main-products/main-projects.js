@@ -73,7 +73,7 @@ function cardMarkup(products) {
 		.join('');
 }
 
-async function onAddButtonClick(event) {
+export async function onAddButtonClick(event) {
 	const productID = event.currentTarget.dataset.id;
 	const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
 
