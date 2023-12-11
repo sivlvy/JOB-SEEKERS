@@ -13,7 +13,7 @@ export const getAllProducts = async () => {
 };
 
 export const getCurrentProducts = async ({
-	value,
+	keyword,
 	category,
 	page,
 	limit,
@@ -24,8 +24,8 @@ export const getCurrentProducts = async ({
 		limit,
 	});
 
-	if (value) {
-		params.set('value', value);
+	if (keyword) {
+		params.set('keyword', keyword);
 	}
 
 	if (category) {
@@ -45,7 +45,6 @@ export const getProductById = async id => {
 	const { data } = await axios.get(`/products/${id}`);
 	return data;
 };
-
 export const getPopularProducts = async limit => {
 	const { data } = await axios.get(`/products/popular?limit=${limit}`);
 	return data;

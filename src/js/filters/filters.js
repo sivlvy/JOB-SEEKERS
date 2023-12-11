@@ -1,11 +1,28 @@
+import { getAllProducts } from '../services/food-api';
+
+const form = document.getElementById('filters-search-form');
+const searchBtn = document.querySelector('.filters-search-button');
+
+const searchQuery = form.value;
+
+searchBtn.addEventListener('submit', onSubmit);
+
+function onSubmit(e) {
+	e.preventDefault();
+}
+getAllProducts().then(({ results }) => console.log(results));
 import { getCategoryList } from '../services/food-api';
 // import { cardMarkup } from '../home-content/main-products/main-projects';
 // import { getCurrentProducts } from '../services/food-api';
 import SlimSelect from 'slim-select';
 import { cardMarkup } from '../home-content/main-products/main-projects';
 import { getCurrentProducts } from '../services/food-api';
-import { getProductById } from '../services/food-api';
+export { changingLimit } 
 
+const refs = {
+	selectEl: document.querySelector('.filterts-categories-select'),
+import { getProductById } from '../services/food-api';
+}
 const refs = {
 	selectEl: document.querySelector('.filterts-categories-select'),
 	cardProduct: document.querySelector('.product-list'),
@@ -13,6 +30,35 @@ const refs = {
 	input: document.querySelector('.filters-search-input'),
 	btn: document.querySelector('.filters-search-button'),
 };
+
+// getCurrentProducts()
+// 	.then(data => renderProductsForValue(data))
+// 	.catch(err => console.log(err));
+
+async function renderProductsForValue(event) {
+	event.preventDefault();
+	const searchQuery = refs.input.value;
+
+	try {
+		const data = await getCurrentProducts({
+			value: searchQuery,
+			category: refs.selectEl.value,
+			page: 1,
+			limit: 6,
+			sortBy: 'relevant',
+		});
+
+		console.log(data);
+	} catch (error) {
+		console.error(error);
+	}
+}
+
+refs.form.addEventListener('submit', renderProductsForValue);
+
+// *********************************************\\
+
+const cardProduct = document.querySelector('.product-list');
 
 const STORAGE_FILTERS_KEY = 'filters-parameters';
 
@@ -23,6 +69,15 @@ export let filters = {
 	limit: 6,
 };
 
+// const cardProduct = document.querySelector('.product-list');
+
+// ************************************\\
+
+getCurrentProducts()
+	.then(data => renderProductsForValue(data))
+	.catch(err => console.log(err));
+
+// **************************************\\
 changingLimit();
 
 getCategoryList()
@@ -92,6 +147,8 @@ async function renderProductList() {
 	}
 }
 
+function changingLimit() 
+
 export function changingLimit() {
 	if (window.innerWidth >= 768 && window.innerWidth < 1440) {
 		filters.limit = 8;
@@ -100,3 +157,39 @@ export function changingLimit() {
 	}
 	return filters.limit;
 }
+import axios from 'axios';
+import { getAllProducts } from '../services/food-api';
+import { getCurrentProducts } from '../services/food-api';
+
+// const input = document.querySelector('.filters-search-input');
+// const searchBtn = document.querySelector('.filters-search-button');
+
+// let value = input.value;
+// let page = 1;
+// let limit = 6;
+
+// searchBtn.addEventListener('submit', onSubmit);
+
+// function onSubmit(e) {}
+// // getAllProducts().then(({ results }) => console.log(results));
+
+// getCurrentProducts({ value, page, limit }).then(data => {
+// 	const products = data.results;
+// 	console.log(products);
+// });
+
+const searchForm = document.getElementById('filters-search-form');
+
+searchForm.addEventListener('submit', async event => {
+	event.preventDefault();
+
+	const searchValue = event.target.elements.searchQuery.value;
+
+	const products = await getCurrentProducts({
+		name: searchValue,
+		page: 1,
+		limit: 6,
+	});
+
+	console.log(products);
+});
