@@ -41,8 +41,8 @@ function cardMarkup(products) {
 					<img src="${img}" alt="${name}" loading="lazy" class="product-image" width="140" height="140" />
 					</div>
 		   <div class="product-info">
-			 <p class="product-name">
-			   ${name}
+			<p class="product-name">
+				${name}
 			 </p>
 			<div class ="product-items">
 			<p  class="product-item">
@@ -76,7 +76,7 @@ function cardMarkup(products) {
 		.join('');
 }
 
-async function onAddButtonClick(event) {
+export async function onAddButtonClick(event) {
 	const productID = event.currentTarget.dataset.id;
 	console.log(productID)
 
