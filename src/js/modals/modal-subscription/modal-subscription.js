@@ -27,6 +27,21 @@ const closeModal = event => {
 	}
 };
 
+document.addEventListener('keydown', onCloseModal);
+document.addEventListener('click', onCloseModal);
+
+function onCloseModal(evt) {
+	if (evt.key === 'Escape' || evt.target === modalBackElem) {
+		modalBackElem.classList.add('is-hidden');
+		// return;
+	}
+	// 	if (evt.target === modalBackElem) {
+	// 		console.log(evt.target);
+	// 		modalBackElem.classList.add('is-hidden');
+	// 	}
+}
+document.addEventListener('click', onCloseModal);
+
 const openModalSubscription = () => {
 	modalSubscription.classList.remove('is-hidden');
 	modalBackElem.classList.remove('is-hidden');
