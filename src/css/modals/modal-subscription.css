@@ -201,8 +201,3 @@
 		padding-bottom: 5px;
 	}
 }
-
-.modal-container {
-	position: relative;
-	z-index: 1;
-}
