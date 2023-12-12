@@ -1,5 +1,7 @@
 export { cardMarkup };
 
+
+
 function cardMarkup(products) {
 	return products
 		.map(
@@ -44,45 +46,47 @@ function cardMarkup(products) {
 		.join('');
 }
 
-export async function onAddButtonClick(event) {
-	const productID = event.currentTarget.dataset.id;
+// export async function onAddButtonClick(event) {
+// 	const productID = event.currentTarget.dataset.id;
+// 	console.log(productID);
 
-	const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
+// 	try {
+// 		const product = await getProductById(productID);
 
-	try {
-		const product = await getProductById(productID);
+// 		savedProducts.push(product);
+// 		localStorage.setItem('products', JSON.stringify(savedProducts));
 
-		savedProducts.push(product);
-		localStorage.setItem('products', JSON.stringify(savedProducts));
+// 		const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
+// 		console.log(savedProducts);
 
-		const cardCount = document.querySelector('.cart__item-count');
+// 		const cardCount = document.querySelector('.cart__item-count');
 
-		const cardProductBasketList = document.querySelector('.cart__products');
+// 		// const cardProductBasketList = document.querySelector('.js-cart-products');
+// 		// 	console.log(cardProductBasketList)
+// 		// cardProductBasketList.insertAdjacentHTML(
+// 		// 	'beforeend',
+// 		// 	basketProductMarkUp(product)
+// 		// );
 
-		cardProductBasketList.insertAdjacentHTML(
-			'beforeend',
-			basketProductMarkUp(product)
-		);
+// 		const addButtons = document.querySelectorAll('.add-button');
 
-		const addButtons = document.querySelectorAll('.add-button');
+// 		for (const addButton of addButtons) {
+// 			const buttonID = addButton.dataset.id;
 
-		for (const addButton of addButtons) {
-			const buttonID = addButton.dataset.id;
+// 			if (buttonID === productID) {
+// 				addButton.removeEventListener('click', onAddButtonClick);
+// 				const useElement = addButton.querySelector('svg use');
+// 				addButton.style.backgroundColor = '#6D8434';
 
-			if (buttonID === productID) {
-				addButton.removeEventListener('click', onAddButtonClick);
-				const useElement = addButton.querySelector('svg use');
-				addButton.style.backgroundColor = '#6D8434';
+// 				useElement.setAttribute('href', './icons.svg#icon-cart-success');
+// 			}
+// 		}
+// 	} catch (err) {
+// 		throw new Error(err);
+// 	}
+// }
 
-				useElement.setAttribute('href', './icons.svg#icon-cart-success');
-			}
-		}
-	} catch (err) {
-		throw new Error(err);
-	}
-}
-
-function basketProductMarkUp({
+export function basketProductMarkUp({
 	img,
 	name,
 	category,
