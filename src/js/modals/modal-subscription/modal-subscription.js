@@ -27,14 +27,25 @@ const closeModal = event => {
 	}
 };
 
+function onCloseModal(evt) {
+	if (evt.key === 'Escape' || evt.target === modalBackElem) {
+		modalSubscription.classList.add('is-hidden');
+		modalUnsubscription.classList.add('is-hidden');
+		modalBackElem.classList.add('is-hidden');
+		document.body.style.overflow = 'auto';
+	}
+}
+
 const openModalSubscription = () => {
 	modalSubscription.classList.remove('is-hidden');
 	modalBackElem.classList.remove('is-hidden');
+	document.body.style.overflow = 'hidden';
 };
 
 const openModalUnsubscription = () => {
 	modalUnsubscription.classList.remove('is-hidden');
 	modalBackElem.classList.remove('is-hidden');
+	document.body.style.overflow = 'hidden';
 };
 
 const handleSubscription = async email => {
@@ -64,3 +75,5 @@ formElem.addEventListener('submit', handleSubmit);
 modalSubscription.addEventListener('click', closeModal);
 modalUnsubscription.addEventListener('click', closeModal);
 modalBackElem.addEventListener('click', closeModal);
+document.addEventListener('keydown', onCloseModal);
+document.addEventListener('click', onCloseModal);
