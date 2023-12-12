@@ -87,8 +87,13 @@ export async function renderProductList() {
 			hiddenForm.style.display = 'block';
 			paginationHidden.style.display = 'none';
 			cardContainerHidden.style.display = 'none';
+		} else {
+			hiddenForm.style.display = 'none';
+			paginationHidden.style.display = 'block';
+			cardContainerHidden.style.display = 'block';
+			refs.cardProduct.innerHTML = cardMarkup(data.results);
 		}
-		refs.cardProduct.innerHTML = cardMarkup(data.results);
+		// *********************
 	} catch (err) {
 		console.log(err);
 	}
