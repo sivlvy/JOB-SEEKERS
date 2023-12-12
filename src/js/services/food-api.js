@@ -42,7 +42,7 @@ export const getCurrentProducts = async ({
 };
 
 export const getProductById = async id => {
-	const { data } = await axios.get(`/products/${id}`);
+	const data = await axios.get(`/products/${id}`);
 	return data;
 };
 export const getPopularProducts = async limit => {
