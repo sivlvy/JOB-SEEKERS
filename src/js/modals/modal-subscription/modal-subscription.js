@@ -1,6 +1,7 @@
 import Notiflix from 'notiflix';
 import axios from 'axios';
 import { addEmail } from '../../services/food-api';
+import { showError } from '../../services/food-api';
 
 const formElem = document.querySelector('.form-footer');
 const modalSubscription = document.querySelector('.modal-subscription');
