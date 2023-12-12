@@ -83,6 +83,33 @@ function renderSelectList(data) {
 // 		console.log(err);
 // 	}
 // }
+// ******************************
+const hiddenForm = document.querySelector('.main-content-nothing');
+const paginationHidden = document.querySelector('.pagination');
+const cardContainerHidden = document.querySelector('.card-container');
+hiddenForm.style.display = 'none';
+// *******************************
+
+export async function renderProductList() {
+	try {
+		const data = await getCurrentProducts(filters);
+
+		// *********************
+		if (!data.results.length) {
+			hiddenForm.style.display = 'block';
+			paginationHidden.style.display = 'none';
+			cardContainerHidden.style.display = 'none';
+		} else {
+			hiddenForm.style.display = 'none';
+			paginationHidden.style.display = 'block';
+			cardContainerHidden.style.display = 'block';
+			refs.cardProduct.innerHTML = cardMarkup(data.results);
+		}
+		// *********************
+	} catch (err) {
+		console.log(err);
+	}
+}
 
 export function changingLimit() {
 	if (window.innerWidth >= 1440) {
