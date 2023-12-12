@@ -15,42 +15,86 @@
 				<div class="cart__added-list">
 					<button class="cart__delete-button" type="button">
 						Delete all
-						<svg width="24" height="24" class="icon icon-icon-close"><use href="../../../icons.svg#icon-icon-close"></use></svg>
+						<svg width="24" height="24" class="icon icon-icon-close">
+							<use href="../../../icons.svg#icon-icon-close"></use>
+						</svg>
 					</button>
 				</div>
 			</div>
 
 			<div class="cart__products-wrap">
-				<ul class="cart__products js-cart-products"></ul>
-				<div class="total__order-thumb">
-					<p class="your__order-title">Your Order</p>
-					<div class="total__price-thumb">
-						<p class="cart__total-title">Total</p>
-						<p class="cart__sum">
-							Sum:
-							<span class="total__price" id="cart__total">$0.00</span>
-						</p>
+				<ul class="cart__products js-cart-products">
+					<li class="cart-item" data-id="640c2dd963a319ea671e3737">
+						<div class="cart-item-wrap">
+							<div class="cart-img-container">
+								<img
+									class="cart-img"
+									src="https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e3737.png"
+									alt="Parmigiano-reggiano"
+								/>
+							</div>
+							<div class="cart-img-text">
+								<div class="cart-item-title-wrap">
+									<h3 class="cart-item-title">Parmigiano-reggiano</h3>
+									<button
+										name="button"
+										type="button"
+										class="cart-btn-close"
+										aria-label="Close modal window"
+									>
+										<svg width="18" height="18" class="cart-icon-close">
+											<use href="../../../icons.svg#icon-icon-close"></use>
+										</svg>
+									</button>
+								</div>
+
+								<div class="cart-info-container">
+									<p class="cart-info">
+										Category:
+										<span>Dairy</span>
+									</p>
+									<p class="cart-info cart-info-overflow">
+										Size:
+										<span>per 100g</span>
+									</p>
+								</div>
+								<h3 class="cart-info-price">$4.49</h3>
+							</div>
+						</div>
+					</li>
+					
+				</ul>
+				<div class="container container-product-list">
+					<div class="total__order-thumb">
+						<p class="your__order-title">Your Order</p>
+						<div class="total__price-thumb">
+							<p class="cart__total-title">Total</p>
+							<p class="cart__sum">
+								Sum:
+								<span class="total__price" id="cart__total">$0.00</span>
+							</p>
+						</div>
+
+						<form class="checkout__field">
+							<label for="cart__client-email" class="cart__input-label">
+								<span class="placeholder__prefix">Mail:</span>
+								<input
+									class="cart__basket-input"
+									type="email"
+									name="email"
+									placeholder="Enter your email"
+								/>
+							</label>
+
+							<button
+								type="submit"
+								class="cart__submit-button"
+								aria-label="Checkout cart"
+							>
+								Checkout
+							</button>
+						</form>
 					</div>
-
-					<form class="checkout__field">
-						<label for="cart__client-email" class="cart__input-label">
-							<span class="placeholder__prefix">Mail:</span>
-							<input
-								class="cart__basket-input"
-								type="email"
-								name="email"
-								placeholder="Enter your email"
-							/>
-						</label>
-
-						<button
-							type="submit"
-							class="cart__submit-button"
-							aria-label="Checkout cart"
-						>
-							Checkout
-						</button>
-					</form>
 				</div>
 			</div>
 		</div>
