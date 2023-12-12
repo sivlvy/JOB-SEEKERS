@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', async function () {
       cardProduct.innerHTML = cardMarkup(products);
 
 	  const addButtons = document.querySelectorAll('.add-button');
-                console.log(addButtons)
                 for (const addButton of addButtons) {
                         addButton.addEventListener('click', onAddButtonClick)
                 }
