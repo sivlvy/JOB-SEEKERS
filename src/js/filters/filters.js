@@ -8,7 +8,6 @@ const refs = {
 	selectEl: document.querySelector('.filters-categories-select'),
 	cardProduct: document.querySelector('.product-list'),
 	formEl: document.querySelector('.filters-form'),
-	test: document.querySelector('.cart__products .js-cart-products'),
 };
 console.log(refs);
 
