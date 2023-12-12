@@ -81,10 +81,13 @@ export async function renderProductList() {
 }
 
 export function changingLimit() {
-	if (window.innerWidth >= 768 && window.innerWidth < 1440) {
-		filters.limit = 8;
-	} else if (window.innerWidth >= 1440) {
-		filters.limit = 9;
+	if (window.innerWidth >= 1440) {
+	  filters.limit = 9;
+	} else if (window.innerWidth >= 768) {
+	  filters.limit = 8;
+	} else {
+	  filters.limit = 6;
 	}
+  
 	return filters.limit;
-}
+  }
