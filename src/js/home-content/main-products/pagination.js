@@ -1,141 +1,150 @@
-import axios from 'axios';
-import { getCurrentProducts } from '../../services/food-api.js';
+import { getCurrentProducts, getCategoryList } from '../../services/food-api.js';
+import { cardMarkup } from './main-projects.js';
+import { filters, changingLimit } from '../../filters/filters.js';
+import { saveToLS } from '../../services/helpers.js';
+import SlimSelect from 'slim-select';
 
 const cardProduct = document.querySelector('.product-list');
 const paginationElement = document.querySelector('.pagination ul');
+const loaderEl = document.querySelector('.loader');
 
-let value = '';
-let category = '';
-let page = 1;
-let limit = 9;
+let newFilters = filters;
 let totalPages = 0;
 
 document.addEventListener('DOMContentLoaded', async function () {
-	await updateProducts();
+  window.addEventListener('resize', handleResize); // Додано прослуховування події resize
+  await updateProducts();
 
-	function updateProducts() {
-		getCurrentProducts({ value, category, page, limit })
-			.then(data => {
-				const products = data.results;
-				totalPages = data.totalPages;
+  function handleResize() {
+    changingLimit(); // Оновлюємо ліміт при зміні розміру вікна
+    updateProducts(); // Викликаємо оновлення продуктів
+  }
 
-				cardProduct.innerHTML = cardMarkup(products);
-				updatePagination();
-			})
-			.catch(error => {
-				console.log(error);
-			});
-	}
+  async function updateProducts() {
+    saveToLS('filters-parameters', filters);
 
-	function updatePagination() {
-		paginationElement.innerHTML = createPagination(totalPages, page);
-		const pageButtons = document.querySelectorAll(
-			'.pagination li:not(.disabled)'
-		);
+    try {
+      const data = await getCurrentProducts(filters);
+      loaderEl.style.display = 'none';
+      const products = data.results;
+      totalPages = data.totalPages;
 
-		pageButtons.forEach(button => {
-			button.addEventListener('click', async event => {
-				const pageNumber = parseInt(event.currentTarget.dataset.page);
-				if (!isNaN(pageNumber) && pageNumber !== page) {
-					page = pageNumber;
-					await updateProducts();
-				}
-			});
-		});
-	}
+      cardProduct.innerHTML = cardMarkup(products);
+      updatePagination();
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
-	function createPagination(totalPages, currentPage) {
-		let liTag = '';
-		let active;
-		let beforePage = currentPage - 1;
-		let afterPage = currentPage + 1;
+  function updatePagination() {
+    paginationElement.innerHTML = paginationHTML(totalPages, newFilters.page);
+    const pageButtons = document.querySelectorAll('.pagination li:not(.disabled)');
 
-		if (currentPage > 1) {
-			liTag += `<li class="btn prev" data-page="${
-				currentPage - 1
-			}"><span>&lt;</span></li>`;
-		} else {
-			liTag += `<li class="btn prev disabled"><span>&lt;</span></li>`;
-		}
+    pageButtons.forEach(button => {
+      button.addEventListener('click', async event => {
+        const pageNumber = parseInt(event.currentTarget.dataset.page);
+        if (!isNaN(pageNumber) && pageNumber !== newFilters.page) {
+          newFilters.page = pageNumber;
+          await updateProducts();
+        }
+      });
+    });
+  }
 
-		if (currentPage > 2) {
-			liTag += `<li class="first numb" data-page="1"><span>1</span></li>`;
-			if (currentPage > 3) {
-				liTag += `<li class="dots"><span>...</span></li>`;
-			}
-		}
+  document.querySelector('.filters-form').addEventListener('submit', async function (evt) {
+    evt.preventDefault();
+    newFilters.page = 1;
+    newFilters.keyword = evt.currentTarget.elements.searchQuery.value.trim().toLowerCase().split(' ').join(' ');
+    saveToLS('filters-parameters', newFilters);
+    await updateProducts();
+  });
 
-		if (currentPage == totalPages) {
-			beforePage = beforePage - 2;
-		} else if (currentPage == totalPages - 1) {
-			beforePage = beforePage - 1;
-		}
+  document.querySelector('.filters-categories-select').addEventListener('change', async function (evt) {
+    newFilters.category = evt.target.value;
+    newFilters.page = 1;
+    saveToLS('filters-parameters', newFilters);
+    await updateProducts();
+  });
 
-		if (currentPage == 1) {
-			afterPage = afterPage + 2;
-		} else if (currentPage == 2) {
-			afterPage = afterPage + 1;
-		}
+  const selectEl = document.querySelector('.filters-categories-select');
+  getCategoryList()
+    .then(data => {
+      renderSelectList(data);
+    })
+    .catch(err => console.log(err));
 
-		for (var plength = beforePage; plength <= afterPage; plength++) {
-			if (plength > totalPages) {
-				continue;
-			}
-			if (plength == 0) {
-				plength = plength + 1;
-			}
-			if (currentPage == plength) {
-				active = 'active';
-			} else {
-				active = '';
-			}
-			liTag += `<li class="numb ${active}" data-page="${plength}"><span>${plength}</span></li>`;
-		}
+  function renderSelectList(data) {
+    const placeholderStr = `<option disabled selected value="Show All" hidden data-placeholder="true">Categories</option>`;
 
-		if (currentPage < totalPages - 1) {
-			if (currentPage < totalPages - 2) {
-				liTag += `<li class="dots"><span>...</span></li>`;
-			}
-			liTag += `<li class="last numb" data-page="${totalPages}"><span>${totalPages}</span></li>`;
-		}
+    selectEl.insertAdjacentHTML('afterbegin', placeholderStr);
 
-		if (currentPage < totalPages) {
-			liTag += `<li class="btn next" data-page="${
-				currentPage + 1
-			}"><span>&gt;</span></li>`;
-		} else {
-			liTag += `<li class="btn next disabled"><span>&gt;</span></li>`;
-		}
+    const markupSelectList = data
+      .map(elem => {
+        return `<option value="${elem}">${elem.replaceAll('_', ' ')}</option>`;
+      })
+      .join('')
+      .concat(`<option value="">Show All</option>`);
 
-		return liTag;
-	}
+    selectEl.insertAdjacentHTML('beforeend', markupSelectList);
 
-	function cardMarkup(products) {
-		return products
-			.map(
-				({ img, name, category, size, popularity, price }) => `
-        <li class="card-wrapper">
-          <div class="image-wrapper">
-            <img src="${img}" alt="${name}" loading="lazy" class="product-image" width="140" height="140" />
-          </div>
-          <div class="product-info">
-            <p class="product-name">${name}</p>
-            <div class="product-items">
-              <p class="product-item">Category:<span class="product-more-info">&nbsp;${category}</span></p>
-              <p class="product-item">Size:<span class="product-more-info">&nbsp;${size}</span></p>
-              <p class="product-item">Popularity:<span class="product-more-info">&nbsp;${popularity}</span></p>
-            </div>
-          </div>
-          <div class="price-and-add">
-            <p class="product-price">$${price}</p>
-            <button class="add-button" type="button">
-              <svg class="icon-button" width="18" height="18">
-                <use href="../../../icons.svg#icon-cart-mob"></use>
-              </svg>
-            </button>
-          </div>
-        </li>`
-			)
-			.join('');
-	}
+    new SlimSelect({
+      select: selectEl,
+      settings: {
+        showSearch: false,
+        searchHighlight: true,
+      },
+    });
+  }
+
+  function paginationHTML(totalPages, currentPage) {
+    let liTag = '';
+    const maxVisibleButtons = 5;
+    const halfVisibleButtons = Math.floor(maxVisibleButtons / 2);
+    let startPage = currentPage - halfVisibleButtons;
+    let endPage = currentPage + halfVisibleButtons;
+
+    if (startPage < 1) {
+      startPage = 1;
+      endPage = Math.min(totalPages, startPage + maxVisibleButtons - 1);
+    }
+
+    if (endPage > totalPages) {
+      endPage = totalPages;
+      startPage = Math.max(1, endPage - maxVisibleButtons + 1);
+    }
+
+    if (currentPage > 1) {
+      liTag += `<li class="btn prev" data-page="${currentPage - 1}"><span>&lt;</span></li>`;
+    } else {
+      liTag += `<li class="btn prev disabled"><span>&lt;</span></li>`;
+    }
+
+    if (startPage > 1) {
+      liTag += `<li class="first numb" data-page="1"><span>1</span></li>`;
+      if (startPage > 2) {
+        liTag += `<li class="dots"><span>...</span></li>`;
+      }
+    }
+
+    for (let page = startPage; page <= endPage; page++) {
+      const active = page === currentPage ? 'active' : '';
+      liTag += `<li class="numb ${active}" data-page="${page}"><span>${page}</span></li>`;
+    }
+
+    if (endPage < totalPages) {
+      if (endPage < totalPages - 1) {
+        liTag += `<li class="dots"><span>...</span></li>`;
+      }
+      liTag += `<li class="last numb" data-page="${totalPages}"><span>${totalPages}</span></li>`;
+    }
+
+    if (currentPage < totalPages) {
+      liTag += `<li class="btn next" data-page="${currentPage + 1}"><span>&gt;</span></li>`;
+    } else {
+      liTag += `<li class="btn next disabled"><span>&gt;</span></li>`;
+    }
+
+    return liTag;
+  }
 });
+

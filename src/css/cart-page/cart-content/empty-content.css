@@ -1,0 +1,163 @@
+.cart-empty {
+	padding: 18px 0;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.logo-block {
+	display: flex;
+	gap: 14px;
+	align-items: center;
+	margin-bottom: 100px;
+}
+
+.logo-text {
+	color: #010101;
+	font-family: Neue Montreal;
+	font-size: 24px;
+	font-weight: 500;
+	line-height: 1.17;
+	text-transform: uppercase;
+}
+
+.icon-wrap {
+	display: flex;
+	border-radius: 30px;
+	width: 38px;
+	height: 38px;
+	background: #6d8434;
+	justify-content: center;
+	align-items: center;
+}
+
+.icon-cart-desk {
+	fill: #e8e8e2;
+}
+
+.cart-info-wrap {
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.cart-info-wrap img {
+	display: block;
+	margin: 0 auto;
+}
+
+.empty-frame {
+	margin: 28px auto 120px;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	justify-content: center;
+	align-items: center;
+}
+
+.empty-text {
+	color: #010101;
+	font-family: Neue Montreal;
+	text-align: center;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+.empty-focus {
+	color: #6d8434;
+	font-family: Neue Montreal;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+.empty-descr {
+	color: rgba(1, 1, 1, 0.7);
+	font-family: Neue Montreal;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.33;
+	width: 279px;
+}
+
+@media screen and (max-width: 375px) {
+	.container-cart-empty {
+		width: 100%;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.container-cart-empty {
+		padding: 0 32px;
+		width: 768px;
+	}
+
+	.logo-block {
+		margin-bottom: 135px;
+	}
+
+	.icon-wrap {
+		width: 42px;
+		height: 42px;
+	}
+
+	.logo-text {
+		font-size: 32px;
+	}
+
+	.empty-frame {
+		margin: 40px auto 120px;
+	}
+
+	.empty-text {
+		font-size: 20px;
+	}
+
+	.empty-focus {
+		font-size: 20px;
+	}
+
+	.empty-descr {
+		font-size: 18px;
+		width: 387px;
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	.container-cart-empty {
+		width: 1440px;
+		padding: 0 100px;
+	}
+
+	.logo-block {
+		margin-bottom: 155px;
+	}
+
+	.icon-wrap {
+		width: 42px;
+		height: 42px;
+	}
+
+	.logo-text {
+		font-size: 32px;
+	}
+
+	.empty-frame {
+		margin: 40px auto 150px;
+	}
+
+	.empty-text {
+		font-size: 20px;
+	}
+
+	.empty-focus {
+		font-size: 20px;
+	}
+
+	.empty-descr {
+		font-size: 18px;
+		width: 387px;
+	}
+}
