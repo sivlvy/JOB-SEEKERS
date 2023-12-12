@@ -1,6 +1,6 @@
 export { cardMarkup };
-import Notiflix from 'notiflix';
-import { getProductById } from '../../services/food-api';
+
+
 
 function cardMarkup(products) {
 	return products
@@ -86,7 +86,7 @@ function cardMarkup(products) {
 // 	}
 // }
 
-function basketProductMarkUp({
+export function basketProductMarkUp({
 	img,
 	name,
 	category,

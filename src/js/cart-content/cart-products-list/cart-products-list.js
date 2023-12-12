@@ -1,4 +1,5 @@
 import { getProductById } from "../../services/food-api";
+import { basketProductMarkUp } from "../../home-content/main-products/main-projects";
 
 
 
@@ -17,8 +18,8 @@ export async function onAddButtonClick(event) {
 
 		
 
-		const cardCount = document.querySelector('.cart__item-count');
-        console.log(cardCount)
+		// const cardCount = document.querySelector('.cart__item-count');
+        // console.log(cardCount)
 
 		// const cardProductBasketList = document.querySelector('.js-cart-products');
 		// 	console.log(cardProductBasketList)
