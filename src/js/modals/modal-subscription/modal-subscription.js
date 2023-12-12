@@ -1,10 +1,12 @@
+import Notiflix from 'notiflix';
+import axios from 'axios';
 import { addEmail } from '../../services/food-api';
 
 const formElem = document.querySelector('.form-footer');
 const modalSubscription = document.querySelector('.modal-subscription');
 const modalUnsubscription = document.querySelector('.modal-unsubscription');
 const modalBackElem = document.querySelector('.modal-backdrop-subscription');
-const closeBackDrop = document.querySelector('.container-modal')
+const closeBackDrop = document.querySelector('.container-modal');
 modalSubscription.classList.add('is-hidden');
 modalUnsubscription.classList.add('is-hidden');
 
@@ -18,7 +20,7 @@ const closeModal = event => {
 		modalUnsubscription.classList.add('is-hidden');
 		modalBackElem.classList.add('is-hidden');
 	}
-   if (target === closeBackDrop || target.closest('.close')) {
+	if (target === closeBackDrop || target.closest('.close')) {
 		modalUnsubscription.classList.add('is-hidden');
 		modalBackElem.classList.add('is-hidden');
 	}
@@ -60,4 +62,4 @@ function handleSubmit(e) {
 formElem.addEventListener('submit', handleSubmit);
 modalSubscription.addEventListener('click', closeModal);
 modalUnsubscription.addEventListener('click', closeModal);
-modalBackElem.addEventListener('click', closeModal)
+modalBackElem.addEventListener('click', closeModal);
