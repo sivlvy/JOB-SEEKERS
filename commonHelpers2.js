@@ -1,4 +1,4 @@
-import{g as b,a as $,b as w,c as H,d as I}from"./assets/modal-subscription-77bdf373.js";import{S}from"./assets/vendor-ab5f5c01.js";function L(t){return t.map(({img:s,name:o,category:i,size:d,popularity:l,_id:e,price:a})=>`<li class="card-wrapper" data-id="${e}">
+import{g as b,a as $,b as w,c as H,d as I}from"./assets/modal-subscription-0737f903.js";import{S}from"./assets/vendor-ab5f5c01.js";function L(t){return t.map(({img:s,name:o,category:i,size:d,popularity:l,_id:e,price:a})=>`<li class="card-wrapper" data-id="${e}">
 					<div class="image-wrapper">
 					<img src="${s}" alt="${o}" loading="lazy" class="product-image" width="140" height="140" />
 					</div>
