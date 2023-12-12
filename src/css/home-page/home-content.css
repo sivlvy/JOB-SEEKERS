@@ -3,6 +3,7 @@
 		/* width: 1240; */
 		display: flex;
 		gap: 40px;
+		justify-content: center;
 	}
 
 	/* .container-main-content {
