@@ -71,16 +71,24 @@ function onSelect(evt) {
 	renderProductList();
 }
 
+// ******************************
+const hiddenForm = document.querySelector('.main-content-nothing');
+const paginationHidden = document.querySelector('.pagination');
+const cardContainerHidden = document.querySelector('.card-container');
+hiddenForm.style.display = 'none';
+// *******************************
+
 export async function renderProductList() {
 	try {
 		const data = await getCurrentProducts(filters);
+
 		// *********************
-		if (data.results === false) {
-			refs.cardProduct.innerHTML = createMarcupNothing();
+		if (!data.results.length) {
+			hiddenForm.style.display = 'block';
+			paginationHidden.style.display = 'none';
+			cardContainerHidden.style.display = 'none';
 		}
-		// ************************
 		refs.cardProduct.innerHTML = cardMarkup(data.results);
-		console.log(data.results);
 	} catch (err) {
 		console.log(err);
 	}
@@ -93,12 +101,4 @@ export function changingLimit() {
 		filters.limit = 9;
 	}
 	return filters.limit;
-}
-
-// *************************************\\
-
-function createMarcupNothing() {
-	return `<h2 class="main-content-nothing-title">Nothing was found for the selected <span>filters...</span></h2>
-<p class="main-content-nothing-text">Try adjusting your search parameters or browse our range by other criteria to
- find the perfect product for you.</p>`;
 }
