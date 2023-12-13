@@ -48,8 +48,8 @@ function createMarkup(array) {
 				<div class="discount-prisce-button">
              	<p class="discount-price-item">$${price}</p>
              	<button class="add-discount-button add-button" type="button" data-id="${_id}>
-					<svg class="discount-icon-button bagbag" width="18" height="18">
-		 			<use href="../../../icons.svg#cart" >
+					<svg class="icon-button bagbag" width="18" height="18">
+					<use href="../../../icons.svg#icon-cart-svg"></use>
 		 			</use>
 					</svg>
 				</button>

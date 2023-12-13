@@ -1,4 +1,7 @@
-import { getCurrentProducts, getCategoryList } from '../../services/food-api.js';
+import {
+	getCurrentProducts,
+	getCategoryList,
+} from '../../services/food-api.js';
 import { cardMarkup } from './main-projects.js';
 import { filters, changingLimit } from '../../filters/filters.js';
 import { saveToLS } from '../../services/helpers.js';
@@ -31,13 +34,13 @@ document.addEventListener('DOMContentLoaded', async function () {
   async function updateProducts() {
     saveToLS('filters-parameters', filters);
 
-    try {
-      const data = await getCurrentProducts(filters);
-      loaderEl.style.display = 'none';
-      const products = data.results;
-      totalPages = data.totalPages;
+		try {
+			const data = await getCurrentProducts(filters);
+			loaderEl.style.display = 'none';
+			const products = data.results;
+			totalPages = data.totalPages;
 
-      cardProduct.innerHTML = cardMarkup(products);
+			cardProduct.innerHTML = cardMarkup(products);
 
       const addButtons = document.querySelectorAll('.add-button');
       // Додавання слухача події click до кожної кнопки "Додати в кошик"
@@ -45,11 +48,11 @@ document.addEventListener('DOMContentLoaded', async function () {
         addButton.addEventListener('click', onAddButtonClick);
       }
 
-      updatePagination();
-    } catch (error) {
-      console.log(error);
-    }
-  }
+			updatePagination();
+		} catch (error) {
+			console.log(error);
+		}
+	}
 
   // Функція оновлення пагінації
   function updatePagination() {
@@ -104,25 +107,25 @@ document.addEventListener('DOMContentLoaded', async function () {
   function renderSelectList(data) {
     const placeholderStr = `<option disabled selected value="Show All" hidden data-placeholder="true">Categories</option>`;
 
-    selectEl.insertAdjacentHTML('afterbegin', placeholderStr);
+		selectEl.insertAdjacentHTML('afterbegin', placeholderStr);
 
-    const markupSelectList = data
-      .map(elem => {
-        return `<option value="${elem}">${elem.replaceAll('_', ' ')}</option>`;
-      })
-      .join('')
-      .concat(`<option value="">Show All</option>`);
+		const markupSelectList = data
+			.map(elem => {
+				return `<option value="${elem}">${elem.replaceAll('_', ' ')}</option>`;
+			})
+			.join('')
+			.concat(`<option value="">Show All</option>`);
 
-    selectEl.insertAdjacentHTML('beforeend', markupSelectList);
+		selectEl.insertAdjacentHTML('beforeend', markupSelectList);
 
-    new SlimSelect({
-      select: selectEl,
-      settings: {
-        showSearch: false,
-        searchHighlight: true,
-      },
-    });
-  }
+		new SlimSelect({
+			select: selectEl,
+			settings: {
+				showSearch: false,
+				searchHighlight: true,
+			},
+		});
+	}
 
   // Функція генерації HTML-коду пагінації
   function paginationHTML(totalPages, currentPage) {
@@ -132,47 +135,51 @@ document.addEventListener('DOMContentLoaded', async function () {
     let startPage = currentPage - halfVisibleButtons;
     let endPage = currentPage + halfVisibleButtons;
 
-    if (startPage < 1) {
-      startPage = 1;
-      endPage = Math.min(totalPages, startPage + maxVisibleButtons - 1);
-    }
+		if (startPage < 1) {
+			startPage = 1;
+			endPage = Math.min(totalPages, startPage + maxVisibleButtons - 1);
+		}
 
-    if (endPage > totalPages) {
-      endPage = totalPages;
-      startPage = Math.max(1, endPage - maxVisibleButtons + 1);
-    }
+		if (endPage > totalPages) {
+			endPage = totalPages;
+			startPage = Math.max(1, endPage - maxVisibleButtons + 1);
+		}
 
-    if (currentPage > 1) {
-      liTag += `<li class="btn prev" data-page="${currentPage - 1}"><span>&lt;</span></li>`;
-    } else {
-      liTag += `<li class="btn prev disabled"><span>&lt;</span></li>`;
-    }
+		if (currentPage > 1) {
+			liTag += `<li class="btn prev" data-page="${
+				currentPage - 1
+			}"><span>&lt;</span></li>`;
+		} else {
+			liTag += `<li class="btn prev disabled"><span>&lt;</span></li>`;
+		}
 
-    if (startPage > 1) {
-      liTag += `<li class="first numb" data-page="1"><span>1</span></li>`;
-      if (startPage > 2) {
-        liTag += `<li class="dots"><span>...</span></li>`;
-      }
-    }
+		if (startPage > 1) {
+			liTag += `<li class="first numb" data-page="1"><span>1</span></li>`;
+			if (startPage > 2) {
+				liTag += `<li class="dots"><span>...</span></li>`;
+			}
+		}
 
-    for (let page = startPage; page <= endPage; page++) {
-      const active = page === currentPage ? 'active' : '';
-      liTag += `<li class="numb ${active}" data-page="${page}"><span>${page}</span></li>`;
-    }
+		for (let page = startPage; page <= endPage; page++) {
+			const active = page === currentPage ? 'active' : '';
+			liTag += `<li class="numb ${active}" data-page="${page}"><span>${page}</span></li>`;
+		}
 
-    if (endPage < totalPages) {
-      if (endPage < totalPages - 1) {
-        liTag += `<li class="dots"><span>...</span></li>`;
-      }
-      liTag += `<li class="last numb" data-page="${totalPages}"><span>${totalPages}</span></li>`;
-    }
+		if (endPage < totalPages) {
+			if (endPage < totalPages - 1) {
+				liTag += `<li class="dots"><span>...</span></li>`;
+			}
+			liTag += `<li class="last numb" data-page="${totalPages}"><span>${totalPages}</span></li>`;
+		}
 
-    if (currentPage < totalPages) {
-      liTag += `<li class="btn next" data-page="${currentPage + 1}"><span>&gt;</span></li>`;
-    } else {
-      liTag += `<li class="btn next disabled"><span>&gt;</span></li>`;
-    }
+		if (currentPage < totalPages) {
+			liTag += `<li class="btn next" data-page="${
+				currentPage + 1
+			}"><span>&gt;</span></li>`;
+		} else {
+			liTag += `<li class="btn next disabled"><span>&gt;</span></li>`;
+		}
 
-    return liTag;
-  }
+		return liTag;
+	}
 });
