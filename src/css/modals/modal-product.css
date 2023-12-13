@@ -24,8 +24,8 @@
 	pointer-events: none;
 }
 
-.modal-card:hover,
-.modal-card:focus {
+.productmodal:hover,
+.productmodal:focus {
 	cursor: default;
 }
 
@@ -186,7 +186,6 @@
 	top: 14px;
 	right: 14px;
 	cursor: pointer;
-	cursor: pointer;
 	display: flex;
 	padding: 0;
 	border: none;
@@ -196,7 +195,7 @@
 	width: 22px;
 	height: 22px;
 }
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 374px) {
 	.productmodal {
 		padding: 10px;
 		max-width: 315px;

@@ -8,24 +8,27 @@ import { saveToLS } from '../../services/helpers.js';
 import SlimSelect from 'slim-select';
 import { onAddButtonClick } from '../../cart-content/cart-products-list/cart-products-list.js';
 
+// Отримання DOM-елементів
 const cardProduct = document.querySelector('.product-list');
 const paginationElement = document.querySelector('.pagination ul');
 const loaderEl = document.querySelector('.loader');
 
+// Ініціалізація змінних для фільтрів та загальної кількості сторінок
 let newFilters = filters;
 let totalPages = 0;
 
+// Обробник події завантаження DOM
 document.addEventListener('DOMContentLoaded', async function () {
-	window.addEventListener('resize', handleResize); // Додано прослуховування події resize
-	await updateProducts();
+  window.addEventListener('resize', handleResize); // Додано прослуховування події resize
+  await updateProducts();
 
-	function handleResize() {
-		changingLimit(); // Оновлюємо ліміт при зміні розміру вікна
-		updateProducts(); // Викликаємо оновлення продуктів
-	}
+  function handleResize() {
+    changingLimit(); // Оновлюємо ліміт при зміні розміру вікна
+    updateProducts(); // Викликаємо оновлення продуктів
+  }
 
-	async function updateProducts() {
-		saveToLS('filters-parameters', filters);
+  async function updateProducts() {
+    saveToLS('filters-parameters', filters);
 
 		try {
 			const data = await getCurrentProducts(filters);
@@ -35,11 +38,11 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 			cardProduct.innerHTML = cardMarkup(products);
 
-			const addButtons = document.querySelectorAll('.add-button');
-			console.log(addButtons);
-			for (const addButton of addButtons) {
-				addButton.addEventListener('click', onAddButtonClick);
-			}
+	  const addButtons = document.querySelectorAll('.add-button');
+                console.log(addButtons)
+                for (const addButton of addButtons) {
+                        addButton.addEventListener('click', onAddButtonClick)
+                }
 
 			updatePagination();
 		} catch (error) {
@@ -47,55 +50,45 @@ document.addEventListener('DOMContentLoaded', async function () {
 		}
 	}
 
-	function updatePagination() {
-		paginationElement.innerHTML = paginationHTML(totalPages, newFilters.page);
-		const pageButtons = document.querySelectorAll(
-			'.pagination li:not(.disabled)'
-		);
+  function updatePagination() {
+    paginationElement.innerHTML = paginationHTML(totalPages, newFilters.page);
+    const pageButtons = document.querySelectorAll('.pagination li:not(.disabled)');
 
-		pageButtons.forEach(button => {
-			button.addEventListener('click', async event => {
-				const pageNumber = parseInt(event.currentTarget.dataset.page);
-				if (!isNaN(pageNumber) && pageNumber !== newFilters.page) {
-					newFilters.page = pageNumber;
-					await updateProducts();
-				}
-			});
-		});
-	}
+    pageButtons.forEach(button => {
+      button.addEventListener('click', async event => {
+        const pageNumber = parseInt(event.currentTarget.dataset.page);
+        if (!isNaN(pageNumber) && pageNumber !== newFilters.page) {
+          newFilters.page = pageNumber;
+          await updateProducts();
+        }
+      });
+    });
+  }
 
-	document
-		.querySelector('.filters-form')
-		.addEventListener('submit', async function (evt) {
-			evt.preventDefault();
-			newFilters.page = 1;
-			newFilters.keyword = evt.currentTarget.elements.searchQuery.value
-				.trim()
-				.toLowerCase()
-				.split(' ')
-				.join(' ');
-			saveToLS('filters-parameters', newFilters);
-			await updateProducts();
-		});
+  document.querySelector('.filters-form').addEventListener('submit', async function (evt) {
+    evt.preventDefault();
+    newFilters.page = 1;
+    newFilters.keyword = evt.currentTarget.elements.searchQuery.value.trim().toLowerCase().split(' ').join(' ');
+    saveToLS('filters-parameters', newFilters);
+    await updateProducts();
+  });
 
-	document
-		.querySelector('.filters-categories-select')
-		.addEventListener('change', async function (evt) {
-			newFilters.category = evt.target.value;
-			newFilters.page = 1;
-			saveToLS('filters-parameters', newFilters);
-			await updateProducts();
-		});
+  document.querySelector('.filters-categories-select').addEventListener('change', async function (evt) {
+    newFilters.category = evt.target.value;
+    newFilters.page = 1;
+    saveToLS('filters-parameters', newFilters);
+    await updateProducts();
+  });
 
-	const selectEl = document.querySelector('.filters-categories-select');
-	getCategoryList()
-		.then(data => {
-			renderSelectList(data);
-		})
-		.catch(err => console.log(err));
+  const selectEl = document.querySelector('.filters-categories-select');
+  getCategoryList()
+    .then(data => {
+      renderSelectList(data);
+    })
+    .catch(err => console.log(err));
 
-	function renderSelectList(data) {
-		const placeholderStr = `<option disabled selected value="Show All" hidden data-placeholder="true">Categories</option>`;
+  function renderSelectList(data) {
+    const placeholderStr = `<option disabled selected value="Show All" hidden data-placeholder="true">Categories</option>`;
 
 		selectEl.insertAdjacentHTML('afterbegin', placeholderStr);
 
@@ -117,12 +110,12 @@ document.addEventListener('DOMContentLoaded', async function () {
 		});
 	}
 
-	function paginationHTML(totalPages, currentPage) {
-		let liTag = '';
-		const maxVisibleButtons = 5;
-		const halfVisibleButtons = Math.floor(maxVisibleButtons / 2);
-		let startPage = currentPage - halfVisibleButtons;
-		let endPage = currentPage + halfVisibleButtons;
+  function paginationHTML(totalPages, currentPage) {
+    let liTag = '';
+    const maxVisibleButtons = 5;
+    const halfVisibleButtons = Math.floor(maxVisibleButtons / 2);
+    let startPage = currentPage - halfVisibleButtons;
+    let endPage = currentPage + halfVisibleButtons;
 
 		if (startPage < 1) {
 			startPage = 1;
