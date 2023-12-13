@@ -1,6 +1,8 @@
 export { cardMarkup };
 import { getProductById } from '../../services/food-api';
 import { saveToLS, loadFromLS } from '../../services/helpers';
+import icons from '/icons.svg';
+
 
 function cardMarkup(products) {
 	return products
@@ -33,7 +35,7 @@ function cardMarkup(products) {
 			 <p class="product-price">$${price}</p>
 			 <button class="add-button" type="button" data-id="${_id}">
 			 <svg class="icon-button"width="18" height="18">
-             <use href="/icons.svg#icon-cart-mob" class="svg-change">
+             <use href="${icons}#icon-cart-mob" class="svg-change">
              </use>
 			 </svg>
 			 </button>
