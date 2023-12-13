@@ -7,12 +7,10 @@
 @import url('./reset.css');
 @import url('./home-page/hero.css');
 
-
 /** Components */
 
 @import url('./components/header.css');
 @import url('./components/footer.css');
-
 
 /** cart page  */
 
@@ -20,7 +18,6 @@
 @import url('./cart-page/cart-content/empty-content.css');
 @import url('./cart-page/cart-content/order-products.css');
 @import url('./cart-page/cart-content/product-list.css');
-
 
 /** homepage  */
 
@@ -30,7 +27,6 @@
 @import url('./home-content/main-content.css');
 @import url('./home-content/sidebar.css');
 @import url('./home-content/pagination.css');
-
 
 /** modals  */
 
@@ -59,10 +55,18 @@
 	--white-cl: #fafafa;
 	--grey-cl: rgba(1, 1, 1, 0.3);
 }
+/* ./fonts/NeueMontreal-Regular.woff2 */
 
+@font-face {
+	font-family: 'Neue Montreal';
+	font-weight: 400;
+	src: url('../fonts/NeueMontreal-Regular.woff2') format('woff2'),
+		url('../fonts/NeueMontreal-Regular.ttf') format('ttf');
+	font-display: swap;
+}
 body {
 	background-color: #e8e8e2;
 }
 .container {
-	margin: 0 auto;
+	/* margin: 0 auto; */
 }

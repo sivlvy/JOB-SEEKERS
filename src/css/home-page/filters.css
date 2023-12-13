@@ -7,8 +7,6 @@
 	margin-bottom: 8px;
 }
 
-
-
 .filters-search-input {
 	color: #010101;
 	padding: 14px 20px;
@@ -17,7 +15,7 @@
 	width: 100%;
 	line-height: 1.29em;
 	border-radius: 30px;
-	border: 1px solid rgba(1, 1, 1, 0.30);
+	border: 1px solid rgba(1, 1, 1, 0.3);
 	outline: none;
 	background-color: transparent;
 }
@@ -43,8 +41,6 @@
 	position: relative;
 }
 
-
-
 .filters-search-button {
 	position: absolute;
 	width: 50px;
@@ -62,7 +58,6 @@
 .filter-container {
 	padding: 0 20px;
 }
-
 
 /* ************************************************** */
 .main-content-nothing {
@@ -83,11 +78,11 @@
 }
 
 .main-content-nothing-title span {
-	color: #6D8434;
+	color: #6d8434;
 }
 
 .main-content-nothing-text {
-	color: rgba(1, 1, 1, 0.70);
+	color: rgba(1, 1, 1, 0.7);
 	width: 279px;
 	margin: 0 auto;
 	text-align: center;
@@ -98,7 +93,6 @@
 
 /* ************************************************ */
 
-
 @media screen and (min-width: 375px) {
 	.filters-search-input {
 		width: 100%;
@@ -108,10 +102,9 @@
 		width: 375px;
 		padding: 0 20px;
 	}
-
 }
 
-@media screen and (min-width:376px) and (max-width: 767px) {
+@media screen and (min-width: 376px) and (max-width: 767px) {
 	.filters-search-input {
 		width: 335px;
 	}
@@ -120,11 +113,9 @@
 		width: 335px;
 		margin: 0 auto;
 	}
-
 }
 
 @media screen and (min-width: 768px) {
-
 	/* ****************************** */
 	.main-content-nothing {
 		padding-top: 110px;
@@ -151,7 +142,7 @@
 
 	.filters-search-input::placeholder {
 		font-size: 18px;
-		line-height: 1.33em
+		line-height: 1.33em;
 	}
 
 	.filters-search-input {
@@ -162,7 +153,6 @@
 }
 
 @media screen and (min-width: 1440px) {
-
 	/* ******************************** */
 	.main-content-nothing {
 		padding-top: 140px;
@@ -203,11 +193,8 @@
 	}
 }
 
-.filterts-categories-select {
-	margin-top: 12px;
-}
-
 .ss-main {
+	margin-top: 12px;
 	align-items: center;
 	color: var(--main-cl);
 	font-family: Neue Montreal;
