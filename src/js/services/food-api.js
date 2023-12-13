@@ -1,4 +1,6 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
+
 
 axios.defaults.baseURL = 'https://food-boutique.b.goit.study/api';
 
@@ -42,7 +44,7 @@ export const getCurrentProducts = async ({
 };
 
 export const getProductById = async id => {
-	const { data } = await axios.get(`/products/${id}`);
+	const data = await axios.get(`/products/${id}`);
 	return data;
 };
 export const getPopularProducts = async limit => {
@@ -59,3 +61,11 @@ export const addEmail = async body => {
 
 	return data;
 };
+
+export function showError() {
+	Swal.fire({
+		icon: 'error',
+		title: 'Oops...',
+		text: 'Something went wrong!',
+	});
+}
