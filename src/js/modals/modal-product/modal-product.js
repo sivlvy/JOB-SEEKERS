@@ -1,4 +1,7 @@
 import { getProductById } from '../../services/food-api';
+import icons from '/icons.svg';
+
+
 function toggleMenu() {
 	productmodal.classList.toggle('is-hidden');
 }
@@ -60,13 +63,13 @@ function createModalContent(data) {
 										}">
          <span class="button-cart">Add to</span>
         <svg class="modal-icon-button" width="18" height="18">
-            <use href="../../../icons.svg#icon-cart-mob"></use>
+            <use href="${icons}#icon-cart-mob"></use>
         </svg>
     </button>
                     </div>
 				<button class="modal-close-button mod-card-close" type="button">
    				 <svg class="close-sharp">
-       				 <use href="../../../icons.svg#close-sharp"></use>
+       				 <use href="${icons}#close-sharp"></use>
      			 </svg>
     			</button>
             </div>`;
