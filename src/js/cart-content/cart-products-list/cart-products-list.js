@@ -1,55 +1,67 @@
-import { getProductById } from "../../services/food-api";
-import { basketProductMarkUp } from "../../home-content/main-products/main-projects";
+import { getProductById } from '../../services/food-api';
+import { basketProductMarkUp } from '../../home-content/main-products/main-projects';
+import { loadFromLS } from '../../services/helpers';
+
+const cardProductBasketList = document.querySelector('.js-cart-products');
+console.log(cardProductBasketList);
 
 
 
-export async function onAddButtonClick(event) {
-	const productID = event.currentTarget.dataset.id;
-	console.log(productID);
 
-	try {
-		const product = await getProductById(productID);
+const savedProductsBasket = loadFromLS('products');
 
-        const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
-		console.log(savedProducts);
+	console.log(savedProductsBasket);
 
-		savedProducts.push(product);
-		localStorage.setItem('products', JSON.stringify(savedProducts));
 
-		
-
-		// const cardCount = document.querySelector('.cart__item-count');
-        // console.log(cardCount)
-
-		// const cardProductBasketList = document.querySelector('.js-cart-products');
-		// 	console.log(cardProductBasketList)
-		// cardProductBasketList.insertAdjacentHTML(
-		// 	'beforeend',
-		// 	basketProductMarkUp(product)
-		// );
-
-		const addButtons = document.querySelectorAll('.add-button');
-
-		for (const addButton of addButtons) {
-			const buttonID = addButton.dataset.id;
-
-			if (buttonID === productID) {
-				addButton.removeEventListener('click', onAddButtonClick);
-				const useElement = addButton.querySelector('svg use');
-				addButton.style.backgroundColor = '#6D8434';
-
-				useElement.setAttribute('href', './icons.svg#icon-cart-success');
-			}
-		}
-	} catch (err) {
-		throw new Error(err);
-	}
-}
+// const ID = savedProductsBasket.map((savedProduct) => {
+// console.log(savedProduct)
+	
+// })
 
 
 
 
 
+// export async function onAddButtonClick(event) {
+// 	const productID = event.currentTarget.dataset.id;
+// 	console.log(productID);
+
+// 	try {
+// 		const product = await getProductById(productID);
+
+//         const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
+// 		console.log(savedProducts);
+
+// 		savedProducts.push(product);
+// 		localStorage.setItem('products', JSON.stringify(savedProducts));
+
+// 		// const cardCount = document.querySelector('.cart__item-count');
+//         // console.log(cardCount)
+
+// 		// const cardProductBasketList = document.querySelector('.js-cart-products');
+// 		// 	console.log(cardProductBasketList)
+// 		// cardProductBasketList.insertAdjacentHTML(
+// 		// 	'beforeend',
+// 		// 	basketProductMarkUp(product)
+// 		// );
+
+// 		const addButtons = document.querySelectorAll('.add-button');
+
+// 		for (const addButton of addButtons) {
+// 			const buttonID = addButton.dataset.id;
+
+// 			if (buttonID === productID) {
+// 				addButton.removeEventListener('click', onAddButtonClick);
+// 				const useElement = addButton.querySelector('svg use');
+// 				addButton.style.backgroundColor = '#6D8434';
+
+// 				useElement.setAttribute('href', './icons.svg#icon-cart-success');
+// 			}
+// 		}
+// 	} catch (err) {
+// 		throw new Error(err);
+// 	}
+// }
 
 // document.addEventListener('DOMContentLoaded', function () {
 // 	renderCart();
