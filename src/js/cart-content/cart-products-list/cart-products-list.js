@@ -1,25 +1,28 @@
-import { getProductById } from "../../services/food-api";
-import { basketProductMarkUp } from "../../home-content/main-products/main-projects";
-
-
+import { getProductById } from '../../services/food-api';
+import { basketProductMarkUp } from '../../home-content/main-products/main-projects';
 
 export async function onAddButtonClick(event) {
 	const productID = event.currentTarget.dataset.id;
-	console.log(productID);
+	// console.log(productID);
 
 	try {
 		const product = await getProductById(productID);
 
-        const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
-		console.log(savedProducts);
+		const savedProducts = JSON.parse(localStorage.getItem('products')) || [];
+		// console.log(savedProducts);
 
 		savedProducts.push(product);
 		localStorage.setItem('products', JSON.stringify(savedProducts));
 
-		
+		// *********************************
+
+		const cartValue = document.querySelector('.js-cart-counter');
+		cartValue.textContent = savedProducts.length;
+
+		// *********************************
 
 		// const cardCount = document.querySelector('.cart__item-count');
-        // console.log(cardCount)
+		// console.log(cardCount)
 
 		// const cardProductBasketList = document.querySelector('.js-cart-products');
 		// 	console.log(cardProductBasketList)
@@ -45,11 +48,6 @@ export async function onAddButtonClick(event) {
 		throw new Error(err);
 	}
 }
-
-
-
-
-
 
 // document.addEventListener('DOMContentLoaded', function () {
 // 	renderCart();
