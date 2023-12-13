@@ -1,5 +1,6 @@
 import { getPopularProducts } from '../../services/food-api';
 import { clickproduct } from '../../modals/modal-product/modal-product';
+import icons from '/icons.svg';
 const popular = document.querySelector('.popular-list');
 
 let limit = 5;
@@ -41,9 +42,9 @@ function createMarkup(array) {
                 <div class="popular-center-section">
 					<div class="center-section-up">
                 		<p class="popular-info-item">${name.substring(0, 15)}</p>
-						<button class="add-popular-button add-button" type="button" data-id="${_id}">
+						<button class="add-popular-button" type="button" data-id="${_id}">
 							<svg class="popular-icon-button" width="12" height="12">
-		 					<use href="../../../icons.svg#icon-cart-mob" >
+		 					<use href="${icons}#icon-cart-mob" alt ="Add to cart">
 		 					</use>
 							</svg>
 						</button>
