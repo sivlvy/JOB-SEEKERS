@@ -1,15 +1,12 @@
 import { getCategoryList } from '../services/food-api';
-import { cardMarkup } from '../home-content/main-products/main-projects';
-import { getCurrentProducts } from '../services/food-api';
-import { saveToLS, loadFromLS } from '../services/helpers';
+import { saveToLS } from '../services/helpers';
+import { updateProducts } from '../home-content/main-products/pagination';
 import SlimSelect from 'slim-select';
 
 const refs = {
 	selectEl: document.querySelector('.filters-categories-select'),
-	cardProduct: document.querySelector('.product-list'),
 	formEl: document.querySelector('.filters-form'),
 };
-console.log(refs);
 
 export let filters = {
 	keyword: '',
@@ -49,65 +46,27 @@ function renderSelectList(data) {
 	});
 }
 
-// refs.formEl.addEventListener('submit', onSubmit);
+refs.formEl.addEventListener('submit', onSubmit);
 
-// function onSubmit(evt) {
-// 	evt.preventDefault();
-// 	filters.page = 1;
-// 	filters.keyword = evt.currentTarget.elements.searchQuery.value
-// 		.trim()
-// 		.toLowerCase()
-// 		.split(' ')
-// 		.join(' ');
-// 	saveToLS('filters-parameters', filters);
-// 	renderProductList();
-// }
+function onSubmit(evt) {
+	evt.preventDefault();
+	filters.page = 1;
+	filters.keyword = evt.currentTarget.elements.searchQuery.value
+		.trim()
+		.toLowerCase()
+		.split(' ')
+		.join(' ');
+	saveToLS('filters-parameters', filters);
+	updateProducts();
+}
 
-// refs.selectEl.addEventListener('change', onSelect);
+refs.selectEl.addEventListener('change', onSelect);
 
-// function onSelect(evt) {
-// 	filters.category = evt.target.value;
-// 	filters.page = 1;
-// 	saveToLS('filters-parameters', filters);
-// 	renderProductList();
-// }
-
-// export async function renderProductList() {
-// 	const dataFromLS = loadFromLS('filters-parameters');
-// 	console.log(dataFromLS);
-// 	try {
-// 		const data = await getCurrentProducts(dataFromLS);
-// 		refs.cardProduct.innerHTML = cardMarkup(data.results);
-// 	} catch (err) {
-// 		console.log(err);
-// 	}
-// }
-// ******************************
-const hiddenForm = document.querySelector('.main-content-nothing');
-const paginationHidden = document.querySelector('.pagination');
-const cardContainerHidden = document.querySelector('.card-container');
-hiddenForm.style.display = 'none';
-// *******************************
-
-export async function renderProductList() {
-	try {
-		const data = await getCurrentProducts(filters);
-
-		// *********************
-		if (!data.results.length) {
-			hiddenForm.style.display = 'block';
-			paginationHidden.style.display = 'none';
-			cardContainerHidden.style.display = 'none';
-		} else {
-			hiddenForm.style.display = 'none';
-			paginationHidden.style.display = 'block';
-			cardContainerHidden.style.display = 'block';
-			refs.cardProduct.innerHTML = cardMarkup(data.results);
-		}
-		// *********************
-	} catch (err) {
-		console.log(err);
-	}
+function onSelect(evt) {
+	filters.category = evt.target.value;
+	filters.page = 1;
+	saveToLS('filters-parameters', filters);
+	updateProducts();
 }
 
 export function changingLimit() {
@@ -118,6 +77,5 @@ export function changingLimit() {
 	} else {
 		filters.limit = 6;
 	}
-
 	return filters.limit;
 }
