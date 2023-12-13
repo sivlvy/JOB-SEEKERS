@@ -52,6 +52,11 @@ export async function updateProducts() {
 }
 
 function updatePagination() {
+	// Перевірка, чи кількість сторінок менше або дорівнює 1
+	if (totalPages <= 1) {
+		paginationElement.innerHTML = ''; // Якщо так, то приховати пагінацію
+		return;
+	}
 	paginationElement.innerHTML = paginationHTML(totalPages, newFilters.page);
 	const pageButtons = document.querySelectorAll(
 		'.pagination li:not(.disabled)'
