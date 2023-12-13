@@ -1,7 +1,10 @@
 import { getDiscountProducts } from '../../services/food-api';
+import { onAddButtonClick } from '../main-products/main-projects';
 import { clickproduct } from '../../modals/modal-product/modal-product';
 import icons from '/icons.svg';
 const discount = document.querySelector('.discount-list');
+
+// onAddButtonClick();
 
 discount.innerHTML = '';
 getDiscountProducts().then(data => {
@@ -49,7 +52,7 @@ function createMarkup(array) {
               	<p class="discount-info-item">${name}</p>
 				<div class="discount-prisce-button">
              	<p class="discount-price-item">$${price}</p>
-             	<button class="add-discount-button" type="button" data-id="${_id}">
+             	<button class="add-discount-button add-button" type="button" data-id="${_id}">
 							<svg class="discount-icon-button" width="18" height="18">
 		 					<use href="${icons}#icon-cart-mob" alt ="Add to cart">
 		 					</use>

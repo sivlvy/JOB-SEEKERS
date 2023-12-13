@@ -1,13 +1,70 @@
 import { getProductById } from '../../services/food-api';
 import { basketProductMarkUp } from '../../home-content/main-products/main-projects';
 import { loadFromLS } from '../../services/helpers';
-
-const cardProductBasketList = document.querySelector('.js-cart-products');
-console.log(cardProductBasketList);
+import icons from '/icons.svg';
 
 const savedProductsBasket = loadFromLS('products');
 
+const cartValue = document.querySelector('.js-cart-counter');
+cartValue.textContent = savedProductsBasket.length;
+
 console.log(savedProductsBasket);
+
+const cardProductBasketList = document.querySelector('.js-cart-products');
+console.log(cardProductBasketList);
+cardProductBasketList.insertAdjacentHTML(
+	'beforeend',
+	createBascetProductMarcup(savedProductsBasket)
+);
+
+function createBascetProductMarcup(arr) {
+	return arr
+		.map(
+			product =>
+				`<li class="cart-item" data-id="${product.data._id}">
+						<div class="cart-item-wrap">
+							<div class="cart-img-container">
+								<img
+									class="cart-img"
+									src="${product.data.img}"
+									alt="${product.data.name}"
+								/>
+							</div>
+							<div class="cart-img-text">
+								<div class="cart-item-title-wrap">
+									<h3 class="cart-item-title">${product.data.name}</h3>
+									<button
+										name="button"
+										type="button"
+										class="cart-btn-close"
+										aria-label="Close modal window"
+									>
+										<svg width="18" height="18" class="cart-icon-close">
+											<use href="${icons}#icon-icon-close"></use>
+										</svg>
+									</button>
+								</div>
+
+								<div class="cart-info-container">
+									<p class="cart-info">
+										Category:
+										<span>${product.data.category}</span>
+									</p>
+									<p class="cart-info cart-info-overflow">
+										Size:
+										<span>${product.data.size}</span>
+									</p>
+								</div>
+								<h3 class="cart-info-price">${product.data.price}</h3>
+							</div>
+						</div>
+					</li>`
+		)
+		.join('');
+}
+console.log(createBascetProductMarcup);
+
+/****************************** */
 
 // const ID = savedProductsBasket.map((savedProduct) => {
 // console.log(savedProduct)

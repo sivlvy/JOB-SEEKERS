@@ -58,6 +58,7 @@ function onSubmit(evt) {
 		.join(' ');
 	saveToLS('filters-parameters', filters);
 	updateProducts();
+	evt.currentTarget.elements.searchQuery.value = '';
 }
 
 refs.selectEl.addEventListener('change', onSelect);

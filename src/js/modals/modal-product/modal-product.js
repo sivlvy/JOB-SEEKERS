@@ -2,6 +2,7 @@ import { getProductById } from '../../services/food-api';
 function toggleMenu() {
 	productmodal.classList.toggle('is-hidden');
 }
+
 export function clickproduct(id) {
 	const productmodal = document.getElementById('productmodal');
 	getProductById(id).then(({ data }) => {
@@ -54,7 +55,7 @@ function createModalContent(data) {
 				</div>
 				 <div class="modal-price-button">
                     <p class="modal-info-item">$${data.price}</p>	
-                    <button class="modal-button-section add-to-cart" type="button" data-id="${
+                    <button class="modal-button-section add-to-cart " type="button" data-id="${
 											data._id
 										}">
          <span class="button-cart">Add to</span>
