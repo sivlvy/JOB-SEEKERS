@@ -1,5 +1,6 @@
 import { getDiscountProducts } from '../../services/food-api';
 import { clickproduct } from '../../modals/modal-product/modal-product';
+import icons from '/icons.svg';
 const discount = document.querySelector('.discount-list');
 
 discount.innerHTML = '';
@@ -45,19 +46,19 @@ function createMarkup(array) {
                </a>
 			  </div>
 			  <div class="discount-product">
-              	<p class="discount-info-item">${name.substring(0, 19)}</p>
+              	<p class="discount-info-item">${name}</p>
 				<div class="discount-prisce-button">
              	<p class="discount-price-item">$${price}</p>
-             	<button class="add-discount-button add-button" type="button" data-id="${_id}>
-					<svg class="discount-icon-button bagbag" width="18" height="18">
-		 			<use href="../../../icons.svg#cart" >
-		 			</use>
-					</svg>
-				</button>
+             	<button class="add-discount-button" type="button" data-id="${_id}">
+							<svg class="discount-icon-button" width="18" height="18">
+		 					<use href="${icons}#icon-cart-mob" alt ="Add to cart">
+		 					</use>
+							</svg>
+						</button>
 				</div>
 			  </div>
 				<svg class="discount-icon" width="60" height="60">
-                <use href="/icons.svg#icon-discount" alt="Discount"></use>
+                <use href="${icons}#icon-discount" alt="Discount"></use>
                 </svg>
             </div>
           </li>`;
