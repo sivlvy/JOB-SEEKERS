@@ -1,3 +1,159 @@
+.cart-item:last-child {
+	padding-bottom: 0;
+}
+
+.cart-item:first-child {
+	padding-top: 9px;
+}
+.cart-item {
+	list-style: none;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	width: 100%;
+}
+.cart-item-wrap {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	justify-content: flex-start;
+	width: 100%;
+}
+.cart-img-container {
+	padding: 18px;
+	width: 100px;
+	height: 100px;
+	border-radius: 10px;
+	background-color: var(--white-cl);
+	flex-shrink: 0;
+}
+.cart-img-text {
+	width: calc(100% - 120px);
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.cart-item-title-wrap {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	position: relative;
+}
+.cart-item-title,
+.cart-info-price {
+	color: var(--main-cl);
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 111.1%;
+	font-family: 'Neue montreal', sans-serif;
+}
+.cart-item-title {
+	margin-bottom: 10px;
+}
+.cart-btn-close {
+	border: none;
+	background-color: var(--light-grey-cl);
+	position: absolute;
+	right: 0;
+	top: -9px;
+	transition: all 0.3s ease-in-out;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: end;
+	padding: 5px;
+}
+.cart-info-container {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-start;
+	margin-bottom: 36px;
+	max-width: 100%;
+	white-space: nowrap;
+}
+.cart-info {
+	color: var(--grey-cl);
+	font-size: 12px;
+	line-height: 1.16em;
+}
+.cart-info-overflow {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.cart-item-title,
+.cart-info-price {
+	color: var(--main-cl);
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 111.1%;
+}
+.cart-item:not(:last-child):after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	width: 100%;
+	height: 1px;
+	background-color: #0101011a;
+	transform: translate(-50%);
+}
+
+@media screen and (min-width: 768px) {
+	.cart-item {
+		padding-bottom: 40px;
+	}
+	.cart-item-wrap {
+		gap: 40px;
+	}
+	.cart-img-container {
+		padding: 24px;
+		width: 120px;
+		height: 120px;
+		border-radius: 10px;
+	}
+	.cart-item-title,
+	.cart-info-price {
+		font-size: 20px;
+		line-height: 120%;
+	}
+	.cart-icon-close {
+		width: 20px;
+		height: 20px;
+	}
+	.cart-info-container {
+		gap: 16px;
+		margin-bottom: 44px;
+		white-space: normal;
+		width: 100%;
+	}
+	.cart-info span {
+		font-size: 14px;
+		line-height: 1.29em;
+	}
+	.cart-item-title,
+	.cart-info-price {
+		font-size: 20px;
+		line-height: 120%;
+	}
+}
+
+@media screen and (min-width: 1440px) {
+	@media (min-width: 1440px) {
+		.cart-item {
+			min-width: 549px;
+		}
+	}
+}
+/* !=======================================================================  */
+
+/*!=======================================================================  */
+
+/*!=======================================================================  */
+
+/*!=======================================================================  */
+
 .delete-all-btn {
 	display: flex;
 	justify-content: center;
@@ -9,7 +165,7 @@
 	background-color: transparent;
 	width: 56px;
 	height: 18px;
-    white-space: nowrap;
+	white-space: nowrap;
 }
 
 .text-btn {
@@ -86,10 +242,6 @@
 	margin-top: 30px;
 	display: flex;
 	justify-content: space-between;
-}
-
-.cart__products {
-	display: flex;
 	flex-direction: column;
 }
 
@@ -227,8 +379,7 @@
 	font-size: 18px;
 	font-weight: 500;
 	line-height: 1.11;
-   font-family: 'Neue montreal', sans-serif;
-
+	font-family: 'Neue montreal', sans-serif;
 }
 
 .cart__sum {
@@ -300,7 +451,7 @@
 	line-height: 1.29;
 	color: #e8e8e2;
 	width: 100%;
-   border:none;
+	border: none;
 }
 
 .cart__submit-button:hover,
@@ -343,16 +494,16 @@
 }
 
 @media screen and (min-width: 768px) {
-   .total__order-thumb {
-      /* margin: 0 left; */
-   }
-   .cart__products-wrap {
-      display: block;
-   }
+	.total__order-thumb {
+		/* margin: 0 left; */
+	}
+	.cart__products-wrap {
+		display: block;
+	}
 	.container-cart {
-      padding: 0 32px;
-   }
-   .cart__icon {
+		padding: 0 32px;
+	}
+	.cart__icon {
 		width: 18px;
 		height: 18px;
 	}
@@ -413,12 +564,12 @@
 }
 
 @media screen and (min-width: 1240px) {
-   .container-cart {
-      padding: 0 100px;
-   }
-   .cart__products-wrap {
-      display: flex;
-   }
+	.container-cart {
+		padding: 0 100px;
+	}
+	.cart__products-wrap {
+		display: flex;
+	}
 	.cart__button {
 		width: 42px;
 		height: 42px;
