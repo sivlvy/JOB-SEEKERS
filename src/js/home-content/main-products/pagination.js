@@ -2,7 +2,7 @@ import { getCurrentProducts } from '../../services/food-api.js';
 import { cardMarkup } from './main-projects.js';
 import { filters, changingLimit } from '../../filters/filters.js';
 import { saveToLS, loadFromLS } from '../../services/helpers.js';
-import { onAddButtonClick } from '../../cart-content/cart-products-list/cart-products-list.js';
+import { onAddButtonClick } from './main-projects.js';
 
 const cardProduct = document.querySelector('.product-list');
 const paginationElement = document.querySelector('.pagination ul');
