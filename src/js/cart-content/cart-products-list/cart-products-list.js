@@ -5,22 +5,14 @@ import { loadFromLS } from '../../services/helpers';
 const cardProductBasketList = document.querySelector('.js-cart-products');
 console.log(cardProductBasketList);
 
-
-
-
 const savedProductsBasket = loadFromLS('products');
 
-	console.log(savedProductsBasket);
-
+console.log(savedProductsBasket);
 
 // const ID = savedProductsBasket.map((savedProduct) => {
 // console.log(savedProduct)
-	
+
 // })
-
-
-
-
 
 // export async function onAddButtonClick(event) {
 // 	const productID = event.currentTarget.dataset.id;
