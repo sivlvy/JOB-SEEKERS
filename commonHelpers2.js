@@ -1,10 +1,10 @@
-import{g as $,a as A,b as T,c as q,d as I}from"./assets/modal-subscription-cd735d44.js";import{N as C,S as H}from"./assets/vendor-c374a7a2.js";function z(t){return t.map(({img:e,name:s,category:o,size:i,popularity:n,_id:a,price:c})=>`<li class="card-wrapper" data-id="${a}">
+import{l as w,g as S,s as r,a as q,b as C,c as H,d as I}from"./assets/modal-subscription-8baf33dd.js";import{S as z}from"./assets/vendor-c374a7a2.js";function x(t){return t.map(({img:s,name:e,category:o,size:i,popularity:c,_id:n,price:a})=>`<li class="card-wrapper" data-id="${n}">
 					<div class="image-wrapper">
-					<img src="${e}" alt="${s}" loading="lazy" class="product-image" width="140" height="140" />
+					<img src="${s}" alt="${e}" loading="lazy" class="product-image" width="140" height="140" />
 					</div>
 		   <div class="product-info">
 			<p class="product-name">
-				${s}
+				${e}
 			 </p>
 			<div class ="product-items">
 			<p  class="product-item">
@@ -14,13 +14,13 @@ import{g as $,a as A,b as T,c as q,d as I}from"./assets/modal-subscription-cd735
 			Size:<span class="product-more-info"> &nbsp;${i}</span>
 		  </p>
 		  <p class="product-item">
-			Popularity:<span class="product-more-info"> &nbsp;${n}</span>
+			Popularity:<span class="product-more-info"> &nbsp;${c}</span>
 		  </p></div>
 			 
 		   </div>
 		   <div class="price-and-add">
-			 <p class="product-price">$${c}</p>
-			 <button class="add-button" type="button" data-id="${a}">
+			 <p class="product-price">$${a}</p>
+			 <button class="add-button" type="button" data-id="${n}">
 			 <svg class="icon-button"width="18" height="18">
              <use href="/icons.svg#icon-cart-mob" class="svg-change">
              </use>
@@ -29,7 +29,7 @@ import{g as $,a as A,b as T,c as q,d as I}from"./assets/modal-subscription-cd735
 	
 			 </div>
 		   
-		   </li>`).join("")}async function S(t){const e=t.currentTarget.dataset.id;console.log(e);try{const s=await $(e),o=JSON.parse(localStorage.getItem("products"))||[];console.log(o),o.push(s),localStorage.setItem("products",JSON.stringify(o));const i=document.querySelectorAll(".add-button");for(const n of i)if(n.dataset.id===e){n.removeEventListener("click",S);const c=n.querySelector("svg use");n.style.backgroundColor="#6D8434",c.setAttribute("href","./icons.svg#icon-cart-success")}}catch(s){throw new Error(s)}}function v(t,e){localStorage.setItem(t,JSON.stringify(e))}function N(t){const e=localStorage.getItem(t);try{return JSON.parse(e)}catch{return C.Notify.failure("Oops! Something went wrong!"),e}}const r={selectEl:document.querySelector(".filters-categories-select"),formEl:document.querySelector(".filters-form")};let l={keyword:"",category:"",page:1,limit:6};w();A().then(t=>{x(t)}).catch(t=>console.log(t));function x(t){const e='<option disabled selected value="Show All" hidden data-placeholder="true">Categories</option>';r.selectEl.insertAdjacentHTML("afterbegin",e);const s=t.map(o=>`<option value="${o}">${o.replaceAll("_"," ")}</option>`).join("").concat('<option value="">Show All</option>');r.selectEl.insertAdjacentHTML("beforeend",s),new H({select:r.selectEl,settings:{showSearch:!1,searchHighlight:!0}})}r.formEl.addEventListener("submit",O);function O(t){t.preventDefault(),l.page=1,l.keyword=t.currentTarget.elements.searchQuery.value.trim().toLowerCase().split(" ").join(" "),v("filters-parameters",l),d()}r.selectEl.addEventListener("change",D);function D(t){l.category=t.target.value,l.page=1,v("filters-parameters",l),d()}function w(){return window.innerWidth>=1440?l.limit=9:window.innerWidth>=768?l.limit=8:l.limit=6,l.limit}const j=document.querySelector(".product-list"),y=document.querySelector(".pagination ul"),h=document.querySelector(".pagination"),b=document.querySelector(".card-container"),m=document.querySelector(".main-content-nothing"),P=document.querySelector(".loader");let u=l,g=0;m.style.display="none";async function d(){v("filters-parameters",u);const t=N("filters-parameters");console.log(t);try{const e=await T(t);P.style.display="none";const s=e.results;g=e.totalPages,e.results.length?(m.style.display="none",h.style.display="block",b.style.display="block",j.innerHTML=z(s)):(m.style.display="block",h.style.display="none",b.style.display="none");const o=document.querySelectorAll(".add-button");for(const i of o)i.addEventListener("click",S);J()}catch(e){console.log(e)}}function J(){if(g<=1){y.innerHTML="";return}y.innerHTML=V(g,u.page),document.querySelectorAll(".pagination li:not(.disabled)").forEach(e=>{e.addEventListener("click",async s=>{const o=parseInt(s.currentTarget.dataset.page);!isNaN(o)&&o!==u.page&&(u.page=o,await d())})})}function V(t,e){let s="";const i=Math.floor(2.5);let n=e-i,a=e+i;n<1&&(n=1,a=Math.min(t,n+5-1)),a>t&&(a=t,n=Math.max(1,a-5+1)),e>1?s+=`<li class="btn prev" data-page="${e-1}"><span>&lt;</span></li>`:s+='<li class="btn prev disabled"><span>&lt;</span></li>',n>1&&(s+='<li class="first numb" data-page="1"><span>1</span></li>',n>2&&(s+='<li class="dots"><span>...</span></li>'));for(let c=n;c<=a;c++)s+=`<li class="numb ${c===e?"active":""}" data-page="${c}"><span>${c}</span></li>`;return a<t&&(a<t-1&&(s+='<li class="dots"><span>...</span></li>'),s+=`<li class="last numb" data-page="${t}"><span>${t}</span></li>`),e<t?s+=`<li class="btn next" data-page="${e+1}"><span>&gt;</span></li>`:s+='<li class="btn next disabled"><span>&gt;</span></li>',s}document.addEventListener("DOMContentLoaded",async function(){window.addEventListener("resize",t),await d();function t(){w(),d()}});function L(){productmodal.classList.toggle("is-hidden")}function E(t){const e=document.getElementById("productmodal");$(t).then(({data:s})=>{e.innerHTML=W(s),F(e)})}function F(t){t.querySelector(".mod-card-close").addEventListener("click",R),t.style.display="flex",L()}function R(){const t=document.getElementById("productmodal");t.style.display="none",L()}function W(t){return`<div class="modal-2-wrap">
+		   </li>`).join("")}async function L(t){const s=t.currentTarget.dataset.id;console.log(s);const e=w("products")||[];console.log(e);try{const o=await S(s);console.log(o),e.length===0?(e.push(o),r("products",e)):e.length!==0&&e.map(i=>{console.log(i),i.data._id!==s&&(e.push(o),r("products",e));const n=document.querySelectorAll(".add-button");console.log(n);for(const a of n)if(a.dataset.id===s){a.removeEventListener("click",L);const y=a.querySelector("svg use");a.style.backgroundColor="#6D8434",y.setAttribute("href","./icons.svg#icon-cart-success")}})}catch(o){throw new Error(o)}}const d={selectEl:document.querySelector(".filters-categories-select"),formEl:document.querySelector(".filters-form")};let l={keyword:"",category:"",page:1,limit:6};E();q().then(t=>{D(t)}).catch(t=>console.log(t));function D(t){const s='<option disabled selected value="Show All" hidden data-placeholder="true">Categories</option>';d.selectEl.insertAdjacentHTML("afterbegin",s);const e=t.map(o=>`<option value="${o}">${o.replaceAll("_"," ")}</option>`).join("").concat('<option value="">Show All</option>');d.selectEl.insertAdjacentHTML("beforeend",e),new z({select:d.selectEl,settings:{showSearch:!1,searchHighlight:!0}})}d.formEl.addEventListener("submit",P);function P(t){t.preventDefault(),l.page=1,l.keyword=t.currentTarget.elements.searchQuery.value.trim().toLowerCase().split(" ").join(" "),r("filters-parameters",l),u()}d.selectEl.addEventListener("change",j);function j(t){l.category=t.target.value,l.page=1,r("filters-parameters",l),u()}function E(){return window.innerWidth>=1440?l.limit=9:window.innerWidth>=768?l.limit=8:l.limit=6,l.limit}const V=document.querySelector(".product-list"),h=document.querySelector(".pagination ul"),b=document.querySelector(".pagination"),$=document.querySelector(".card-container"),g=document.querySelector(".main-content-nothing"),F=document.querySelector(".loader");let m=l,f=0;g.style.display="none";async function u(){r("filters-parameters",m);const t=w("filters-parameters");console.log(t);try{const s=await C(t);F.style.display="none";const e=s.results;f=s.totalPages,s.results.length?(g.style.display="none",b.style.display="block",$.style.display="block",V.innerHTML=x(e)):(g.style.display="block",b.style.display="none",$.style.display="none");const o=document.querySelectorAll(".add-button");for(const i of o)i.addEventListener("click",L);O()}catch(s){console.log(s)}}function O(){if(f<=1){h.innerHTML="";return}h.innerHTML=N(f,m.page),document.querySelectorAll(".pagination li:not(.disabled)").forEach(s=>{s.addEventListener("click",async e=>{const o=parseInt(e.currentTarget.dataset.page);!isNaN(o)&&o!==m.page&&(m.page=o,await u())})})}function N(t,s){let e="";const i=Math.floor(2.5);let c=s-i,n=s+i;c<1&&(c=1,n=Math.min(t,c+5-1)),n>t&&(n=t,c=Math.max(1,n-5+1)),s>1?e+=`<li class="btn prev" data-page="${s-1}"><span>&lt;</span></li>`:e+='<li class="btn prev disabled"><span>&lt;</span></li>',c>1&&(e+='<li class="first numb" data-page="1"><span>1</span></li>',c>2&&(e+='<li class="dots"><span>...</span></li>'));for(let a=c;a<=n;a++)e+=`<li class="numb ${a===s?"active":""}" data-page="${a}"><span>${a}</span></li>`;return n<t&&(n<t-1&&(e+='<li class="dots"><span>...</span></li>'),e+=`<li class="last numb" data-page="${t}"><span>${t}</span></li>`),s<t?e+=`<li class="btn next" data-page="${s+1}"><span>&gt;</span></li>`:e+='<li class="btn next disabled"><span>&gt;</span></li>',e}document.addEventListener("DOMContentLoaded",async function(){window.addEventListener("resize",t),await u();function t(){E(),u()}});function M(){productmodal.classList.toggle("is-hidden")}function k(t){const s=document.getElementById("productmodal");S(t).then(({data:e})=>{s.innerHTML=W(e),R(s)})}function R(t){t.querySelector(".mod-card-close").addEventListener("click",_),t.style.display="flex",M()}function _(){const t=document.getElementById("productmodal");t.style.display="none",M()}function W(t){return`<div class="modal-2-wrap">
 	<div class="modal-img-wrap">
                 <div class="modal-img-section">
                     <a class="modal-gallery-link" >
@@ -64,30 +64,30 @@ import{g as $,a as A,b as T,c as q,d as I}from"./assets/modal-subscription-cd735
        				 <use href="../../../icons.svg#close-sharp"></use>
      			 </svg>
     			</button>
-            </div>`}const f="/JOB-SEEKERS/assets/icons-58c424f0.svg",M=document.querySelector(".popular-list");let k=5;M.innerHTML="";q(k).then(t=>{M.innerHTML=_(t)});document.addEventListener("click",function(t){const e=t.target.closest(".popular-card");if(e){const s=e.dataset.productId;E(s)}});function _(t){return t.slice(0,k).map(({_id:e,name:s,img:o,category:i,price:n,size:a,is10PercentOff:c,popularity:p})=>`<li class="popular-card" data-product-id="${e}">
+            </div>`}const v="/JOB-SEEKERS/assets/icons-58c424f0.svg",B=document.querySelector(".popular-list");let A=5;B.innerHTML="";H(A).then(t=>{B.innerHTML=J(t)});document.addEventListener("click",function(t){const s=t.target.closest(".popular-card");if(s){const e=s.dataset.productId;k(e)}});function J(t){return t.slice(0,A).map(({_id:s,name:e,img:o,category:i,price:c,size:n,is10PercentOff:a,popularity:p})=>`<li class="popular-card" data-product-id="${s}">
             <div class="popular-img-wrap">
                 <div class="popular-left-section">
                     <a class="popular-gallery-link" >
-                        <img src="${o}" alt="${s}" width="56" height="56" loading="lazy" />
+                        <img src="${o}" alt="${e}" width="56" height="56" loading="lazy" />
                     </a>
                 </div>
                 <div class="popular-center-section">
 					<div class="center-section-up">
-                		<p class="popular-info-item">${s.substring(0,15)}</p>
-						<button class="add-popular-button" type="button" data-id="${e}">
+                		<p class="popular-info-item">${e.substring(0,15)}</p>
+						<button class="add-popular-button" type="button" data-id="${s}">
 							<svg class="popular-icon-button" width="12" height="12">
-		 					<use href="${f}#icon-cart-mob" alt ="Add to cart">
+		 					<use href="${v}#icon-cart-mob" alt ="Add to cart">
 		 					</use>
 							</svg>
 						</button>
 					</div>
 					<div class="center-section-down">
                 		<p class="popular-category-item">Category: <span>${i.replace("_"," ")}</span></p>
-                		<p class="popular-size-item">Size:<span>${a}</span>Popularity:<span>${p}</span></p>
+                		<p class="popular-size-item">Size:<span>${n}</span>Popularity:<span>${p}</span></p>
 					</div>
 				</div>
             </div>
-        </li>`).join("")}const B=document.querySelector(".discount-list");B.innerHTML="";I().then(t=>{B.innerHTML=Q(t)});document.addEventListener("click",function(t){const e=t.target.closest(".discount-card");if(e){const s=e.dataset.productId;E(s)}});function K(t,e){return t.slice().sort(()=>Math.random()-.5).slice(0,e)}function Q(t){return K(t,2).map(({_id:s,name:o,img:i,category:n,price:a,size:c,is10PercentOff:p,popularity:G})=>`<li class="discount-card" data-product-id="${s}">
+        </li>`).join("")}const T=document.querySelector(".discount-list");T.innerHTML="";I().then(t=>{T.innerHTML=Q(t)});document.addEventListener("click",function(t){const s=t.target.closest(".discount-card");if(s){const e=s.dataset.productId;k(e)}});function K(t,s){return t.slice().sort(()=>Math.random()-.5).slice(0,s)}function Q(t){return K(t,2).map(({_id:e,name:o,img:i,category:c,price:n,size:a,is10PercentOff:p,popularity:y})=>`<li class="discount-card" data-product-id="${e}">
             <div class="discount-img-wrap">
 			  <div class="discount-top-section">
                <a class="discount-gallery-link" >
@@ -97,17 +97,17 @@ import{g as $,a as A,b as T,c as q,d as I}from"./assets/modal-subscription-cd735
 			  <div class="discount-product">
               	<p class="discount-info-item">${o}</p>
 				<div class="discount-prisce-button">
-             	<p class="discount-price-item">$${a}</p>
-             	<button class="add-discount-button" type="button" data-id="${s}">
+             	<p class="discount-price-item">$${n}</p>
+             	<button class="add-discount-button" type="button" data-id="${e}">
 							<svg class="discount-icon-button" width="18" height="18">
-		 					<use href="${f}#icon-cart-mob" alt ="Add to cart">
+		 					<use href="${v}#icon-cart-mob" alt ="Add to cart">
 		 					</use>
 							</svg>
 						</button>
 				</div>
 			  </div>
 				<svg class="discount-icon" width="60" height="60">
-                <use href="${f}#icon-discount" alt="Discount"></use>
+                <use href="${v}#icon-discount" alt="Discount"></use>
                 </svg>
             </div>
           </li>`).join("")}
