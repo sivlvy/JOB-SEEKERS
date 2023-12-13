@@ -14,18 +14,13 @@ const loaderEl = document.querySelector('.loader');
 let newFilters = filters;
 let totalPages = 0;
 
-// Обробник події завантаження DOM
-document.addEventListener('DOMContentLoaded', async function () {
-  window.addEventListener('resize', handleResize); // Додано прослуховування події resize
-  await updateProducts();
+hiddenForm.style.display = 'none';
 
-  function handleResize() {
-    changingLimit(); // Оновлюємо ліміт при зміні розміру вікна
-    updateProducts(); // Викликаємо оновлення продуктів
-  }
+export async function updateProducts() {
+	saveToLS('filters-parameters', newFilters);
 
-  async function updateProducts() {
-    saveToLS('filters-parameters', filters);
+	const dataFromLS = loadFromLS('filters-parameters');
+	console.log(dataFromLS);
 
 	try {
 		const data = await getCurrentProducts(dataFromLS);
@@ -57,10 +52,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 }
 
 function updatePagination() {
-	if (totalPages <= 1) {
-		paginationElement.innerHTML = ''; // Якщо так, то приховати пагінацію
-		return;
-	}
 	paginationElement.innerHTML = paginationHTML(totalPages, newFilters.page);
 	const pageButtons = document.querySelectorAll(
 		'.pagination li:not(.disabled)'
@@ -77,57 +68,12 @@ function updatePagination() {
 	});
 }
 
-  document.querySelector('.filters-form').addEventListener('submit', async function (evt) {
-    evt.preventDefault();
-    newFilters.page = 1;
-    newFilters.keyword = evt.currentTarget.elements.searchQuery.value.trim().toLowerCase().split(' ').join(' ');
-    saveToLS('filters-parameters', newFilters);
-    await updateProducts();
-  });
-
-  document.querySelector('.filters-categories-select').addEventListener('change', async function (evt) {
-    newFilters.category = evt.target.value;
-    newFilters.page = 1;
-    saveToLS('filters-parameters', newFilters);
-    await updateProducts();
-  });
-
-  const selectEl = document.querySelector('.filters-categories-select');
-  getCategoryList()
-    .then(data => {
-      renderSelectList(data);
-    })
-    .catch(err => console.log(err));
-
-  function renderSelectList(data) {
-    const placeholderStr = `<option disabled selected value="Show All" hidden data-placeholder="true">Categories</option>`;
-
-		selectEl.insertAdjacentHTML('afterbegin', placeholderStr);
-
-		const markupSelectList = data
-			.map(elem => {
-				return `<option value="${elem}">${elem.replaceAll('_', ' ')}</option>`;
-			})
-			.join('')
-			.concat(`<option value="">Show All</option>`);
-
-		selectEl.insertAdjacentHTML('beforeend', markupSelectList);
-
-		new SlimSelect({
-			select: selectEl,
-			settings: {
-				showSearch: false,
-				searchHighlight: true,
-			},
-		});
-	}
-
-  function paginationHTML(totalPages, currentPage) {
-    let liTag = '';
-    const maxVisibleButtons = 5;
-    const halfVisibleButtons = Math.floor(maxVisibleButtons / 2);
-    let startPage = currentPage - halfVisibleButtons;
-    let endPage = currentPage + halfVisibleButtons;
+function paginationHTML(totalPages, currentPage) {
+	let liTag = '';
+	const maxVisibleButtons = 5;
+	const halfVisibleButtons = Math.floor(maxVisibleButtons / 2);
+	let startPage = currentPage - halfVisibleButtons;
+	let endPage = currentPage + halfVisibleButtons;
 
 	if (startPage < 1) {
 		startPage = 1;
