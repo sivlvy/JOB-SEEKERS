@@ -47,34 +47,48 @@ function cardMarkup(products) {
 		.join('');
 }
 
-// const cartContainerMain = document.querySelector('.js-cart-counter')
 
-// export function loadFromLocalStorageMain() {
-// 	const storageLength = loadFromLS('products');
-// 	console.log(storageLength);
-// 	// return cartContainerMain.textContent = storageLength.length
 
-// }
 
-// loadFromLocalStorageMain()
+export function updateCounter () {
+	const cartValueMain = document.querySelector('.js-cart-counter');
+	const storage = loadFromLS('products')
+	cartValueMain.textContent = storage.length
+
+}
+
+
+
+
+
+
 if (!localStorage.getItem('products')) {
 	const defaultProducts = []; 
 	localStorage.setItem('products', JSON.stringify(defaultProducts));
+	updateCounter()
+} else {
+	updateCounter()
 }
 
+
+	
 
 export async function onAddButtonClick(event) {
 	const productID = event.currentTarget.dataset.id;
 	
-	// saveToLS('products', [])
-	const existingProducts = loadFromLS('products') || [];
 
+	const existingProducts = loadFromLS('products') || [];
+	
 	console.log(existingProducts);
+
+	
+
+	
 
 	try {
 		const product = await getProductById(productID);
-		// console.log(product);
-
+		
+		
 		if (
 			!existingProducts.some(
 				existingProduct => existingProduct.data._id === productID
@@ -82,9 +96,10 @@ export async function onAddButtonClick(event) {
 		) {
 			existingProducts.push(product);
 			saveToLS('products', existingProducts);
+			updateCounter()
 
 			const addButtons = document.querySelectorAll('.add-button');
-			// console.log(addButtons);
+			
 
 			addButtons.forEach(addButton => {
 				const buttonID = addButton.dataset.id;
