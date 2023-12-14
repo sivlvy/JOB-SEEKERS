@@ -10,6 +10,7 @@ const paginationHidden = document.querySelector('.pagination');
 const cardContainerHidden = document.querySelector('.card-container');
 const hiddenForm = document.querySelector('.main-content-nothing');
 const loaderEl = document.querySelector('.loader');
+const inputEl = document.querySelector('.filters-search-input');
 
 let newFilters = filters;
 let totalPages = 0;
@@ -20,7 +21,7 @@ export async function updateProducts() {
 	saveToLS('filters-parameters', newFilters);
 
 	const dataFromLS = loadFromLS('filters-parameters');
-	console.log(dataFromLS);
+	// console.log(dataFromLS);
 
 	try {
 		const data = await getCurrentProducts(dataFromLS);
