@@ -1,35 +1,4 @@
-import{i as r,l as h,g as b,s as m,a as A,b as T,c as B,d as C}from"./assets/modal-subscription-9fe9ee4a.js";import{S as H}from"./assets/vendor-c374a7a2.js";function z(t){return t.map(({img:e,name:s,category:n,size:i,popularity:a,_id:o,price:c})=>`<li class="card-wrapper" data-id="${o}">
-					<div class="image-wrapper">
-					<img src="${e}" alt="${s}" loading="lazy" class="product-image" width="140" height="140" />
-					</div>
-		   <div class="product-info">
-			<p class="product-name">
-				${s}
-			 </p>
-			<div class ="product-items">
-			<p  class="product-item">
-			Category:<span class="product-more-info"> &nbsp;${n.replaceAll("_"," ")}</span>
-		  </p>
-		  <p class="product-item">
-			Size:<span class="product-more-info"> &nbsp;${i}</span>
-		  </p>
-		  <p class="product-item">
-			Popularity:<span class="product-more-info"> &nbsp;${a}</span>
-		  </p></div>
-			 
-		   </div>
-		   <div class="price-and-add">
-			 <p class="product-price">$${c}</p>
-			 <button class="add-button" type="button" data-id="${o}">
-			 <svg class="icon-button"width="18" height="18">
-             <use href="${r}#icon-cart-mob" class="svg-change">
-             </use>
-			 </svg>
-			 </button>
-	
-			 </div>
-		   
-		   </li>`).join("")}async function $(t){const e=t.currentTarget.dataset.id;console.log(e);const s=h("products")||[];try{const n=await b(e);s.some(i=>i.data._id===e)||(s.push(n),m("products",s),document.querySelectorAll(".add-button").forEach(a=>{if(a.dataset.id===e){a.removeEventListener("click",$);const c=a.querySelector("svg use");a.style.backgroundColor="#6D8434",c.setAttribute("href",`${r}#icon-cart-success`)}}))}catch(n){throw new Error(n)}}const d={selectEl:document.querySelector(".filters-categories-select"),formEl:document.querySelector(".filters-form")};let l={keyword:"",category:"",page:1,limit:6};w();A().then(t=>{I(t)}).catch(t=>console.log(t));function I(t){const e='<option disabled selected value="Show All" hidden data-placeholder="true">Categories</option>';d.selectEl.insertAdjacentHTML("afterbegin",e);const s=t.map(n=>`<option value="${n}">${n.replaceAll("_"," ")}</option>`).join("").concat('<option value="">Show All</option>');d.selectEl.insertAdjacentHTML("beforeend",s),new H({select:d.selectEl,settings:{showSearch:!1,searchHighlight:!0}})}d.formEl.addEventListener("submit",x);function x(t){t.preventDefault(),l.page=1,l.keyword=t.currentTarget.elements.searchQuery.value.trim().toLowerCase().split(" ").join(" "),m("filters-parameters",l),u(),t.currentTarget.elements.searchQuery.value=""}d.selectEl.addEventListener("change",D);function D(t){l.category=t.target.value,l.page=1,m("filters-parameters",l),u()}function w(){return window.innerWidth>=1440?l.limit=9:window.innerWidth>=768?l.limit=8:l.limit=6,l.limit}const j=document.querySelector(".product-list"),P=document.querySelector(".pagination ul"),y=document.querySelector(".pagination"),v=document.querySelector(".card-container"),f=document.querySelector(".main-content-nothing"),V=document.querySelector(".loader");document.querySelector(".filters-search-input");let p=l,S=0;f.style.display="none";async function u(){m("filters-parameters",p);const t=h("filters-parameters");try{const e=await T(t);V.style.display="none";const s=e.results;S=e.totalPages,e.results.length?(f.style.display="none",y.style.display="block",v.style.display="block",j.innerHTML=z(s)):(f.style.display="block",y.style.display="none",v.style.display="none");const n=document.querySelectorAll(".add-button");for(const i of n)i.addEventListener("click",$);F()}catch(e){console.log(e)}}function F(){P.innerHTML=N(S,p.page),document.querySelectorAll(".pagination li:not(.disabled)").forEach(e=>{e.addEventListener("click",async s=>{const n=parseInt(s.currentTarget.dataset.page);!isNaN(n)&&n!==p.page&&(p.page=n,await u())})})}function N(t,e){let s="";const i=Math.floor(2.5);let a=e-i,o=e+i;a<1&&(a=1,o=Math.min(t,a+5-1)),o>t&&(o=t,a=Math.max(1,o-5+1)),e>1?s+=`<li class="btn prev" data-page="${e-1}"><span>&lt;</span></li>`:s+='<li class="btn prev disabled"><span>&lt;</span></li>',a>1&&(s+='<li class="first numb" data-page="1"><span>1</span></li>',a>2&&(s+='<li class="dots"><span>...</span></li>'));for(let c=a;c<=o;c++)s+=`<li class="numb ${c===e?"active":""}" data-page="${c}"><span>${c}</span></li>`;return o<t&&(o<t-1&&(s+='<li class="dots"><span>...</span></li>'),s+=`<li class="last numb" data-page="${t}"><span>${t}</span></li>`),e<t?s+=`<li class="btn next" data-page="${e+1}"><span>&gt;</span></li>`:s+='<li class="btn next disabled"><span>&gt;</span></li>',s}document.addEventListener("DOMContentLoaded",async function(){window.addEventListener("resize",t),await u();function t(){w(),u()}});function L(){productmodal.classList.toggle("is-hidden")}function E(t){const e=document.getElementById("productmodal");b(t).then(({data:s})=>{e.innerHTML=Q(s),O(e)})}function O(t){t.querySelector(".mod-card-close").addEventListener("click",_),t.style.display="flex",L()}function _(){const t=document.getElementById("productmodal");t.style.display="none",L()}function Q(t){return`<div class="modal-2-wrap">
+import{g as M,s as f,l as k,a as B,c as T,o as q,b as A,i as r,d as H,e as C}from"./assets/modal-subscription-a0a7c75c.js";import{S as z}from"./assets/vendor-c374a7a2.js";const d={selectEl:document.querySelector(".filters-categories-select"),formEl:document.querySelector(".filters-form")};let o={keyword:"",category:"",page:1,limit:6};v();M().then(t=>{x(t)}).catch(t=>console.log(t));function x(t){const e='<option disabled selected value="Show All" hidden data-placeholder="true">Categories</option>';d.selectEl.insertAdjacentHTML("afterbegin",e);const s=t.map(n=>`<option value="${n}">${n.replaceAll("_"," ")}</option>`).join("").concat('<option value="">Show All</option>');d.selectEl.insertAdjacentHTML("beforeend",s),new z({select:d.selectEl,settings:{showSearch:!1,searchHighlight:!0}})}d.formEl.addEventListener("submit",I);function I(t){t.preventDefault(),o.page=1,o.keyword=t.currentTarget.elements.searchQuery.value.trim().toLowerCase().split(" ").join(" "),f("filters-parameters",o),u(),t.currentTarget.elements.searchQuery.value=""}d.selectEl.addEventListener("change",j);function j(t){o.category=t.target.value,o.page=1,f("filters-parameters",o),u()}function v(){return window.innerWidth>=1440?o.limit=9:window.innerWidth>=768?o.limit=8:o.limit=6,o.limit}const P=document.querySelector(".product-list"),V=document.querySelector(".pagination ul"),y=document.querySelector(".pagination"),h=document.querySelector(".card-container"),g=document.querySelector(".main-content-nothing"),D=document.querySelector(".loader");document.querySelector(".filters-search-input");let p=o,b=0;g.style.display="none";async function u(){f("filters-parameters",p);const t=k("filters-parameters");try{const e=await B(t);D.style.display="none";const s=e.results;b=e.totalPages,e.results.length?(g.style.display="none",y.style.display="block",h.style.display="block",P.innerHTML=T(s)):(g.style.display="block",y.style.display="none",h.style.display="none");const n=document.querySelectorAll(".add-button");for(const l of n)l.addEventListener("click",q);F()}catch(e){console.log(e)}}function F(){V.innerHTML=N(b,p.page),document.querySelectorAll(".pagination li:not(.disabled)").forEach(e=>{e.addEventListener("click",async s=>{const n=parseInt(s.currentTarget.dataset.page);!isNaN(n)&&n!==p.page&&(p.page=n,await u())})})}function N(t,e){let s="";const l=Math.floor(2.5);let i=e-l,a=e+l;i<1&&(i=1,a=Math.min(t,i+5-1)),a>t&&(a=t,i=Math.max(1,a-5+1)),e>1?s+=`<li class="btn prev" data-page="${e-1}"><span>&lt;</span></li>`:s+='<li class="btn prev disabled"><span>&lt;</span></li>',i>1&&(s+='<li class="first numb" data-page="1"><span>1</span></li>',i>2&&(s+='<li class="dots"><span>...</span></li>'));for(let c=i;c<=a;c++)s+=`<li class="numb ${c===e?"active":""}" data-page="${c}"><span>${c}</span></li>`;return a<t&&(a<t-1&&(s+='<li class="dots"><span>...</span></li>'),s+=`<li class="last numb" data-page="${t}"><span>${t}</span></li>`),e<t?s+=`<li class="btn next" data-page="${e+1}"><span>&gt;</span></li>`:s+='<li class="btn next disabled"><span>&gt;</span></li>',s}document.addEventListener("DOMContentLoaded",async function(){window.addEventListener("resize",t),await u();function t(){v(),u()}});function $(){productmodal.classList.toggle("is-hidden")}function w(t){const e=document.getElementById("productmodal");A(t).then(({data:s})=>{e.innerHTML=R(s),O(e)})}function O(t){t.querySelector(".mod-card-close").addEventListener("click",Q),t.style.display="flex",$()}function Q(){const t=document.getElementById("productmodal");t.style.display="none",$()}function R(t){return`<div class="modal-2-wrap">
 	<div class="modal-img-wrap">
                 <div class="modal-img-section">
                     <a class="modal-gallery-link" >
@@ -64,7 +33,7 @@ import{i as r,l as h,g as b,s as m,a as A,b as T,c as B,d as C}from"./assets/mod
        				 <use href="${r}#close-sharp"></use>
      			 </svg>
     			</button>
-            </div>`}const M=document.querySelector(".popular-list");let k=5;M.innerHTML="";B(k).then(t=>{M.innerHTML=R(t)});document.addEventListener("click",function(t){const e=t.target.closest(".popular-card");if(e){const s=e.dataset.productId;E(s)}});function R(t){return t.slice(0,k).map(({_id:e,name:s,img:n,category:i,price:a,size:o,is10PercentOff:c,popularity:g})=>`<li class="popular-card" data-product-id="${e}">
+            </div>`}const S=document.querySelector(".popular-list");let L=5;S.innerHTML="";H(L).then(t=>{S.innerHTML=W(t)});document.addEventListener("click",function(t){const e=t.target.closest(".popular-card");if(e){const s=e.dataset.productId;w(s)}});function W(t){return t.slice(0,L).map(({_id:e,name:s,img:n,category:l,price:i,size:a,is10PercentOff:c,popularity:m})=>`<li class="popular-card" data-product-id="${e}">
             <div class="popular-img-wrap">
                 <div class="popular-left-section">
                     <a class="popular-gallery-link" >
@@ -82,22 +51,22 @@ import{i as r,l as h,g as b,s as m,a as A,b as T,c as B,d as C}from"./assets/mod
 						</button>
 					</div>
 					<div class="center-section-down">
-                		<p class="popular-category-item">Category: <span>${i.replace("_"," ")}</span></p>
-                		<p class="popular-size-item">Size:<span>${o}</span>Popularity:<span>${g}</span></p>
+                		<p class="popular-category-item">Category: <span>${l.replace("_"," ")}</span></p>
+                		<p class="popular-size-item">Size:<span>${a}</span>Popularity:<span>${m}</span></p>
 					</div>
 				</div>
             </div>
-        </li>`).join("")}const q=document.querySelector(".discount-list");q.innerHTML="";C().then(t=>{q.innerHTML=G(t)});document.addEventListener("click",function(t){const e=t.target.closest(".discount-card");if(e){const s=e.dataset.productId;E(s)}});function W(t,e){return t.slice().sort(()=>Math.random()-.5).slice(0,e)}function G(t){return W(t,2).map(({_id:s,name:n,img:i,category:a,price:o,size:c,is10PercentOff:g,popularity:J})=>`<li class="discount-card" data-product-id="${s}">
+        </li>`).join("")}const E=document.querySelector(".discount-list");E.innerHTML="";C().then(t=>{E.innerHTML=G(t)});document.addEventListener("click",function(t){const e=t.target.closest(".discount-card");if(e){const s=e.dataset.productId;w(s)}});function _(t,e){return t.slice().sort(()=>Math.random()-.5).slice(0,e)}function G(t){return _(t,2).map(({_id:s,name:n,img:l,category:i,price:a,size:c,is10PercentOff:m,popularity:J})=>`<li class="discount-card" data-product-id="${s}">
             <div class="discount-img-wrap">
 			  <div class="discount-top-section">
                <a class="discount-gallery-link" >
-                <img src="${i}" alt="${n}" width="114" height="114" loading="lazy" />
+                <img src="${l}" alt="${n}" width="114" height="114" loading="lazy" />
                </a>
 			  </div>
 			  <div class="discount-product">
               	<p class="discount-info-item">${n}</p>
 				<div class="discount-prisce-button">
-             	<p class="discount-price-item">$${o}</p>
+             	<p class="discount-price-item">$${a}</p>
              	<button class="add-discount-button add-button" type="button" data-id="${s}">
 							<svg class="discount-icon-button" width="18" height="18">
 		 					<use href="${r}#icon-cart-mob" alt ="Add to cart">
