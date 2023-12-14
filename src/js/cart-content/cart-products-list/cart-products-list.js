@@ -3,12 +3,15 @@ import { basketProductMarkUp } from '../../home-content/main-products/main-proje
 import { loadFromLS } from '../../services/helpers';
 import icons from '/icons.svg';
 
+const cartContainer = document.querySelector('.cart-container');
+loadFromLocalStorageCart();
+
 const savedProductsBasket = loadFromLS('products');
 
-const cartValue = document.querySelector('.js-cart-counter');
-cartValue.textContent = savedProductsBasket.length;
-
-console.log(savedProductsBasket);
+// const cartValue = document.querySelector('.js-cart-counter');
+const emptySectionEmpty = document.getElementById('#cart');
+// cartValue.textContent = savedProductsBasket.length;
+const sectionProductList = document.querySelector('.cart-content-wrap');
 
 const cardProductBasketList = document.querySelector('.js-cart-products');
 console.log(cardProductBasketList);
@@ -17,17 +20,41 @@ cardProductBasketList.insertAdjacentHTML(
 	createBascetProductMarcup(savedProductsBasket)
 );
 
-const cartContainer = document.querySelector('.cart-container');
-
-export function loadFromLocalStorage() {
+export function loadFromLocalStorageCart() {
 	const storageLength = loadFromLS('products');
 	return storageLength.length >= 1
 		? (cartContainer.style.display = 'none')
 		: (cartContainer.style.display = 'block');
 }
 
-loadFromLocalStorage();
+loadFromLocalStorageCart();
 
+const totalSummary = document.querySelector('.total__price');
+export function createTotalNum() {
+	const totalStorageNum = loadFromLS('products');
+	const total = totalStorageNum.reduce((acc, el) => (acc += el.data.price), 0);
+	totalSummary.textContent = `$${total}`;
+}
+
+createTotalNum();
+
+const deleteAllBtn = document.querySelector('.cart__delete-button');
+
+deleteAllBtn.addEventListener('click', onDeleteAllBtnClick);
+
+export function onDeleteAllBtnClick() {
+	localStorage.removeItem('products');
+	localStorage.setItem('products', JSON.stringify([]));
+	// console.log(localStorage.getItem('products'));
+	// const test = localStorage.getItem('products', JSON.parse())
+	const test = JSON.parse(localStorage.getItem('products'));
+	if (test.length === 0) {
+		sectionProductList.style.display = 'none';
+		cartContainer.style.display = 'block';
+	}
+}
+// onDeleteAllBtnClick()
+// onDeleteAllBtnClick()
 function createBascetProductMarcup(arr) {
 	return arr
 		.map(

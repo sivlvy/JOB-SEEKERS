@@ -47,21 +47,29 @@ function cardMarkup(products) {
 		.join('');
 }
 
-// 	// const cardProductBasketList = document.querySelector('.js-cart-products');
-// 	// 	console.log(cardProductBasketList)
-// 	// cardProductBasketList.insertAdjacentHTML(
-// 	// 	'beforeend',
-// 	// 	basketProductMarkUp(product)
-// 	// );
+// const cartContainerMain = document.querySelector('.js-cart-counter')
+
+// export function loadFromLocalStorageMain() {
+// 	const storageLength = loadFromLS('products');
+// 	console.log(storageLength);
+// 	// return cartContainerMain.textContent = storageLength.length
+
 // }
+
+// loadFromLocalStorageMain()
+if (!localStorage.getItem('products')) {
+	const defaultProducts = []; 
+	localStorage.setItem('products', JSON.stringify(defaultProducts));
+}
+
 
 export async function onAddButtonClick(event) {
 	const productID = event.currentTarget.dataset.id;
-	console.log(productID);
-
+	
+	// saveToLS('products', [])
 	const existingProducts = loadFromLS('products') || [];
 
-	// console.log(existingProducts);
+	console.log(existingProducts);
 
 	try {
 		const product = await getProductById(productID);
