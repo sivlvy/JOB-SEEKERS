@@ -1,4 +1,4 @@
-import{l as o,i}from"./assets/modal-subscription-a0a7c75c.js";import"./assets/vendor-c374a7a2.js";const a=document.querySelector(".cart-container");s();const d=o("products");document.getElementById("#cart");const m=document.querySelector(".cart-content-wrap"),c=document.querySelector(".js-cart-products");console.log(c);c.insertAdjacentHTML("beforeend",n(d));function s(){return o("products").length>=1?a.style.display="none":a.style.display="block"}s();const u=document.querySelector(".total__price");function g(){const t=o("products").reduce((r,l)=>r+=l.data.price,0);u.textContent=`$${t}`}g();const p=document.querySelector(".cart__delete-button");p.addEventListener("click",y);function y(){localStorage.removeItem("products"),localStorage.setItem("products",JSON.stringify([])),JSON.parse(localStorage.getItem("products")).length===0&&(m.style.display="none",a.style.display="block")}function n(e){return e.map(t=>`<li class="cart-item" data-id="${t.data._id}">
+import{l as o,i}from"./assets/modal-subscription-11c0b488.js";import"./assets/vendor-c374a7a2.js";const n=document.querySelector(".cart-container"),a=o("products"),c=document.querySelectorAll(".js-cart-counter");function d(){c.forEach(e=>{e.textContent=a.length})}d();for(const e of c)e.textContent=a.length;const s=document.querySelector(".cart-content-wrap");a.length===0?s.style.display="none":n.style.display="none";const u=document.querySelector(".js-cart-products");u.insertAdjacentHTML("beforeend",y(a));const m=document.querySelector(".total__price");function p(){const t=o("products").reduce((r,l)=>r+=l.data.price,0);m.textContent=`$${t}`}p();const f=document.querySelector(".cart__delete-button");f.addEventListener("click",g);function g(){localStorage.removeItem("products"),localStorage.setItem("products",JSON.stringify([]));const e=JSON.parse(localStorage.getItem("products"));c.forEach(t=>{t.textContent=e.length}),e.length===0&&(s.style.display="none",n.style.display="block")}function y(e){return e.map(t=>`<li class="cart-item" data-id="${t.data._id}">
 						<div class="cart-item-wrap">
 							<div class="cart-img-container">
 								<img
@@ -35,5 +35,5 @@ import{l as o,i}from"./assets/modal-subscription-a0a7c75c.js";import"./assets/ve
 								<h3 class="cart-info-price">${t.data.price}</h3>
 							</div>
 						</div>
-					</li>`).join("")}console.log(n);
+					</li>`).join("")}
 //# sourceMappingURL=commonHelpers.js.map
