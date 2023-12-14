@@ -1,12 +1,10 @@
 import { getCategoryList } from '../services/food-api';
-import { cardMarkup } from '../home-content/main-products/main-projects';
-import { getCurrentProducts } from '../services/food-api';
 import { saveToLS } from '../services/helpers';
+import { updateProducts } from '../home-content/main-products/pagination';
 import SlimSelect from 'slim-select';
 
 const refs = {
 	selectEl: document.querySelector('.filters-categories-select'),
-	cardProduct: document.querySelector('.product-list'),
 	formEl: document.querySelector('.filters-form'),
 };
 
@@ -59,7 +57,7 @@ function onSubmit(evt) {
 		.split(' ')
 		.join(' ');
 	saveToLS('filters-parameters', filters);
-	renderProductList();
+	updateProducts();
 }
 
 refs.selectEl.addEventListener('change', onSelect);
@@ -68,26 +66,16 @@ function onSelect(evt) {
 	filters.category = evt.target.value;
 	filters.page = 1;
 	saveToLS('filters-parameters', filters);
-	renderProductList();
-}
-
-export async function renderProductList() {
-	try {
-		const data = await getCurrentProducts(filters);
-		refs.cardProduct.innerHTML = cardMarkup(data.results);
-	} catch (err) {
-		console.log(err);
-	}
+	updateProducts();
 }
 
 export function changingLimit() {
 	if (window.innerWidth >= 1440) {
-	  filters.limit = 9;
+		filters.limit = 9;
 	} else if (window.innerWidth >= 768) {
-	  filters.limit = 8;
+		filters.limit = 8;
 	} else {
-	  filters.limit = 6;
+		filters.limit = 6;
 	}
-  
 	return filters.limit;
-  }
+}

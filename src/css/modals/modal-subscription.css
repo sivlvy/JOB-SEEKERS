@@ -18,6 +18,14 @@
 
 	display: none;
 }
+.modal-subscription-img {
+	background-image: url('../../images/footer-modal/footer-modal-desk.png');
+	background-size: cover; /* або contain, залежно від вашого бажання */
+	background-position: center center;
+	background-repeat: no-repeat;
+	width: 417px;
+	height: 144px;
+}
 .close {
 	width: 27px;
 	height: 27px;
@@ -190,6 +198,10 @@
 		bottom: 0%;
 		right: 0%;
 	}
+	.modal-subscription-img {
+		height: 159px;
+		width: 430px;
+	}
 	.title-sub {
 		font-size: 24px;
 		padding: 90px 115px 20px 115px;
@@ -205,4 +217,10 @@
 .modal-container {
 	position: relative;
 	z-index: 1;
+}
+
+@media screen and (min-width: 1440px) {
+	.modal-subscription-img {
+		height: 159px;
+	}
 }

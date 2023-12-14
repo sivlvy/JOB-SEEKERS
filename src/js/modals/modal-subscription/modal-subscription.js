@@ -2,6 +2,7 @@ import Notiflix from 'notiflix';
 import axios from 'axios';
 import { addEmail } from '../../services/food-api';
 import { showError } from '../../services/food-api';
+import icons from '/icons.svg';
 
 const formElem = document.querySelector('.form-footer');
 const modalSubscription = document.querySelector('.modal-subscription');
@@ -69,6 +70,7 @@ function handleSubmit(e) {
 	const emailInput = document.querySelector('.input-label');
 	const email = emailInput.value.trim();
 	handleSubscription(email);
+	formElem.reset();
 }
 
 formElem.addEventListener('submit', handleSubmit);
