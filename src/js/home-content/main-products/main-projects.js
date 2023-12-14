@@ -3,7 +3,6 @@ import { getProductById } from '../../services/food-api';
 import { saveToLS, loadFromLS } from '../../services/helpers';
 import icons from '/icons.svg';
 
-
 function cardMarkup(products) {
 	return products
 		.map(
@@ -46,103 +45,7 @@ function cardMarkup(products) {
 		)
 
 		.join('');
-
 }
-
-
-
-// let savedProducts = [];
-
-// export async function onAddButtonClick(event) {
-// 	const productID = event.currentTarget.dataset.id;
-// 	console.log(productID);
-
-// 	const existingProducts = loadFromLS('products') || [];
-
-	
-// 	console.log(existingProducts);
-
-	
-
-	
-
-// 	try {
-// 		const product = await getProductById(productID);
-// 		console.log(product);
-
-		
-		
-// 		if (existingProducts.length === 0) {
-// 				existingProducts.push(product);
-// 				saveToLS('products', existingProducts);
-
-// 		} 
-// 		else if (existingProducts.length !== 0) {
-// 			existingProducts.map((existingProduct) => {
-				
-// 				console.log(existingProduct)
-// 				const existingProductID = existingProduct.data._id;
-				
-// 					if (existingProductID !== productID) {
-// 						existingProducts.push(product);
-// 				saveToLS('products', existingProducts);
-// 					})
-					
-// 				const addButtons = document.querySelectorAll('.add-button');
-// 				console.log(addButtons)
-
-// 				for (const addButton of addButtons) {
-// 					const buttonID = addButton.dataset.id;
-
-// 					if (buttonID === productID) {
-// 						addButton.removeEventListener('click', onAddButtonClick);
-// 						const useElement = addButton.querySelector('svg use');
-// 						addButton.style.backgroundColor = '#6D8434';
-
-// 						useElement.setAttribute('href', './icons.svg#icon-cart-success');
-// 					}
-// 				} 
-				
-// 			} 
-				
-// 			})
-			
-			
-
-
-
-// 		}
-
-	
-
-// 		// 	existingProducts.push(product);
-
-// 		// saveToLS('products', existingProducts);
-// 		// console.log(existingProducts);
-
-// 		// const cartValue = document.querySelector('.js-cart-counter');
-// 		// cartValue.textContent = existingProducts.length;
-
-// 		// const basketProductID = product.data._id;
-// 		// console.log(basketProductID);
-// 		// }
-
-		
-
-// 		// savedProducts.push(product);
-
-// 		// cardProductBasketList.insertAdjacentHTML(
-// 		// 	'beforeend',
-// 		// 	basketProductMarkUp(result)
-// 		// );
-// 	} catch (err) {
-// 		throw new Error(err);
-// 	}
-
-// 	// const savedProducts = loadFromLS('products')
-
-// 	// const cardCount = document.querySelector('.cart__item-count');
-// 	// console.log(cardCount)
 
 // 	// const cardProductBasketList = document.querySelector('.js-cart-products');
 // 	// 	console.log(cardProductBasketList)
@@ -152,55 +55,44 @@ function cardMarkup(products) {
 // 	// );
 // }
 
-
-
 export async function onAddButtonClick(event) {
 	const productID = event.currentTarget.dataset.id;
 	console.log(productID);
-  
+
 	const existingProducts = loadFromLS('products') || [];
-  
-	console.log(existingProducts);
-  
+
+	// console.log(existingProducts);
+
 	try {
-	  const product = await getProductById(productID);
-	  console.log(product);
-  
-	  if (existingProducts.length === 0) {
-		existingProducts.push(product);
-		saveToLS('products', existingProducts);
-	  } else if (existingProducts.length !== 0) {
-		existingProducts.map((existingProduct) => {
-		  console.log(existingProduct);
-		  const existingProductID = existingProduct.data._id;
-  
-		  if (existingProductID !== productID) {
+		const product = await getProductById(productID);
+		// console.log(product);
+
+		if (
+			!existingProducts.some(
+				existingProduct => existingProduct.data._id === productID
+			)
+		) {
 			existingProducts.push(product);
 			saveToLS('products', existingProducts);
-		  }
-  
-		  const addButtons = document.querySelectorAll('.add-button');
-		  console.log(addButtons);
-  
-		  for (const addButton of addButtons) {
-			const buttonID = addButton.dataset.id;
-  
-			if (buttonID === productID) {
-			  addButton.removeEventListener('click', onAddButtonClick);
-			  const useElement = addButton.querySelector('svg use');
-			  addButton.style.backgroundColor = '#6D8434';
-  
-			  useElement.setAttribute('href', './icons.svg#icon-cart-success');
-			}
-		  }
-		});
-	  }
+
+			const addButtons = document.querySelectorAll('.add-button');
+			// console.log(addButtons);
+
+			addButtons.forEach(addButton => {
+				const buttonID = addButton.dataset.id;
+
+				if (buttonID === productID) {
+					addButton.removeEventListener('click', onAddButtonClick);
+					const useElement = addButton.querySelector('svg use');
+					addButton.style.backgroundColor = '#6D8434';
+					useElement.setAttribute('href', `${icons}#icon-cart-success`);
+				}
+			});
+		}
 	} catch (err) {
-	  throw new Error(err);
+		throw new Error(err);
 	}
-  }
-
-
+}
 
 export function basketProductMarkUp({
 	img,

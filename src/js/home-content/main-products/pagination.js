@@ -10,6 +10,7 @@ const paginationHidden = document.querySelector('.pagination');
 const cardContainerHidden = document.querySelector('.card-container');
 const hiddenForm = document.querySelector('.main-content-nothing');
 const loaderEl = document.querySelector('.loader');
+const inputEl = document.querySelector('.filters-search-input');
 
 let newFilters = filters;
 let totalPages = 0;
@@ -146,6 +147,7 @@ function paginationHTML(totalPages, currentPage) {
 	}
 	return liTag;
 }
+console.log('Hello');
 document.addEventListener('DOMContentLoaded', async function () {
 	let resizeTimeout;
 
