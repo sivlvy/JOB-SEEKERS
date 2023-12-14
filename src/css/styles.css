@@ -61,12 +61,12 @@
 	font-family: 'Neue Montreal';
 	font-weight: 400;
 	src: url('../fonts/NeueMontreal-Regular.woff2') format('woff2'),
-		url('../fonts/NeueMontreal-Regular.ttf') format('ttf');
+		url('../fonts/NeueMontreal-Regular.ttf') format('truetype');
 	font-display: swap;
 }
 body {
 	background-color: #e8e8e2;
 }
 .container {
-	/* margin: 0 auto; */
+	margin: 0 auto;
 }

@@ -1,7 +1,6 @@
 import { getProductById } from '../../services/food-api';
 import icons from '/icons.svg';
 
-
 function toggleMenu() {
 	productmodal.classList.toggle('is-hidden');
 }
@@ -14,7 +13,7 @@ export function clickproduct(id) {
 	});
 }
 
-function openProductModal(productmodal) {
+ function openProductModal(productmodal) {
 	const closeButton = productmodal.querySelector('.mod-card-close');
 	closeButton.addEventListener('click', closeProductModal);
 	productmodal.style.display = 'flex';
