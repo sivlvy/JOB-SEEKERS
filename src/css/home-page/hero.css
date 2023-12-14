@@ -1,6 +1,6 @@
 .hero-section img {
 	border-radius: 30px;
-   margin: 0 auto;
+	margin: 0 auto;
 }
 .images {
 	position: relative;
@@ -15,7 +15,6 @@
 .hero-title {
 	color: #010101;
 	text-align: center;
-	font-family: 'Neue Montreal', sans-serif;
 	font-size: 44px;
 	font-weight: 500;
 	line-height: 1.09;
@@ -32,6 +31,7 @@
 	line-height: 1.28;
 	font-weight: 400;
 	padding-bottom: 32px;
+	font-family: 'Neue montreal', sans-serif;
 }
 
 .images {
@@ -82,20 +82,19 @@
 	.hero-section {
 		padding-top: 59px;
 	}
-   .images {
-      width: 100%;
-   }
+	.images {
+		width: 100%;
+	}
 	.icon-organic-food {
 		right: 100px;
 		top: -46px;
 	}
-   .hero-descr {
-      width: auto;
-   }
+	.hero-descr {
+		width: 496px;
+	}
 }
-@media screen and (max-width: 375px){
-   
-   .hero-section img {
-      width: 300px;
-   }
+@media screen and (max-width: 375px) {
+	.hero-section img {
+		width: 300px;
+	}
 }
