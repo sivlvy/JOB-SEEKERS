@@ -3,7 +3,6 @@ import { getProductById } from '../../services/food-api';
 import { saveToLS, loadFromLS } from '../../services/helpers';
 import icons from '/icons.svg';
 
-
 function cardMarkup(products) {
 	return products
 		.map(
@@ -86,7 +85,7 @@ export async function onAddButtonClick(event) {
 					addButton.removeEventListener('click', onAddButtonClick);
 					const useElement = addButton.querySelector('svg use');
 					addButton.style.backgroundColor = '#6D8434';
-					useElement.setAttribute('href', './icons.svg#icon-cart-success');
+					useElement.setAttribute('href', `${icons}#icon-cart-success`);
 				}
 			});
 		}

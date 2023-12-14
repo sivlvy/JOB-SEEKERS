@@ -17,6 +17,17 @@ cardProductBasketList.insertAdjacentHTML(
 	createBascetProductMarcup(savedProductsBasket)
 );
 
+const cartContainer = document.querySelector('.cart-container');
+
+export function loadFromLocalStorage() {
+	const storageLength = loadFromLS('products');
+	return storageLength.length >= 1
+		? (cartContainer.style.display = 'none')
+		: (cartContainer.style.display = 'block');
+}
+
+loadFromLocalStorage();
+
 function createBascetProductMarcup(arr) {
 	return arr
 		.map(
@@ -48,7 +59,7 @@ function createBascetProductMarcup(arr) {
 								<div class="cart-info-container">
 									<p class="cart-info">
 										Category:
-										<span>${product.data.category}</span>
+										<span>${product.data.category.replaceAll('_', ' ')}</span>
 									</p>
 									<p class="cart-info cart-info-overflow">
 										Size:
