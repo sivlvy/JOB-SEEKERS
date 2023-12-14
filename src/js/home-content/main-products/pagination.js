@@ -92,46 +92,46 @@ function paginationHTML(totalPages, currentPage) {
 			currentPage - 1
 		}"><span>&lt;</span></li>`;
 	} else {
-		liTag += (
-			<li class="btn prev disabled">
-				<span>&lt;</span>
-			</li>
+		liTag += (`
+		<li class="btn prev disabled">
+			<span>&lt;</span>
+		</li>`
 		);
 	}
 	if (startPage > 1) {
 		liTag += (
-			<li class="first numb" data-page="1">
-				<span>1</span>
-			</li>
+			`<li class="first numb" data-page="1">
+			<span>1</span>
+		</li>`
 		);
 		if (startPage > 2) {
 			liTag += (
-				<li class="dots">
-					<span>...</span>
-				</li>
+				`<li class="dots">
+				<span>...</span>
+			</li>`
 			);
 		}
 	}
 	for (let page = startPage; page <= endPage; page++) {
 		const active = page === currentPage ? 'active' : '';
 		liTag += (
-			<li class="numb ${active}" data-page="${page}">
-				<span>${page}</span>
-			</li>
+			`<li class="numb ${active}" data-page="${page}">
+			<span>${page}</span>
+		</li>`
 		);
 	}
 	if (endPage < totalPages) {
 		if (endPage < totalPages - 1) {
 			liTag += (
-				<li class="dots">
-					<span>...</span>
-				</li>
+				`<li class="dots">
+				<span>...</span>
+			</li>`
 			);
 		}
 		liTag += (
-			<li class="last numb" data-page="${totalPages}">
-				<span>${totalPages}</span>
-			</li>
+			`<li class="last numb" data-page="${totalPages}">
+			<span>${totalPages}</span>
+		</li>`
 		);
 	}
 	if (currentPage < totalPages) {
@@ -140,9 +140,9 @@ function paginationHTML(totalPages, currentPage) {
 		}"><span>&gt;</span></li>`;
 	} else {
 		liTag += (
-			<li class="btn next disabled">
-				<span>&gt;</span>
-			</li>
+			`<li class="btn next disabled">
+			<span>&gt;</span>
+		</li>`
 		);
 	}
 	return liTag;
