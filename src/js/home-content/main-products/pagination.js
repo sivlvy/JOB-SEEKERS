@@ -121,6 +121,7 @@ function paginationHTML(totalPages, currentPage) {
   }
   return liTag;
 }
+console.log('Hello');
 document.addEventListener('DOMContentLoaded', async function () {
 	let resizeTimeout;
   
