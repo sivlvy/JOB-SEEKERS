@@ -1,15 +1,15 @@
-import{l as o,i}from"./assets/modal-subscription-da68d244.js";import"./assets/vendor-c374a7a2.js";const n=document.querySelector(".cart-container"),a=o("products"),c=document.querySelectorAll(".js-cart-counter");function d(){c.forEach(e=>{e.textContent=a.length})}d();for(const e of c)e.textContent=a.length;const r=document.querySelector(".cart-content-wrap");a.length===0?r.style.display="none":n.style.display="none";const u=document.querySelector(".js-cart-products");u.insertAdjacentHTML("beforeend",y(a));const m=document.querySelector(".total__price");function p(){const t=o("products").reduce((s,l)=>s+=l.data.price,0);m.textContent=`$${t}`}p();const g=document.querySelector(".cart__delete-button");g.addEventListener("click",f);function f(){localStorage.removeItem("products"),localStorage.setItem("products",JSON.stringify([]));const e=JSON.parse(localStorage.getItem("products"));c.forEach(t=>{t.textContent=e.length}),e.length===0&&(r.style.display="none",n.style.display="block")}function y(e){return e.map(t=>`<li class="cart-item" data-id="${t.data._id}">
+import{l,s as g,i as p}from"./assets/modal-subscription-62550150.js";import"./assets/vendor-c374a7a2.js";const r=document.querySelector(".cart-container"),o=l("products");console.log(o);const c=document.querySelectorAll(".js-cart-counter");function f(){c.forEach(t=>{t.textContent=o.length})}f();for(const t of c)t.textContent=o.length;const i=document.querySelector(".cart-content-wrap");o.length===0?i.style.display="none":r.style.display="none";const y=document.querySelector(".js-cart-products");y.insertAdjacentHTML("beforeend",I(o));const d=document.querySelectorAll(".cart-btn-close");console.log(d);d.forEach(t=>{console.log(t),t.addEventListener("click",S)});function S(t){const a=t.target.closest(".cart-item").dataset.id;o.forEach((n,s,$)=>{if(console.log(s),n.data._id===a){document.querySelector(".cart-item").remove(),g("products",o);const u=l("products");console.log(u),console.log(o.length),o.length===0&&(console.log("hello"),i.style.display="none",r.style.display="block",localStorage.removeItem("products"),localStorage.setItem("products",JSON.stringify([])),c.forEach(m=>{m.textContent=test.length}))}})}const v=document.querySelector(".total__price");function h(){const a=l("products").reduce((n,s)=>n+=s.data.price,0).toFixed(2);v.textContent=`$${String(a)}`}h();const C=document.querySelector(".cart__delete-button");C.addEventListener("click",b);function b(){localStorage.removeItem("products"),localStorage.setItem("products",JSON.stringify([]));const t=JSON.parse(localStorage.getItem("products"));c.forEach(e=>{e.textContent=t.length}),t.length===0&&(i.style.display="none",r.style.display="block")}function I(t){return t.map(e=>`<li class="cart-item" data-id="${e.data._id}">
 						<div class="cart-item-wrap">
 							<div class="cart-img-container">
 								<img
 									class="cart-img"
-									src="${t.data.img}"
-									alt="${t.data.name}"
+									src="${e.data.img}"
+									alt="${e.data.name}"
 								/>
 							</div>
 							<div class="cart-img-text">
 								<div class="cart-item-title-wrap">
-									<h3 class="cart-item-title">${t.data.name}</h3>
+									<h3 class="cart-item-title">${e.data.name}</h3>
 									<button
 										name="button"
 										type="button"
@@ -17,7 +17,7 @@ import{l as o,i}from"./assets/modal-subscription-da68d244.js";import"./assets/ve
 										aria-label="Close modal window"
 									>
 										<svg width="18" height="18" class="cart-icon-close">
-											<use href="${i}#icon-icon-close"></use>
+											<use href="${p}#icon-icon-close"></use>
 										</svg>
 									</button>
 								</div>
@@ -25,14 +25,14 @@ import{l as o,i}from"./assets/modal-subscription-da68d244.js";import"./assets/ve
 								<div class="cart-info-container">
 									<p class="cart-info">
 										Category:
-										<span>${t.data.category.replaceAll("_"," ")}</span>
+										<span>${e.data.category.replaceAll("_"," ")}</span>
 									</p>
 									<p class="cart-info cart-info-overflow">
 										Size:
-										<span>${t.data.size}</span>
+										<span>${e.data.size}</span>
 									</p>
 								</div>
-								<h3 class="cart-info-price">${t.data.price}</h3>
+								<h3 class="cart-info-price">${e.data.price}</h3>
 							</div>
 						</div>
 					</li>`).join("")}
