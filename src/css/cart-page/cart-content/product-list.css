@@ -569,7 +569,10 @@
 	}
 	.cart__products-wrap {
 		display: flex;
+		flex-direction: row;
 	}
+	
+
 	.cart__button {
 		width: 42px;
 		height: 42px;
