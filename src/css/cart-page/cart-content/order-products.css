@@ -8,7 +8,18 @@
 	line-height: 1,17;
 	text-transform: uppercase;
 }
+.cart__products-wrap {
 
+}
+.cart__products {
+	overflow: scroll;
+	height: 440px;
+}
+@media screen and (min-width: 1440px) {
+	.cart__products {
+		height: 549px;
+	}
+}
 .total-cost {
 	display: flex;
 	flex-direction: row;
@@ -95,3 +106,4 @@
 	font-weight: 500;
 	line-height: 1.2;
 }
+
