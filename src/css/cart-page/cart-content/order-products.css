@@ -12,12 +12,16 @@
 
 }
 .cart__products {
-	overflow: scroll;
+	overflow: auto;
 	height: 440px;
+}
+@media screen and (min-width: 768px) {
+	.cart__products {
+		width: 672px;
+	}
 }
 @media screen and (min-width: 1440px) {
 	.cart__products {
-		height: 549px;
 	}
 }
 .total-cost {

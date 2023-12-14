@@ -80,7 +80,6 @@ function onRemoveItemClick(event) {
 
 				localStorage.setItem('products', JSON.stringify([]));
 				cartValueProducts.forEach(cartValue => {
-					
 					cartValue.textContent = test.length;
 				});
 			} 
@@ -93,18 +92,11 @@ export function createTotalNum() {
 	const totalStorageNum = loadFromLS('products');
 	const total = totalStorageNum.reduce((acc, el) => (acc += el.data.price), 0);
 	const endResult = total.toFixed(2);
-	
-	
+
 	totalSummary.textContent = `$${String(endResult)}`;
-
-	
-
-    
 }
-
+console.log(createTotalNum());
 // const resultNumber = parseFloat(resultString);
-
-
 
 createTotalNum();
 
@@ -167,7 +159,7 @@ function createBascetProductMarcup(arr) {
 										<span>${product.data.size}</span>
 									</p>
 								</div>
-								<h3 class="cart-info-price">${product.data.price}</h3>
+								<h3 class="cart-info-price">$${product.data.price}</h3>
 							</div>
 						</div>
 					</li>`

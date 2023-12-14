@@ -350,7 +350,8 @@
 }
 
 .total__order-thumb {
-	margin-top: 74px;
+		padding-top: 100px;
+  
 }
 
 .your__order-title {
@@ -567,9 +568,14 @@
 	.container-cart {
 		padding: 0 100px;
 	}
+	.total__order-thumb {
+		padding-top: 100px;
+}
 	.cart__products-wrap {
 		display: flex;
 		flex-direction: row;
+		gap: 100px;
+		padding-bottom: 100px;
 	}
 	
 
