@@ -1,11 +1,33 @@
 import { getProductById } from '../../services/food-api';
 import icons from '/icons.svg';
-
+const productclick = document.querySelector('.main-container');
 
 function toggleMenu() {
 	productmodal.classList.toggle('is-hidden');
 }
-export function clickproduct(id) {
+
+productclick.addEventListener('click', function (event) {
+	if (event.target.id === 'tocart') {
+	} else {
+		const popularCard = event.target.closest('.popular-card');
+		const discountCard = event.target.closest('.discount-card');
+		const cardwrapper = event.target.closest('.card-wrapper');
+		if (popularCard) {
+			const dataIdValue = popularCard.getAttribute('data-id');
+			clickproduct(dataIdValue);
+		}
+		if (discountCard) {
+			const dataIdValue = discountCard.getAttribute('data-id');
+			clickproduct(dataIdValue);
+		}
+		if (cardwrapper) {
+			const dataIdValue = cardwrapper.getAttribute('data-id');
+			clickproduct(dataIdValue);
+		}
+	}
+});
+
+function clickproduct(id) {
 	const productmodal = document.getElementById('productmodal');
 	getProductById(id).then(({ data }) => {
 		productmodal.innerHTML = createModalContent(data);

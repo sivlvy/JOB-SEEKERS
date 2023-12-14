@@ -1,5 +1,4 @@
 import { getPopularProducts } from '../../services/food-api';
-import { clickproduct } from '../../modals/modal-product/modal-product';
 import icons from '/icons.svg';
 const popular = document.querySelector('.popular-list');
 
@@ -7,15 +6,6 @@ let limit = 5;
 popular.innerHTML = '';
 getPopularProducts(limit).then(data => {
 	popular.innerHTML = createMarkup(data);
-});
-
-document.addEventListener('click', function (event) {
-	const popularCard = event.target.closest('.popular-card');
-	if (popularCard) {
-		const productId = popularCard.dataset.productId;
-		// console.log('ID:', productId);
-		clickproduct(productId);
-	}
 });
 
 function createMarkup(array) {
@@ -32,7 +22,7 @@ function createMarkup(array) {
 				is10PercentOff,
 				popularity,
 			}) => {
-				return `<li class="popular-card" data-product-id="${_id}">
+				return `<li class="popular-card" data-id="${_id}">
             <div class="popular-img-wrap">
                 <div class="popular-left-section">
                     <a class="popular-gallery-link" >
@@ -42,9 +32,9 @@ function createMarkup(array) {
                 <div class="popular-center-section">
 					<div class="center-section-up">
                 		<p class="popular-info-item">${name.substring(0, 15)}</p>
-						<button class="add-popular-button" type="button" data-id="${_id}">
-							<svg class="popular-icon-button" width="18" height="18">
-		 					<use href="${icons}#icon-cart-mob" alt ="Add to cart">
+						<button class="add-popular-button add-button" type="button" data-id="${_id}" id="tocart" >
+							<svg class="popular-icon-button" id="tocart" width="18" height="18">
+		 					<use href="${icons}#icon-cart-mob" alt ="Add to cart" id="tocart">
 		 					</use>
 							</svg>
 						</button>

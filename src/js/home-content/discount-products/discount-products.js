@@ -1,20 +1,10 @@
 import { getDiscountProducts } from '../../services/food-api';
-import { clickproduct } from '../../modals/modal-product/modal-product';
 import icons from '/icons.svg';
 const discount = document.querySelector('.discount-list');
 
 discount.innerHTML = '';
 getDiscountProducts().then(data => {
 	discount.innerHTML = createMarkup(data);
-});
-
-document.addEventListener('click', function (event) {
-	const discountCard = event.target.closest('.discount-card');
-	if (discountCard) {
-		const productId = discountCard.dataset.productId;
-		// console.log('ID:', productId);
-		clickproduct(productId);
-	}
 });
 
 function getRandomElements(array, count) {
@@ -37,7 +27,7 @@ function createMarkup(array) {
 				is10PercentOff,
 				popularity,
 			}) => {
-				return `<li class="discount-card" data-product-id="${_id}">
+				return `<li class="discount-card" data-id="${_id}">
             <div class="discount-img-wrap">
 			  <div class="discount-top-section">
                <a class="discount-gallery-link" >
@@ -48,9 +38,9 @@ function createMarkup(array) {
               	<p class="discount-info-item">${name}</p>
 				<div class="discount-prisce-button">
              	<p class="discount-price-item">$${price}</p>
-             	<button class="add-discount-button" type="button" data-id="${_id}">
-							<svg class="discount-icon-button" width="18" height="18">
-		 					<use href="${icons}#icon-cart-mob" alt ="Add to cart">
+             	<button class="add-discount-button add-button" type="button" data-id="${_id}" id="tocart">
+							<svg class="discount-icon-button" id="tocart" width="18" height="18">
+		 					<use href="${icons}#icon-cart-mob" alt ="Add to cart" id="tocart">
 		 					</use>
 							</svg>
 						</button>

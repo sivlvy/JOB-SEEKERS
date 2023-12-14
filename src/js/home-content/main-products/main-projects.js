@@ -2,8 +2,7 @@ export { cardMarkup };
 import { getProductById } from '../../services/food-api';
 import { saveToLS, loadFromLS } from '../../services/helpers';
 import icons from '/icons.svg';
-
-
+// const mainproduct = document.querySelector('.card-wrapper');
 function cardMarkup(products) {
 	return products
 		.map(
@@ -33,9 +32,9 @@ function cardMarkup(products) {
 		   </div>
 		   <div class="price-and-add">
 			 <p class="product-price">$${price}</p>
-			 <button class="add-button" type="button" data-id="${_id}">
-			 <svg class="icon-button"width="18" height="18">
-             <use href="${icons}#icon-cart-mob" class="svg-change">
+			 <button class="add-button" type="button" data-id="${_id}" id="tocart">
+			 <svg class="icon-button"width="18" height="18" id="tocart">
+             <use href="${icons}#icon-cart-mob" class="svg-change" id="tocart">
              </use>
 			 </svg>
 			 </button>
@@ -46,10 +45,7 @@ function cardMarkup(products) {
 		)
 
 		.join('');
-
 }
-
-
 
 // let savedProducts = [];
 
@@ -59,35 +55,28 @@ function cardMarkup(products) {
 
 // 	const existingProducts = loadFromLS('products') || [];
 
-	
 // 	console.log(existingProducts);
-
-	
-
-	
 
 // 	try {
 // 		const product = await getProductById(productID);
 // 		console.log(product);
 
-		
-		
 // 		if (existingProducts.length === 0) {
 // 				existingProducts.push(product);
 // 				saveToLS('products', existingProducts);
 
-// 		} 
+// 		}
 // 		else if (existingProducts.length !== 0) {
 // 			existingProducts.map((existingProduct) => {
-				
+
 // 				console.log(existingProduct)
 // 				const existingProductID = existingProduct.data._id;
-				
+
 // 					if (existingProductID !== productID) {
 // 						existingProducts.push(product);
 // 				saveToLS('products', existingProducts);
 // 					})
-					
+
 // 				const addButtons = document.querySelectorAll('.add-button');
 // 				console.log(addButtons)
 
@@ -101,19 +90,13 @@ function cardMarkup(products) {
 
 // 						useElement.setAttribute('href', './icons.svg#icon-cart-success');
 // 					}
-// 				} 
-				
-// 			} 
-				
+// 				}
+
+// 			}
+
 // 			})
-			
-			
-
-
 
 // 		}
-
-	
 
 // 		// 	existingProducts.push(product);
 
@@ -126,8 +109,6 @@ function cardMarkup(products) {
 // 		// const basketProductID = product.data._id;
 // 		// console.log(basketProductID);
 // 		// }
-
-		
 
 // 		// savedProducts.push(product);
 
@@ -152,55 +133,51 @@ function cardMarkup(products) {
 // 	// );
 // }
 
-
-
 export async function onAddButtonClick(event) {
 	const productID = event.currentTarget.dataset.id;
 	console.log(productID);
-  
+
 	const existingProducts = loadFromLS('products') || [];
-  
+
 	console.log(existingProducts);
-  
+
 	try {
-	  const product = await getProductById(productID);
-	  console.log(product);
-  
-	  if (existingProducts.length === 0) {
-		existingProducts.push(product);
-		saveToLS('products', existingProducts);
-	  } else if (existingProducts.length !== 0) {
-		existingProducts.map((existingProduct) => {
-		  console.log(existingProduct);
-		  const existingProductID = existingProduct.data._id;
-  
-		  if (existingProductID !== productID) {
+		const product = await getProductById(productID);
+		console.log(product);
+
+		if (existingProducts.length === 0) {
 			existingProducts.push(product);
 			saveToLS('products', existingProducts);
-		  }
-  
-		  const addButtons = document.querySelectorAll('.add-button');
-		  console.log(addButtons);
-  
-		  for (const addButton of addButtons) {
-			const buttonID = addButton.dataset.id;
-  
-			if (buttonID === productID) {
-			  addButton.removeEventListener('click', onAddButtonClick);
-			  const useElement = addButton.querySelector('svg use');
-			  addButton.style.backgroundColor = '#6D8434';
-  
-			  useElement.setAttribute('href', './icons.svg#icon-cart-success');
-			}
-		  }
-		});
-	  }
+		} else if (existingProducts.length !== 0) {
+			existingProducts.map(existingProduct => {
+				console.log(existingProduct);
+				const existingProductID = existingProduct.data._id;
+
+				if (existingProductID !== productID) {
+					existingProducts.push(product);
+					saveToLS('products', existingProducts);
+				}
+
+				const addButtons = document.querySelectorAll('.add-button');
+				console.log(addButtons);
+
+				for (const addButton of addButtons) {
+					const buttonID = addButton.dataset.id;
+
+					if (buttonID === productID) {
+						addButton.removeEventListener('click', onAddButtonClick);
+						const useElement = addButton.querySelector('svg use');
+						addButton.style.backgroundColor = '#6D8434';
+
+						useElement.setAttribute('href', './icons.svg#icon-cart-success');
+					}
+				}
+			});
+		}
 	} catch (err) {
-	  throw new Error(err);
+		throw new Error(err);
 	}
-  }
-
-
+}
 
 export function basketProductMarkUp({
 	img,
@@ -234,9 +211,9 @@ export function basketProductMarkUp({
             </div>
             <div class="price-and-add">
             <p class="product-price">$${price}</p>
-            <button class="add-button" type="button" data-id="${_id}">
-            <svg class="icon-button"width="18" height="18">
-            <use href="/icons.svg#icon-cart-mob" >
+            <button class="add-button" type="button" data-id="${_id}" id="tocart">
+            <svg class="icon-button"width="18" height="18" id="tocart">
+            <use href="/icons.svg#icon-cart-mob" id="tocart" >
             </use></svg>
             </button>
             
