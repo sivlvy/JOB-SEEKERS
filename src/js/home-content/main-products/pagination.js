@@ -21,7 +21,6 @@ export async function updateProducts() {
 	saveToLS('filters-parameters', newFilters);
 
 	const dataFromLS = loadFromLS('filters-parameters');
-	// console.log(dataFromLS);
 
 	try {
 		const data = await getCurrentProducts(dataFromLS);
@@ -53,6 +52,11 @@ export async function updateProducts() {
 }
 
 function updatePagination() {
+	// Перевірка, чи кількість сторінок менше або дорівнює 1
+	if (totalPages <= 1) {
+		paginationElement.innerHTML = ''; // Якщо так, то приховати пагінацію
+		return;
+	}
 	paginationElement.innerHTML = paginationHTML(totalPages, newFilters.page);
 	const pageButtons = document.querySelectorAll(
 		'.pagination li:not(.disabled)'
@@ -75,7 +79,6 @@ function paginationHTML(totalPages, currentPage) {
 	const halfVisibleButtons = Math.floor(maxVisibleButtons / 2);
 	let startPage = currentPage - halfVisibleButtons;
 	let endPage = currentPage + halfVisibleButtons;
-
 	if (startPage < 1) {
 		startPage = 1;
 		endPage = Math.min(totalPages, startPage + maxVisibleButtons - 1);
@@ -89,40 +92,72 @@ function paginationHTML(totalPages, currentPage) {
 			currentPage - 1
 		}"><span>&lt;</span></li>`;
 	} else {
-		liTag += `<li class="btn prev disabled"><span>&lt;</span></li>`;
+		liTag += (`
+		<li class="btn prev disabled">
+			<span>&lt;</span>
+		</li>`
+		);
 	}
 	if (startPage > 1) {
-		liTag += `<li class="first numb" data-page="1"><span>1</span></li>`;
+		liTag += (
+			`<li class="first numb" data-page="1">
+			<span>1</span>
+		</li>`
+		);
 		if (startPage > 2) {
-			liTag += `<li class="dots"><span>...</span></li>`;
+			liTag += (
+				`<li class="dots">
+				<span>...</span>
+			</li>`
+			);
 		}
 	}
 	for (let page = startPage; page <= endPage; page++) {
 		const active = page === currentPage ? 'active' : '';
-		liTag += `<li class="numb ${active}" data-page="${page}"><span>${page}</span></li>`;
+		liTag += (
+			`<li class="numb ${active}" data-page="${page}">
+			<span>${page}</span>
+		</li>`
+		);
 	}
 	if (endPage < totalPages) {
 		if (endPage < totalPages - 1) {
-			liTag += `<li class="dots"><span>...</span></li>`;
+			liTag += (
+				`<li class="dots">
+				<span>...</span>
+			</li>`
+			);
 		}
-		liTag += `<li class="last numb" data-page="${totalPages}"><span>${totalPages}</span></li>`;
+		liTag += (
+			`<li class="last numb" data-page="${totalPages}">
+			<span>${totalPages}</span>
+		</li>`
+		);
 	}
 	if (currentPage < totalPages) {
 		liTag += `<li class="btn next" data-page="${
 			currentPage + 1
 		}"><span>&gt;</span></li>`;
 	} else {
-		liTag += `<li class="btn next disabled"><span>&gt;</span></li>`;
+		liTag += (
+			`<li class="btn next disabled">
+			<span>&gt;</span>
+		</li>`
+		);
 	}
 	return liTag;
 }
-
+console.log('Hello');
 document.addEventListener('DOMContentLoaded', async function () {
-	window.addEventListener('resize', handleResize);
-	await updateProducts();
+	let resizeTimeout;
 
-	function handleResize() {
-		changingLimit();
-		updateProducts();
-	}
+	window.addEventListener('resize', function () {
+		clearTimeout(resizeTimeout);
+		resizeTimeout = setTimeout(function () {
+			changingLimit();
+			updateProducts();
+		}, 300);
+	});
+
+	await updateProducts();
 });
