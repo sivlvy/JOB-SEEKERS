@@ -1,35 +1,35 @@
-import{l as b,g as $,s as u,a as q,b as T,c as C,d as H}from"./assets/modal-subscription-fca78bc7.js";import{S as I}from"./assets/vendor-c374a7a2.js";const d="/JOB-SEEKERS/assets/icons-58c424f0.svg";function z(t){return t.map(({img:s,name:e,category:o,size:i,popularity:c,_id:n,price:a})=>`<li class="card-wrapper" data-id="${n}">
+import{i as r,l as h,g as b,s as m,a as A,b as T,c as B,d as C}from"./assets/modal-subscription-9fe9ee4a.js";import{S as H}from"./assets/vendor-c374a7a2.js";function z(t){return t.map(({img:e,name:s,category:n,size:i,popularity:a,_id:o,price:c})=>`<li class="card-wrapper" data-id="${o}">
 					<div class="image-wrapper">
-					<img src="${s}" alt="${e}" loading="lazy" class="product-image" width="140" height="140" />
+					<img src="${e}" alt="${s}" loading="lazy" class="product-image" width="140" height="140" />
 					</div>
 		   <div class="product-info">
 			<p class="product-name">
-				${e}
+				${s}
 			 </p>
 			<div class ="product-items">
 			<p  class="product-item">
-			Category:<span class="product-more-info"> &nbsp;${o.replaceAll("_"," ")}</span>
+			Category:<span class="product-more-info"> &nbsp;${n.replaceAll("_"," ")}</span>
 		  </p>
 		  <p class="product-item">
 			Size:<span class="product-more-info"> &nbsp;${i}</span>
 		  </p>
 		  <p class="product-item">
-			Popularity:<span class="product-more-info"> &nbsp;${c}</span>
+			Popularity:<span class="product-more-info"> &nbsp;${a}</span>
 		  </p></div>
 			 
 		   </div>
 		   <div class="price-and-add">
-			 <p class="product-price">$${a}</p>
-			 <button class="add-button" type="button" data-id="${n}">
+			 <p class="product-price">$${c}</p>
+			 <button class="add-button" type="button" data-id="${o}">
 			 <svg class="icon-button"width="18" height="18">
-             <use href="${d}#icon-cart-mob" class="svg-change">
+             <use href="${r}#icon-cart-mob" class="svg-change">
              </use>
 			 </svg>
 			 </button>
 	
 			 </div>
 		   
-		   </li>`).join("")}async function w(t){const s=t.currentTarget.dataset.id;console.log(s);const e=b("products")||[];console.log(e);try{const o=await $(s);console.log(o),e.length===0?(e.push(o),u("products",e)):e.length!==0&&e.map(i=>{console.log(i),i.data._id!==s&&(e.push(o),u("products",e));const n=document.querySelectorAll(".add-button");console.log(n);for(const a of n)if(a.dataset.id===s){a.removeEventListener("click",w);const v=a.querySelector("svg use");a.style.backgroundColor="#6D8434",v.setAttribute("href","./icons.svg#icon-cart-success")}})}catch(o){throw new Error(o)}}const r={selectEl:document.querySelector(".filters-categories-select"),formEl:document.querySelector(".filters-form")};let l={keyword:"",category:"",page:1,limit:6};S();q().then(t=>{x(t)}).catch(t=>console.log(t));function x(t){const s='<option disabled selected value="Show All" hidden data-placeholder="true">Categories</option>';r.selectEl.insertAdjacentHTML("afterbegin",s);const e=t.map(o=>`<option value="${o}">${o.replaceAll("_"," ")}</option>`).join("").concat('<option value="">Show All</option>');r.selectEl.insertAdjacentHTML("beforeend",e),new I({select:r.selectEl,settings:{showSearch:!1,searchHighlight:!0}})}r.formEl.addEventListener("submit",D);function D(t){t.preventDefault(),l.page=1,l.keyword=t.currentTarget.elements.searchQuery.value.trim().toLowerCase().split(" ").join(" "),u("filters-parameters",l),p()}r.selectEl.addEventListener("change",P);function P(t){l.category=t.target.value,l.page=1,u("filters-parameters",l),p()}function S(){return window.innerWidth>=1440?l.limit=9:window.innerWidth>=768?l.limit=8:l.limit=6,l.limit}const j=document.querySelector(".product-list"),V=document.querySelector(".pagination ul"),y=document.querySelector(".pagination"),h=document.querySelector(".card-container"),f=document.querySelector(".main-content-nothing"),F=document.querySelector(".loader");let g=l,E=0;f.style.display="none";async function p(){u("filters-parameters",g);const t=b("filters-parameters");console.log(t);try{const s=await T(t);F.style.display="none";const e=s.results;E=s.totalPages,s.results.length?(f.style.display="none",y.style.display="block",h.style.display="block",j.innerHTML=z(e)):(f.style.display="block",y.style.display="none",h.style.display="none");const o=document.querySelectorAll(".add-button");for(const i of o)i.addEventListener("click",w);O()}catch(s){console.log(s)}}function O(){V.innerHTML=N(E,g.page),document.querySelectorAll(".pagination li:not(.disabled)").forEach(s=>{s.addEventListener("click",async e=>{const o=parseInt(e.currentTarget.dataset.page);!isNaN(o)&&o!==g.page&&(g.page=o,await p())})})}function N(t,s){let e="";const i=Math.floor(2.5);let c=s-i,n=s+i;c<1&&(c=1,n=Math.min(t,c+5-1)),n>t&&(n=t,c=Math.max(1,n-5+1)),s>1?e+=`<li class="btn prev" data-page="${s-1}"><span>&lt;</span></li>`:e+='<li class="btn prev disabled"><span>&lt;</span></li>',c>1&&(e+='<li class="first numb" data-page="1"><span>1</span></li>',c>2&&(e+='<li class="dots"><span>...</span></li>'));for(let a=c;a<=n;a++)e+=`<li class="numb ${a===s?"active":""}" data-page="${a}"><span>${a}</span></li>`;return n<t&&(n<t-1&&(e+='<li class="dots"><span>...</span></li>'),e+=`<li class="last numb" data-page="${t}"><span>${t}</span></li>`),s<t?e+=`<li class="btn next" data-page="${s+1}"><span>&gt;</span></li>`:e+='<li class="btn next disabled"><span>&gt;</span></li>',e}document.addEventListener("DOMContentLoaded",async function(){window.addEventListener("resize",t),await p();function t(){S(),p()}});function L(){productmodal.classList.toggle("is-hidden")}function M(t){const s=document.getElementById("productmodal");$(t).then(({data:e})=>{s.innerHTML=W(e),R(s)})}function R(t){t.querySelector(".mod-card-close").addEventListener("click",_),t.style.display="flex",L()}function _(){const t=document.getElementById("productmodal");t.style.display="none",L()}function W(t){return`<div class="modal-2-wrap">
+		   </li>`).join("")}async function $(t){const e=t.currentTarget.dataset.id;console.log(e);const s=h("products")||[];try{const n=await b(e);s.some(i=>i.data._id===e)||(s.push(n),m("products",s),document.querySelectorAll(".add-button").forEach(a=>{if(a.dataset.id===e){a.removeEventListener("click",$);const c=a.querySelector("svg use");a.style.backgroundColor="#6D8434",c.setAttribute("href",`${r}#icon-cart-success`)}}))}catch(n){throw new Error(n)}}const d={selectEl:document.querySelector(".filters-categories-select"),formEl:document.querySelector(".filters-form")};let l={keyword:"",category:"",page:1,limit:6};w();A().then(t=>{I(t)}).catch(t=>console.log(t));function I(t){const e='<option disabled selected value="Show All" hidden data-placeholder="true">Categories</option>';d.selectEl.insertAdjacentHTML("afterbegin",e);const s=t.map(n=>`<option value="${n}">${n.replaceAll("_"," ")}</option>`).join("").concat('<option value="">Show All</option>');d.selectEl.insertAdjacentHTML("beforeend",s),new H({select:d.selectEl,settings:{showSearch:!1,searchHighlight:!0}})}d.formEl.addEventListener("submit",x);function x(t){t.preventDefault(),l.page=1,l.keyword=t.currentTarget.elements.searchQuery.value.trim().toLowerCase().split(" ").join(" "),m("filters-parameters",l),u(),t.currentTarget.elements.searchQuery.value=""}d.selectEl.addEventListener("change",D);function D(t){l.category=t.target.value,l.page=1,m("filters-parameters",l),u()}function w(){return window.innerWidth>=1440?l.limit=9:window.innerWidth>=768?l.limit=8:l.limit=6,l.limit}const j=document.querySelector(".product-list"),P=document.querySelector(".pagination ul"),y=document.querySelector(".pagination"),v=document.querySelector(".card-container"),f=document.querySelector(".main-content-nothing"),V=document.querySelector(".loader");document.querySelector(".filters-search-input");let p=l,S=0;f.style.display="none";async function u(){m("filters-parameters",p);const t=h("filters-parameters");try{const e=await T(t);V.style.display="none";const s=e.results;S=e.totalPages,e.results.length?(f.style.display="none",y.style.display="block",v.style.display="block",j.innerHTML=z(s)):(f.style.display="block",y.style.display="none",v.style.display="none");const n=document.querySelectorAll(".add-button");for(const i of n)i.addEventListener("click",$);F()}catch(e){console.log(e)}}function F(){P.innerHTML=N(S,p.page),document.querySelectorAll(".pagination li:not(.disabled)").forEach(e=>{e.addEventListener("click",async s=>{const n=parseInt(s.currentTarget.dataset.page);!isNaN(n)&&n!==p.page&&(p.page=n,await u())})})}function N(t,e){let s="";const i=Math.floor(2.5);let a=e-i,o=e+i;a<1&&(a=1,o=Math.min(t,a+5-1)),o>t&&(o=t,a=Math.max(1,o-5+1)),e>1?s+=`<li class="btn prev" data-page="${e-1}"><span>&lt;</span></li>`:s+='<li class="btn prev disabled"><span>&lt;</span></li>',a>1&&(s+='<li class="first numb" data-page="1"><span>1</span></li>',a>2&&(s+='<li class="dots"><span>...</span></li>'));for(let c=a;c<=o;c++)s+=`<li class="numb ${c===e?"active":""}" data-page="${c}"><span>${c}</span></li>`;return o<t&&(o<t-1&&(s+='<li class="dots"><span>...</span></li>'),s+=`<li class="last numb" data-page="${t}"><span>${t}</span></li>`),e<t?s+=`<li class="btn next" data-page="${e+1}"><span>&gt;</span></li>`:s+='<li class="btn next disabled"><span>&gt;</span></li>',s}document.addEventListener("DOMContentLoaded",async function(){window.addEventListener("resize",t),await u();function t(){w(),u()}});function L(){productmodal.classList.toggle("is-hidden")}function E(t){const e=document.getElementById("productmodal");b(t).then(({data:s})=>{e.innerHTML=Q(s),O(e)})}function O(t){t.querySelector(".mod-card-close").addEventListener("click",_),t.style.display="flex",L()}function _(){const t=document.getElementById("productmodal");t.style.display="none",L()}function Q(t){return`<div class="modal-2-wrap">
 	<div class="modal-img-wrap">
                 <div class="modal-img-section">
                     <a class="modal-gallery-link" >
@@ -52,62 +52,62 @@ import{l as b,g as $,s as u,a as q,b as T,c as C,d as H}from"./assets/modal-subs
 				</div>
 				 <div class="modal-price-button">
                     <p class="modal-info-item">$${t.price}</p>	
-                    <button class="modal-button-section add-to-cart" type="button" data-id="${t._id}">
+                    <button class="modal-button-section add-to-cart " type="button" data-id="${t._id}">
          <span class="button-cart">Add to</span>
         <svg class="modal-icon-button" width="18" height="18">
-            <use href="${d}#icon-cart-mob"></use>
+            <use href="${r}#icon-cart-mob"></use>
         </svg>
     </button>
                     </div>
 				<button class="modal-close-button mod-card-close" type="button">
    				 <svg class="close-sharp">
-       				 <use href="${d}#close-sharp"></use>
+       				 <use href="${r}#close-sharp"></use>
      			 </svg>
     			</button>
-            </div>`}const k=document.querySelector(".popular-list");let B=5;k.innerHTML="";C(B).then(t=>{k.innerHTML=J(t)});document.addEventListener("click",function(t){const s=t.target.closest(".popular-card");if(s){const e=s.dataset.productId;M(e)}});function J(t){return t.slice(0,B).map(({_id:s,name:e,img:o,category:i,price:c,size:n,is10PercentOff:a,popularity:m})=>`<li class="popular-card" data-product-id="${s}">
+            </div>`}const M=document.querySelector(".popular-list");let k=5;M.innerHTML="";B(k).then(t=>{M.innerHTML=R(t)});document.addEventListener("click",function(t){const e=t.target.closest(".popular-card");if(e){const s=e.dataset.productId;E(s)}});function R(t){return t.slice(0,k).map(({_id:e,name:s,img:n,category:i,price:a,size:o,is10PercentOff:c,popularity:g})=>`<li class="popular-card" data-product-id="${e}">
             <div class="popular-img-wrap">
                 <div class="popular-left-section">
                     <a class="popular-gallery-link" >
-                        <img src="${o}" alt="${e}" width="56" height="56" loading="lazy" />
+                        <img src="${n}" alt="${s}" width="56" height="56" loading="lazy" />
                     </a>
                 </div>
                 <div class="popular-center-section">
 					<div class="center-section-up">
-                		<p class="popular-info-item">${e.substring(0,15)}</p>
-						<button class="add-popular-button" type="button" data-id="${s}">
-							<svg class="popular-icon-button" width="18" height="18">
-		 					<use href="${d}#icon-cart-mob" alt ="Add to cart">
+                		<p class="popular-info-item">${s.substring(0,15)}</p>
+						<button class="add-popular-button add-button" type="button" data-id="${e}">
+							<svg class="popular-icon-button" width="12" height="12">
+		 					<use href="${r}#icon-cart-mob" alt ="Add to cart">
 		 					</use>
 							</svg>
 						</button>
 					</div>
 					<div class="center-section-down">
                 		<p class="popular-category-item">Category: <span>${i.replace("_"," ")}</span></p>
-                		<p class="popular-size-item">Size:<span>${n}</span>Popularity:<span>${m}</span></p>
+                		<p class="popular-size-item">Size:<span>${o}</span>Popularity:<span>${g}</span></p>
 					</div>
 				</div>
             </div>
-        </li>`).join("")}const A=document.querySelector(".discount-list");A.innerHTML="";H().then(t=>{A.innerHTML=Q(t)});document.addEventListener("click",function(t){const s=t.target.closest(".discount-card");if(s){const e=s.dataset.productId;M(e)}});function K(t,s){return t.slice().sort(()=>Math.random()-.5).slice(0,s)}function Q(t){return K(t,2).map(({_id:e,name:o,img:i,category:c,price:n,size:a,is10PercentOff:m,popularity:v})=>`<li class="discount-card" data-product-id="${e}">
+        </li>`).join("")}const q=document.querySelector(".discount-list");q.innerHTML="";C().then(t=>{q.innerHTML=G(t)});document.addEventListener("click",function(t){const e=t.target.closest(".discount-card");if(e){const s=e.dataset.productId;E(s)}});function W(t,e){return t.slice().sort(()=>Math.random()-.5).slice(0,e)}function G(t){return W(t,2).map(({_id:s,name:n,img:i,category:a,price:o,size:c,is10PercentOff:g,popularity:J})=>`<li class="discount-card" data-product-id="${s}">
             <div class="discount-img-wrap">
 			  <div class="discount-top-section">
                <a class="discount-gallery-link" >
-                <img src="${i}" alt="${o}" width="114" height="114" loading="lazy" />
+                <img src="${i}" alt="${n}" width="114" height="114" loading="lazy" />
                </a>
 			  </div>
 			  <div class="discount-product">
-              	<p class="discount-info-item">${o}</p>
+              	<p class="discount-info-item">${n}</p>
 				<div class="discount-prisce-button">
-             	<p class="discount-price-item">$${n}</p>
-             	<button class="add-discount-button" type="button" data-id="${e}">
+             	<p class="discount-price-item">$${o}</p>
+             	<button class="add-discount-button add-button" type="button" data-id="${s}">
 							<svg class="discount-icon-button" width="18" height="18">
-		 					<use href="${d}#icon-cart-mob" alt ="Add to cart">
+		 					<use href="${r}#icon-cart-mob" alt ="Add to cart">
 		 					</use>
 							</svg>
 						</button>
 				</div>
 			  </div>
 				<svg class="discount-icon" width="60" height="60">
-                <use href="${d}#icon-discount" alt="Discount"></use>
+                <use href="${r}#icon-discount" alt="Discount"></use>
                 </svg>
             </div>
           </li>`).join("")}

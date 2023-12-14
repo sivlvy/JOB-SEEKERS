@@ -17,7 +17,7 @@
 		
 		<script type="module" crossorigin src="/JOB-SEEKERS/commonHelpers.js"></script>
 		<link rel="modulepreload" crossorigin href="/JOB-SEEKERS/assets/vendor-c374a7a2.js">
-		<link rel="modulepreload" crossorigin href="/JOB-SEEKERS/assets/modal-subscription-fca78bc7.js">
+		<link rel="modulepreload" crossorigin href="/JOB-SEEKERS/assets/modal-subscription-9fe9ee4a.js">
 		<link rel="stylesheet" href="/JOB-SEEKERS/assets/modal-subscription-b480de52.css">
 		<link rel="stylesheet" href="/JOB-SEEKERS/assets/cart-267fee8e.css">
 	</head>
@@ -60,140 +60,6 @@
 			<p class="logo-text">Cart (<span class="js-cart-counter">0</span>)</p>
 		</a>
 
-		<div class="cart-content-wrap">
-			<section class="cart" id="cart">
-	<div class="container container-cart">
-		<div class="cart__title-thumb">
-			<button class="cart__button" type="button">
-				<svg class="cart__icon">
-					<use href="../../../icons.svg#icon-cart-desk"></use>
-				</svg>
-			</button>
-			<h2 class="cart__title">
-				Cart (<span class="cart-quantity cart__item-count"></span>)
-			</h2>
-		</div>
-		<div class="cart__wrapper">
-			<div class="cart__desctop-thumb">
-				<div class="cart__added-list">
-					<button class="cart__delete-button" type="button">
-						Delete all
-						<svg width="24" height="24" class="icon icon-icon-close">
-							<use href="../../../icons.svg#icon-icon-close"></use>
-						</svg>
-					</button>
-				</div>
-			</div>
-
-			<div class="cart__products-wrap">
-				<ul class="cart__products js-cart-products">
-					<li class="cart-item" data-id="640c2dd963a319ea671e3737">
-						<div class="cart-item-wrap">
-							<div class="cart-img-container">
-								<img
-									class="cart-img"
-									src="https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e3737.png"
-									alt="Parmigiano-reggiano"
-								/>
-							</div>
-							<div class="cart-img-text">
-								<div class="cart-item-title-wrap">
-									<h3 class="cart-item-title">Parmigiano-reggiano</h3>
-									<button
-										name="button"
-										type="button"
-										class="cart-btn-close"
-										aria-label="Close modal window"
-									>
-										<svg width="18" height="18" class="cart-icon-close">
-											<use href="../../../icons.svg#icon-icon-close"></use>
-										</svg>
-									</button>
-								</div>
-
-								<div class="cart-info-container">
-									<p class="cart-info">
-										Category:
-										<span>Dairy</span>
-									</p>
-									<p class="cart-info cart-info-overflow">
-										Size:
-										<span>per 100g</span>
-									</p>
-								</div>
-								<h3 class="cart-info-price">$4.49</h3>
-							</div>
-						</div>
-					</li>
-					
-				</ul>
-				<div class="container container-product-list">
-					<div class="total__order-thumb">
-						<p class="your__order-title">Your Order</p>
-						<div class="total__price-thumb">
-							<p class="cart__total-title">Total</p>
-							<p class="cart__sum">
-								Sum:
-								<span class="total__price" id="cart__total">$0.00</span>
-							</p>
-						</div>
-
-						<form class="checkout__field">
-							<label for="cart__client-email" class="cart__input-label">
-								<span class="placeholder__prefix">Mail:</span>
-								<input
-									class="cart__basket-input"
-									type="email"
-									name="email"
-									placeholder="Enter your email"
-								/>
-							</label>
-
-							<button
-								type="submit"
-								class="cart__submit-button"
-								aria-label="Checkout cart"
-							>
-								Checkout
-							</button>
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-			<section class="cart-order">
-	<div class="container">
-		<div class="order-wrap">
-			<h2 class="your-order-title">YOUR ORDER</h2>
-			<div class="total-cost">
-				<p class="total">Total</p>
-				<p class="sum">Sum</p>
-				<p class="amount">$<span class="js-pay">12,94</span></p>
-			</div>
-			<form>
-				<div class="mail-field">
-					<label for="email">Mail:</label>
-					<input
-						type="email"
-						id="email"
-						class="mail-input"
-						required
-						pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
-						placeholder="Enter your email"
-					/>
-				</div>
-				<button class="checkout-btn" data-modal-open type="submit">
-					Checkout
-				</button>
-			</form>
-		</div>
-	</div>
-</section>
-
-		</div>
 		<div class="cart-empty-wrapper">
 			<section class="cart-empty">
 	<a href="/cart.html" class="logo-block-empty">
@@ -238,8 +104,86 @@
 
 		</div>
 	</div>
-</section>
+	<div class="cart-content-wrap">
+		<section class="cart" id="cart">
+	<div class="container container-cart">
+		<div class="cart__title-thumb">
+			<button class="cart__button" type="button">
+				<svg class="cart__icon">
+					<use href="../../../icons.svg#icon-cart-desk"></use>
+				</svg>
+			</button>
+			<h2 class="cart__title">
+				Cart (<span class="cart-quantity cart__item-count"></span>)
+			</h2>
+		</div>
+		<div class="cart__wrapper">
+			<div class="cart__desctop-thumb">
+				<div class="cart__added-list">
+					<button class="cart__delete-button" type="button">
+						Delete all
+						<svg width="24" height="24" class="icon icon-icon-close">
+							<use href="../../../icons.svg#icon-icon-close"></use>
+						</svg>
+					</button>
+				</div>
+			</div>
 
+			<div class="cart__products-wrap">
+				<ul class="cart__products js-cart-products">
+				</ul>
+				<div class="container container-product-list">
+					<div class="total__order-thumb">
+						<p class="your__order-title">Your Order</p>
+						<div class="total__price-thumb">
+							<p class="cart__total-title">Total</p>
+							<p class="cart__sum">
+								Sum:
+								<span class="total__price" id="cart__total">$0.00</span>
+							</p>
+						</div>
+
+						<form class="checkout__field">
+							<label for="cart__client-email" class="cart__input-label">
+								<span class="placeholder__prefix">Mail:</span>
+								<input class="cart__basket-input" type="email" name="email"
+									placeholder="Enter your email" />
+							</label>
+
+							<button type="submit" class="cart__submit-button" aria-label="Checkout cart">
+								Checkout
+							</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+		<!-- <section class="cart-order">
+	<div class="container">
+		<div class="order-wrap">
+			<h2 class="your-order-title">YOUR ORDER</h2>
+			<div class="total-cost">
+				<p class="total">Total</p>
+				<p class="sum">Sum</p>
+				<p class="amount">$<span class="js-pay">12,94</span></p>
+			</div>
+			<form>
+				<div class="mail-field">
+					<label for="email">Mail:</label>
+					<input type="email" id="email" class="mail-input" required pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+						placeholder="Enter your email" />
+				</div>
+				<button class="checkout-btn" data-modal-open type="submit">
+					Checkout
+				</button>
+			</form>
+		</div>
+	</div>
+</section> -->
+	</div>
+</section>
 		</main>
 		<footer class="footer">
 	<div class="container footer-container">
