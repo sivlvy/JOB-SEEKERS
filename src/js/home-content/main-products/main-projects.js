@@ -32,9 +32,9 @@ function cardMarkup(products) {
 		   </div>
 		   <div class="price-and-add">
 			 <p class="product-price">$${price}</p>
-			 <button class="add-button" type="button" data-id="${_id}" id="tocart">
-			 <svg class="icon-button"width="18" height="18" id="tocart">
-             <use href="${icons}#icon-cart-mob" class="svg-change" id="tocart">
+			 <button class="add-button" type="button" data-id="${_id}">
+			 <svg class="icon-button"width="18" height="18">
+             <use href="${icons}#icon-cart-mob" class="svg-change">
              </use>
 			 </svg>
 			 </button>
