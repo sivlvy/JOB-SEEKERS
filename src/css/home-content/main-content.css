@@ -6,6 +6,13 @@
 .card-container {
 	width: 100vw;
 }
+.card-wrapper {
+	transition: all 250ms ease-in-out
+}
+.card-wrapper:hover{
+	box-shadow: 0 4px 8px #0000001a;
+	transform: scale(1.05);
+}
 
 @media screen and (min-width: 375px) {
 	.card-container {

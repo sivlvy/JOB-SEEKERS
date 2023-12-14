@@ -3,35 +3,19 @@ import { getProductById } from '../../services/food-api';
 import { saveToLS, loadFromLS } from '../../services/helpers';
 import icons from '/icons.svg';
 
-
-export function updateCounter () {
+export function updateCounter() {
 	const cartValueMain = document.querySelector('.js-cart-counter');
-	const storage = loadFromLS('products')
-	cartValueMain.textContent = storage.length
-
+	const storage = loadFromLS('products');
+	cartValueMain.textContent = storage.length;
 }
 
 if (!localStorage.getItem('products')) {
-	const defaultProducts = []; 
+	const defaultProducts = [];
 	localStorage.setItem('products', JSON.stringify(defaultProducts));
-	updateCounter()
+	updateCounter();
 } else {
-	updateCounter()
+	updateCounter();
 }
-// const addButtons = document.querySelectorAll('.add-button');
-// console.log(addButtons)
-
-// const inLocalStorage = loadFromLS('products')
-// console.log(inLocalStorage)
-
-// if (inLocalStorage.length >= 1) {
-// 	inLocalStorage.map((elem)=> {
-// 		const elID = elem.data._id
-// 		console.log(elID)
-
-// 		// if (elID === )
-// 	})
-// }
 
 function cardMarkup(products) {
 	return products
@@ -77,37 +61,14 @@ function cardMarkup(products) {
 		.join('');
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
 export async function onAddButtonClick(event) {
 	const productID = event.currentTarget.dataset.id;
-	
 
 	const existingProducts = loadFromLS('products') || [];
-	
-	console.log(existingProducts);
-
-	
-
-	
 
 	try {
 		const product = await getProductById(productID);
-		
-		
+
 		if (
 			!existingProducts.some(
 				existingProduct => existingProduct.data._id === productID
@@ -115,10 +76,9 @@ export async function onAddButtonClick(event) {
 		) {
 			existingProducts.push(product);
 			saveToLS('products', existingProducts);
-			updateCounter()
+			updateCounter();
 
 			const addButtons = document.querySelectorAll('.add-button');
-			
 
 			addButtons.forEach(addButton => {
 				const buttonID = addButton.dataset.id;

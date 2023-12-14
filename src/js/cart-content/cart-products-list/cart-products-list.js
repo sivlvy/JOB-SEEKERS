@@ -6,13 +6,7 @@ import icons from '/icons.svg';
 const cartContainer = document.querySelector('.cart-container');
 
 const savedProductsBasket = loadFromLS('products');
-console.log(savedProductsBasket);
 
-// btnItemClose.addEventListener('click', onRemoveItemClick)
-
-// function onRemoveItemClick() {
-
-// }
 
 const cartValueProducts = document.querySelectorAll('.js-cart-counter');
 
@@ -44,10 +38,9 @@ cardProductBasketList.insertAdjacentHTML(
 );
 
 const btnItemsClose = document.querySelectorAll('.cart-btn-close');
-console.log(btnItemsClose);
 
 btnItemsClose.forEach(btnItemClose => {
-	console.log(btnItemClose);
+
 	btnItemClose.addEventListener('click', onRemoveItemClick);
 });
 
@@ -57,7 +50,7 @@ function onRemoveItemClick(event) {
 	const itemID = removeItemBtn.dataset.id;
 
 	savedProductsBasket.forEach((element, index, arr) => {
-		console.log(index);
+
 		const elementID = element.data._id;
 		
 
@@ -69,11 +62,11 @@ function onRemoveItemClick(event) {
 			saveToLS('products', savedProductsBasket);
 
 			const infoLS = loadFromLS('products');
-			console.log(infoLS);
-			console.log(savedProductsBasket.length)
+
+
 
 			if (savedProductsBasket.length === 0) {
-				console.log('hello')
+
 				sectionProductList.style.display = 'none';
 				cartContainer.style.display = 'block';
 				localStorage.removeItem('products');
@@ -95,7 +88,7 @@ export function createTotalNum() {
 
 	totalSummary.textContent = `$${String(endResult)}`;
 }
-console.log(createTotalNum());
+
 // const resultNumber = parseFloat(resultString);
 
 createTotalNum();

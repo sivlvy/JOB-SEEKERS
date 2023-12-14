@@ -9,6 +9,7 @@ const modalSubscription = document.querySelector('.modal-subscription');
 const modalUnsubscription = document.querySelector('.modal-unsubscription');
 const modalBackElem = document.querySelector('.modal-backdrop-subscription');
 const closeBackDrop = document.querySelector('.container-modal');
+const iconClose = document.querySelector('.close')
 modalSubscription.classList.add('is-hidden');
 modalUnsubscription.classList.add('is-hidden');
 
@@ -17,14 +18,17 @@ const closeModal = event => {
 	if (target === modalSubscription || target.closest('.close')) {
 		modalSubscription.classList.add('is-hidden');
 		modalBackElem.classList.add('is-hidden');
+		document.body.style.overflow = 'auto';
 	}
 	if (target === modalUnsubscription || target.closest('.close')) {
 		modalUnsubscription.classList.add('is-hidden');
 		modalBackElem.classList.add('is-hidden');
+		document.body.style.overflow = 'auto';
 	}
 	if (target === closeBackDrop || target.closest('.close')) {
 		modalUnsubscription.classList.add('is-hidden');
 		modalBackElem.classList.add('is-hidden');
+		document.body.style.overflow = 'auto';
 	}
 };
 

@@ -15,7 +15,7 @@ document.addEventListener('click', function (event) {
 	const discountCard = event.target.closest('.discount-card');
 	if (discountCard) {
 		const productId = discountCard.dataset.productId;
-		// console.log('ID:', productId);
+
 
 		clickproduct(productId);
 	}

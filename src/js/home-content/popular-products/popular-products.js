@@ -14,7 +14,7 @@ document.addEventListener('click', function (event) {
 	const popularCard = event.target.closest('.popular-card');
 	if (popularCard) {
 		const productId = popularCard.dataset.productId;
-		// console.log('ID:', productId);
+
 		clickproduct(productId);
 	}
 });

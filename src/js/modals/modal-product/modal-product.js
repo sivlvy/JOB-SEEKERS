@@ -17,6 +17,7 @@ export function clickproduct(id) {
 	const closeButton = productmodal.querySelector('.mod-card-close');
 	closeButton.addEventListener('click', closeProductModal);
 	productmodal.style.display = 'flex';
+	
 	toggleMenu();
 }
 

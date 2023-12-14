@@ -21,17 +21,17 @@ export async function updateProducts() {
 	saveToLS('filters-parameters', newFilters);
 
 	const dataFromLSByProducts = loadFromLS('products');
-	console.log(dataFromLSByProducts);
+
 
 	const dataFromLS = loadFromLS('filters-parameters');
-	console.log(dataFromLS);
+
 
 	try {
 		const data = await getCurrentProducts(dataFromLS);
 		loaderEl.style.display = 'none';
 
 		const products = data.results;
-		console.log(products);
+
 
 		totalPages = data.totalPages;
 
@@ -39,13 +39,6 @@ export async function updateProducts() {
 		
 
 		
-
-		// if (dataFromLSByProducts.length >= 1) {
-		// 	const commonObjects = products.filter(obj1 => dataFromLSByProducts.some(obj2 => obj1._id === obj2._id));
-
-
-		// 	console.log(commonObjects)
-		// }
 
 		
 
@@ -156,7 +149,7 @@ function paginationHTML(totalPages, currentPage) {
 	}
 	return liTag;
 }
-console.log('Hello');
+
 document.addEventListener('DOMContentLoaded', async function () {
 	let resizeTimeout;
 
