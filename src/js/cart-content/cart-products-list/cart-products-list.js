@@ -92,8 +92,19 @@ const totalSummary = document.querySelector('.total__price');
 export function createTotalNum() {
 	const totalStorageNum = loadFromLS('products');
 	const total = totalStorageNum.reduce((acc, el) => (acc += el.data.price), 0);
-	totalSummary.textContent = `$${total}`;
+	const endResult = total.toFixed(2);
+	
+	
+	totalSummary.textContent = `$${String(endResult)}`;
+
+	
+
+    
 }
+
+// const resultNumber = parseFloat(resultString);
+
+
 
 createTotalNum();
 
