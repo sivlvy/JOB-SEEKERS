@@ -3,6 +3,36 @@ import { getProductById } from '../../services/food-api';
 import { saveToLS, loadFromLS } from '../../services/helpers';
 import icons from '/icons.svg';
 
+
+export function updateCounter () {
+	const cartValueMain = document.querySelector('.js-cart-counter');
+	const storage = loadFromLS('products')
+	cartValueMain.textContent = storage.length
+
+}
+
+if (!localStorage.getItem('products')) {
+	const defaultProducts = []; 
+	localStorage.setItem('products', JSON.stringify(defaultProducts));
+	updateCounter()
+} else {
+	updateCounter()
+}
+// const addButtons = document.querySelectorAll('.add-button');
+// console.log(addButtons)
+
+// const inLocalStorage = loadFromLS('products')
+// console.log(inLocalStorage)
+
+// if (inLocalStorage.length >= 1) {
+// 	inLocalStorage.map((elem)=> {
+// 		const elID = elem.data._id
+// 		console.log(elID)
+
+// 		// if (elID === )
+// 	})
+// }
+
 function cardMarkup(products) {
 	return products
 		.map(
@@ -50,25 +80,14 @@ function cardMarkup(products) {
 
 
 
-export function updateCounter () {
-	const cartValueMain = document.querySelector('.js-cart-counter');
-	const storage = loadFromLS('products')
-	cartValueMain.textContent = storage.length
-
-}
 
 
 
 
 
 
-if (!localStorage.getItem('products')) {
-	const defaultProducts = []; 
-	localStorage.setItem('products', JSON.stringify(defaultProducts));
-	updateCounter()
-} else {
-	updateCounter()
-}
+
+
 
 
 	
