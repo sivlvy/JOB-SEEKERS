@@ -1,15 +1,20 @@
 import { getProductById } from '../../services/food-api';
 import { basketProductMarkUp } from '../../home-content/main-products/main-projects';
-import { loadFromLS } from '../../services/helpers';
+import { loadFromLS, saveToLS } from '../../services/helpers';
 import icons from '/icons.svg';
 
 const cartContainer = document.querySelector('.cart-container');
 
 const savedProductsBasket = loadFromLS('products');
+console.log(savedProductsBasket);
 
+// btnItemClose.addEventListener('click', onRemoveItemClick)
+
+// function onRemoveItemClick() {
+
+// }
 
 const cartValueProducts = document.querySelectorAll('.js-cart-counter');
-
 
 function updateCartCounter() {
 	cartValueProducts.forEach(cartValue => {
@@ -25,7 +30,6 @@ for (const cartValueProduct of cartValueProducts) {
 
 const sectionProductList = document.querySelector('.cart-content-wrap');
 
-
 if (savedProductsBasket.length === 0) {
 	sectionProductList.style.display = 'none';
 } else {
@@ -38,6 +42,51 @@ cardProductBasketList.insertAdjacentHTML(
 	'beforeend',
 	createBascetProductMarcup(savedProductsBasket)
 );
+
+const btnItemsClose = document.querySelectorAll('.cart-btn-close');
+console.log(btnItemsClose);
+
+btnItemsClose.forEach(btnItemClose => {
+	console.log(btnItemClose);
+	btnItemClose.addEventListener('click', onRemoveItemClick);
+});
+
+function onRemoveItemClick(event) {
+	const removeItemBtn = event.target.closest('.cart-item');
+
+	const itemID = removeItemBtn.dataset.id;
+
+	savedProductsBasket.forEach((element, index, arr) => {
+		console.log(index);
+		const elementID = element.data._id;
+		
+
+		if (elementID === itemID) {
+
+			const li = document.querySelector('.cart-item');
+			li.remove();
+			
+			saveToLS('products', savedProductsBasket);
+
+			const infoLS = loadFromLS('products');
+			console.log(infoLS);
+			console.log(savedProductsBasket.length)
+
+			if (savedProductsBasket.length === 0) {
+				console.log('hello')
+				sectionProductList.style.display = 'none';
+				cartContainer.style.display = 'block';
+				localStorage.removeItem('products');
+
+				localStorage.setItem('products', JSON.stringify([]));
+				cartValueProducts.forEach(cartValue => {
+					
+					cartValue.textContent = test.length;
+				});
+			} 
+		}
+	});
+}
 
 const totalSummary = document.querySelector('.total__price');
 export function createTotalNum() {

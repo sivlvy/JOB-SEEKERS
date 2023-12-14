@@ -20,14 +20,36 @@ hiddenForm.style.display = 'none';
 export async function updateProducts() {
 	saveToLS('filters-parameters', newFilters);
 
+	const dataFromLSByProducts = loadFromLS('products');
+	console.log(dataFromLSByProducts);
+
 	const dataFromLS = loadFromLS('filters-parameters');
+	console.log(dataFromLS);
 
 	try {
 		const data = await getCurrentProducts(dataFromLS);
 		loaderEl.style.display = 'none';
 
 		const products = data.results;
+		console.log(products);
+
 		totalPages = data.totalPages;
+
+		const addButtonsmore = document.querySelectorAll('.add-button');
+		
+
+		
+
+		// if (dataFromLSByProducts.length >= 1) {
+		// 	const commonObjects = products.filter(obj1 => dataFromLSByProducts.some(obj2 => obj1._id === obj2._id));
+
+
+		// 	console.log(commonObjects)
+		// }
+
+		
+
+
 
 		if (data.results.length) {
 			hiddenForm.style.display = 'none';
@@ -92,58 +114,45 @@ function paginationHTML(totalPages, currentPage) {
 			currentPage - 1
 		}"><span>&lt;</span></li>`;
 	} else {
-		liTag += (`
+		liTag += `
 		<li class="btn prev disabled">
 			<span>&lt;</span>
-		</li>`
-		);
+		</li>`;
 	}
 	if (startPage > 1) {
-		liTag += (
-			`<li class="first numb" data-page="1">
+		liTag += `<li class="first numb" data-page="1">
 			<span>1</span>
-		</li>`
-		);
+		</li>`;
 		if (startPage > 2) {
-			liTag += (
-				`<li class="dots">
+			liTag += `<li class="dots">
 				<span>...</span>
-			</li>`
-			);
+			</li>`;
 		}
 	}
 	for (let page = startPage; page <= endPage; page++) {
 		const active = page === currentPage ? 'active' : '';
-		liTag += (
-			`<li class="numb ${active}" data-page="${page}">
+		liTag += `<li class="numb ${active}" data-page="${page}">
 			<span>${page}</span>
-		</li>`
-		);
+		</li>`;
 	}
 	if (endPage < totalPages) {
 		if (endPage < totalPages - 1) {
-			liTag += (
-				`<li class="dots">
+			liTag += `<li class="dots">
 				<span>...</span>
-			</li>`
-			);
+			</li>`;
 		}
-		liTag += (
-			`<li class="last numb" data-page="${totalPages}">
+		liTag += `<li class="last numb" data-page="${totalPages}">
 			<span>${totalPages}</span>
-		</li>`
-		);
+		</li>`;
 	}
 	if (currentPage < totalPages) {
 		liTag += `<li class="btn next" data-page="${
 			currentPage + 1
 		}"><span>&gt;</span></li>`;
 	} else {
-		liTag += (
-			`<li class="btn next disabled">
+		liTag += `<li class="btn next disabled">
 			<span>&gt;</span>
-		</li>`
-		);
+		</li>`;
 	}
 	return liTag;
 }
